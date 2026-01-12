@@ -77,5 +77,5 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 
 ## 💬 Autor
 
-Entwickelt mit ❤️ von [*Dein Name / GitHub-Nutzername*]  
-📫 **Kontakt:** <deine.email@example.com>
+Entwickelt mit ❤️ von Melih Can Abay 
+📫 **Kontakt:** <melihcan05@protonmail.com>
