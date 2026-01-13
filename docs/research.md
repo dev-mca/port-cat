@@ -11,7 +11,9 @@ Eine Swing-UI zu erstellen, ist deutlich einfacher als mit JavaFX. Allerdings ka
 Schlussendlich habe ich mir vorgenommen, mich mit JavaFX auseinanderzusetzen, obwohl Swing viel einfacher ist. Das heisst, ich möchte JavaFX lernen und gleich anwenden.
 
 ## UI-Mockup mit Figma
-Ich habe 2 UI-Mockups erstellt. Die erste habe ich früh, noch während der Projektbeschreibung erstellt. Mit einem einfachen Tool für Formen und Bilder habe konnte ich das erste Mockup fertigstellen, was mir eine
+Ich habe zwei UI-Mockups erstellt. Das erste habe ich früh, noch während der Projektbeschreibung, erstellt. Mit einem einfachen Tool fürs hinz Formen und Bilder konnte ich das erste Mockup fertigstellen, das mir eine Vorstellung davon gibt, wie es etwa aussehen wird.
+
+Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mockup gemacht und dazu das weltweit beliebte und bekannte Tool Figma verwendet.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NTEyNTc0ODcsOTg3MjYyMjQyXX0=
+eyJoaXN0b3J5IjpbOTU0MDU3MTkxLDk4NzI2MjI0Ml19
 -->
