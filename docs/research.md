@@ -18,8 +18,7 @@ Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mo
 
 ## Der Windows Netstat command
 
-    netstat
-
+Das Kommando `netstat`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzM4MjU2MDQ1LDk4NzI2MjI0Ml19
+eyJoaXN0b3J5IjpbLTM1NTY2MTA0MSw5ODcyNjIyNDJdfQ==
 -->
