@@ -2,12 +2,9 @@
 
 ## Metadaten
 
-- Projekt: PortCat – Visualizer für Netzwerkverbindungen am eigenen PC [1]
-- Student: Melih Can Abay
-- Zeitraum: 13.01.2026 – 13.02.2026 (5 Wochen) [2]
-- Betreuer: _Name eintragen_
-- Variante: kurz / lang (zutreffendes markieren)
-
+- Projekt: **PortCat – Visualizer** für Netzwerkverbindungen am eigenen PC
+- Zeitraum: 13.01.2026 – 13.02.2026 (5 Wochen)
+- Variante:  lang 
 ---
 
 ## Überblick
@@ -15,7 +12,7 @@
 Ziel: Ein lauffähiges Programm, das in einer definierten Umgebung einsatzfähig ist [2].  
 Dieser Plan wird während des Projekts laufend aktualisiert.
 
-- [ ] Plan erstellt
+- [x] Plan erstellt
 - [ ] Plan mit Betreuer:in besprochen
 - [ ] Plan angepasst (Versionen siehe unten)
 
@@ -173,5 +170,5 @@ Offene Fragen an Betreuer:in:
 - **v3 – …**: …
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODgzNjEzMDczXX0=
+eyJoaXN0b3J5IjpbLTY0NjkzNjIwMF19
 -->
