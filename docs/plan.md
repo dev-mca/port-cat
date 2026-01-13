@@ -32,15 +32,15 @@ Dieser Plan wird während des Projekts laufend aktualisiert.
 
 **Aufgaben**
 
-- [ ] Aufgabe 1
-- [ ] Aufgabe 2
-- [ ] …
+- [ ] Repo auf GitHub einrichten
+- [ ] Plan, Vision und sontige wichtige Dokumente hochladen
+- [ ] 
 
 **Tagesplanung (optional)**
 
 | Tag | Zeitfenster | Aufgabe(n) | Status |
 |-----|-------------|-----------|--------|
-| Mo  | 09:00–12:00 |           |        |
+| Mo  | 09:00–14:00 |   Theorieteil      | -       |
 | Di  |             |           |        |
 | Mi  |             |           |        |
 | Do  |             |           |        |
@@ -169,5 +169,5 @@ Offene Fragen an Betreuer:in:
 - **v3 – …**: …
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMyOTUxMTQ1OV19
+eyJoaXN0b3J5IjpbLTEzMzQzMjM2MzhdfQ==
 -->
