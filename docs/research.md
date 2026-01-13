@@ -11,3 +11,6 @@ Bezüglich des UI-Frameworks war ich anfangs skeptisch, was die Verwendung von J
 Eine Swing-UI zu erstellen, ist deutlich einfacher als mit JavaFX. Allerdings kann man mit JavaFX viel mehr machen, beispielsweise moderne Designs erstellen.
 
 Schlussendlich habe ich mir vorgenommen, mich mit JavaFX auseinanderzusetzen, obwohl Swing viel einfacher ist. Das heisst, ich möchte JavaFX lernen und gleich anwenden.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNjM5NDE0NTI0XX0=
+-->
