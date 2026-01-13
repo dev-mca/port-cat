@@ -40,8 +40,8 @@ Dieser Plan wird während des Projekts laufend aktualisiert.
 
 | Tag | Zeitfenster | Aufgabe(n) | Status |
 |-----|-------------|-----------|--------|
-| Mo  | 09:00–14:00 | Kickoff| Erledigt    |
-| Di  | 07:30-17:00 | Repo sauber einrichten          |Erledigt        |
+| Mo  | 09:00–14:00 | Kickoff| Erledigt  |
+| Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
 | Mi  | 07:30-17:00 |           |        |
 | Do  |             |           |        |
 | Fr  |             |           |        |
@@ -169,5 +169,5 @@ Offene Fragen an Betreuer:in:
 - **v3 – …**: …
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjM3ODc2NTA1XX0=
+eyJoaXN0b3J5IjpbLTY1NDc2Mzk0M119
 -->
