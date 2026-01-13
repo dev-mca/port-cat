@@ -13,7 +13,7 @@ Schlussendlich habe ich mir vorgenommen, mich mit JavaFX auseinanderzusetzen, ob
 ## UI-Mockup mit Figma
 Ich habe zwei UI-Mockups erstellt. Das erste habe ich früh, noch während der Projektbeschreibung, erstellt. Mit einem einfachen Tool fürs hinzufügen und verschieben von Formen und Bilder konnte ich das erste Mockup fertigstellen, das mir eine erste Vorstellung davon gibt, wie das Programm etwa aussehen wird.
 
-Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mockup gemacht und dazu das weltweit beliebte und bekannte Tool Figma verwendet. Mit Unterstützung der in Figma integrierten AI, konnte ich ein schöneres, ausführlicheres und stru
+Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mockup gemacht und dazu das weltweit beliebte und bekannte Tool **Figma** verwendet. Mit Unterstützung der in Figma integrierten AI, konnte ich ein schöneres, ausführlicheres und strukturiertere UI entwerfen. Auf Figma ist sie bereits funktionstüchtig und ist genau so, wie ich es mir vorgestellt habe. Allerdings bietet Figma keine direkte Konversion für UI-Frameworks/Backend an.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg3MDY4OTQ0MCw5ODcyNjIyNDJdfQ==
+eyJoaXN0b3J5IjpbMTQwNTM3ODA5Niw5ODcyNjIyNDJdfQ==
 -->
