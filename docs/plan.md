@@ -34,14 +34,14 @@ Dieser Plan wird während des Projekts laufend aktualisiert.
 
 - [ ] Repo auf GitHub einrichten
 - [ ] Plan, Vision und sontige wichtige Dokumente hochladen
-- [ ] 
+- [ ]
 
 **Tagesplanung (optional)**
 
 | Tag | Zeitfenster | Aufgabe(n) | Status |
 |-----|-------------|-----------|--------|
 | Mo  | 09:00–14:00 | Kickoff| Erledigt  |
-| Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
+| Di  | 07:30-17:00 | Repo sauber einrichten    |- []Erledigt        |
 | Mi  | 07:30-17:00 |           |        |
 | Do  |             |           |        |
 | Fr  |             |           |        |
@@ -169,5 +169,5 @@ Offene Fragen an Betreuer:in:
 - **v3 – …**: …
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY1NDc2Mzk0M119
+eyJoaXN0b3J5IjpbLTgxNzYxNTM3OF19
 -->
