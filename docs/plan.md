@@ -42,8 +42,8 @@ Dieser Plan wird während des Projekts laufend aktualisiert.
 | Mo  | 09:00–14:00 | Kickoff| Erledigt  |
 | Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
 | Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |        |
-| Do  | 07:30-17:00 |           |        |
-| Fr  |             |           |        |
+| Do  | 07:30-17:00 | Output aus Windows command in einfacher JavaFX UI anzeigen lassen          |        |
+| Fr  | 07:30-17:00            |           |        |
 
 ---
 
@@ -168,5 +168,5 @@ Offene Fragen an Betreuer:in:
 - **v3 – …**: …
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMwNjk5OTkyNF19
+eyJoaXN0b3J5IjpbMTI2MjU3MzgxNCwxMzA2OTk5OTI0XX0=
 -->
