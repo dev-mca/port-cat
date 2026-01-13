@@ -163,10 +163,8 @@ Offene Fragen an Betreuer:in:
 
 ## Plan-Revisionen
 
-- **v1 – 13.01.2026**: Initiale Planung erstellt.
-- **v2 – 20.01.2026**: Nach Feedback mit Betreuer:in angepasst.
-- **v3 – …**: …
+- **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2MjU3MzgxNCwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
