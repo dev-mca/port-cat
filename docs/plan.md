@@ -14,22 +14,21 @@ Dieser Plan wird während des Projekts laufend aktualisiert.
 
 - [x] Plan erstellt
 - [ ] Plan mit Betreuer:in besprochen
-- [ ] Plan angepasst (Versionen siehe unten)
 
 ---
 
 ## Kalender / Wochenübersicht
 
-### Woche 1 (13.01 – 19.01)
+### Woche 1 (12.01 – 18.01)
 
 **Ziele dieser Woche**
 
-- _z.B. Projektvision schärfen, Problem beschreiben, Skateboard definieren, Repo einrichten_
+- _Projektvision schärfen, Problem beschreiben, Skateboard definieren, Repo einrichten_
 
 **Wichtige Termine**
 
-- Feedback-Markt: 19.01, 11:00 – 12:00 (Kurzvariante) [2]  
-- Treffen mit Betreuer: _Datum/Zeit_
+- Feedback-Markt: 19.01, 11:00 – 12:00 (Kurzvariante)  
+- Wöchentliches Meeting mit Betreuer: _Montag, 19.01.2026 um 14:15 Uhr_
 
 **Aufgaben**
 
@@ -170,5 +169,5 @@ Offene Fragen an Betreuer:in:
 - **v3 – …**: …
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0NjkzNjIwMF19
+eyJoaXN0b3J5IjpbMTMyOTUxMTQ1OV19
 -->
