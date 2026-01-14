@@ -33,7 +33,7 @@ Die List enthält Wörter in einer wiederkehrender Konstellation. Zahlen zuerst 
     // Regex: eine oder mehr Ziffern, gefolgt von einer oder mehr Buchstaben
     Pattern p = Pattern.compile("(\\d+)([A-Za-z]+)");
 
-Anschliessend iteriere ich durch die Liste 
+Anschliessend iteriere ich durch die Liste und 
 
     for (int i = 0; i < notParsed.length; i++) {
             String s = notParsed[i];
@@ -55,6 +55,6 @@ Anschliessend iteriere ich durch die Liste
         }
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMzODE4MzA4OSwtMzU1NjYxMDQxLDk4Nz
-I2MjI0Ml19
+eyJoaXN0b3J5IjpbLTEwMTkxNDkzODAsLTM1NTY2MTA0MSw5OD
+cyNjIyNDJdfQ==
 -->
