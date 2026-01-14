@@ -9,8 +9,9 @@
 
 ## Überblick
 
-Ziel: Ein lauffähiges Programm, das in einer definierten Umgebung einsatzfähig ist [2].  
+Ziel: Ein lauffähiges Programm, das in einer definierten Umgebung einsatzfähig ist.  
 Dieser Plan wird während des Projekts laufend aktualisiert.
+Ich halte mich an d
 
 - [x] Plan erstellt
 - [ ] Plan mit Betreuer:in besprochen
@@ -22,6 +23,7 @@ Dieser Plan wird während des Projekts laufend aktualisiert.
 ### Woche 1 (12.01 – 18.01)
 
 **Ziele dieser Woche**
+S
 
 - _Projektvision schärfen, Problem beschreiben, Skateboard definieren, Repo einrichten_
 
@@ -166,5 +168,6 @@ Offene Fragen an Betreuer:in:
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
+eyJoaXN0b3J5IjpbMTAxNjM1NzI2MywtMjA5NDAzMTMxNiwxMz
+A2OTk5OTI0XX0=
 -->
