@@ -1,5 +1,7 @@
 # PortCat development reasearch
-In diesem Dokument teile ich meine Entscheide, bedenken und allgemeine Recherche während der Entwicklung von **PortCat**. Das Dokument wird laufend bis zum Release sowie bei weiterführender Entwicklung aktualisiert.
+In diesem Dokument teile ich meine Entscheide, bedenken und allgemeine Recherche während der Entwicklung von **PortCat**. Das Dokument wird laufend bis zum Release sowie bei weiterführender Entwicklung aktualisiert. 
+
+*Zu unterst befindet sich ein **Quellenverzeichnis**.*
 
 
 ## Auswahl UI Framework – Swing vs JavaFX (Woche 1)
@@ -21,7 +23,7 @@ Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mo
 
 Das Kommando `netstat`
 
-## Java RegEx  
+## Java RegEx  (Woche 1)
 Für das Parsen mit einem vorgegebenen Muster ist `RegEx` (Regular Expression) die passende Bibliothek.
 
 Ein Beispiel mit einer ArrayList an Strings:
@@ -54,7 +56,8 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
             }
         }
 
+## Quellenverzeichnis
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MTI0NDM2MjksLTM1NTY2MTA0MSw5OD
-cyNjIyNDJdfQ==
+eyJoaXN0b3J5IjpbNjcyNzU3NjQ5LC0zNTU2NjEwNDEsOTg3Mj
+YyMjQyXX0=
 -->
