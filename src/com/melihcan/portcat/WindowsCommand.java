@@ -28,13 +28,11 @@ public class WindowsCommand {
 
                 // Read command standard output
                 String s;
-                System.out.println("Standard output: ");
                 while ((s = stdInput.readLine()) != null) {
                     output.append(s).append("\n");
                 }
 
                 // Read command errors
-                System.out.println("Standard error: ");
                 while ((s = stdError.readLine()) != null) {
                     System.out.println(s);
                 }
