@@ -88,9 +88,9 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 ## Plan-Revisionen
 
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
-- **v2 - 14.01.2026
+- **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwOTI4NDkyMiwtMjA5NDAzMTMxNiwxMz
+eyJoaXN0b3J5IjpbLTE1MDQ1NzgxNiwtMjA5NDAzMTMxNiwxMz
 A2OTk5OTI0XX0=
 -->
