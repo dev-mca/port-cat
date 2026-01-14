@@ -47,6 +47,27 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 ---
 
+### Woche 1 (12.01 – 18.01)
+**Scooter** = ...
+
+**Wichtige Termine:**
+
+- Wöchentliches Meeting mit Betreuer: _Montag, 19.01.2026 um 14:15 Uhr_
+
+**Aufgaben**
+
+- [ ] ...
+
+**Tagesplanung (optional)**
+
+| Tag | Zeitfenster | Aufgabe(n) | Status |
+|-----|-------------|-----------|--------|
+| Mo  | 09:00–14:00 | |   |
+| Di  | 07:30-17:00 |     |        |
+| Mi  | 07:30-17:00 |           |      |
+| Do  | 07:30-17:00 | |        |
+| Fr  | 07:30-17:00            |           |        |
+
 
 
 ## Zeitaufwand (Zeiterfassung)
@@ -67,8 +88,9 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 ## Plan-Revisionen
 
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
+- **v2 - 14.01.2026
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MDY0ODU1MzUsLTIwOTQwMzEzMTYsMT
-MwNjk5OTkyNF19
+eyJoaXN0b3J5IjpbLTMwOTI4NDkyMiwtMjA5NDAzMTMxNiwxMz
+A2OTk5OTI0XX0=
 -->
