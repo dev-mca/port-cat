@@ -21,9 +21,9 @@ Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mo
 
 Das Kommando `netstat`
 
-## Java RgEx  
-Für das Parsen 
+## Java RegEx  
+Für das Parsen mit einem vorgegebenen Muster ist `RegEx` (Regular Expression) die passende Bibliothek.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgwMDU5NjY3NiwtMzU1NjYxMDQxLDk4Nz
-I2MjI0Ml19
+eyJoaXN0b3J5IjpbOTc2MDExODA4LC0zNTU2NjEwNDEsOTg3Mj
+YyMjQyXX0=
 -->
