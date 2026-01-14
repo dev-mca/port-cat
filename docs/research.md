@@ -28,9 +28,12 @@ Ein Beispiel mit einer ArrayList an Strings:
 
     String[] notParsed = {"10Hello", "30Hi", "20Noo"};
 
-Die List enthält Wörter in einer wiederkehrender Konstellation. Zwei Zahlen und darauf
+Die List enthält Wörter in einer wiederkehrender Konstellation. Zahlen zuerst und darauf folgend Buchstaben. Ich muss als allererstes das Pattern bestimmen.
+
+    // Regex: eine oder mehr Ziffern, gefolgt von einer oder mehr Buchstaben
+            Pattern p = Pattern.compile("(\\d+)([A-Za-z]+)");
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4OTQ0Nzg4MzksLTM1NTY2MTA0MSw5OD
-cyNjIyNDJdfQ==
+eyJoaXN0b3J5IjpbMTk3MjcxNDg2OCwtMzU1NjYxMDQxLDk4Nz
+I2MjI0Ml19
 -->
