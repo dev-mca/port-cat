@@ -2,14 +2,21 @@ package com.melihcan.portcat;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WindowsCommand {
     static final String cmd = "cmd /c netstat -an";
     static boolean toggle = true;
+    static int count = 0;
+
+    static List<String> netstatHistory = new ArrayList<String>();
 
     public static void main(String[] args) {
 
-        while (toggle) {
+        while (toggle && count < 4) {
+            count++;
+            StringBuilder output = new StringBuilder();
 
             try {
                 // Run command
@@ -23,7 +30,7 @@ public class WindowsCommand {
                 String s;
                 System.out.println("Standard output: ");
                 while ((s = stdInput.readLine()) != null) {
-                    System.out.println(s);
+                    output.append(s).append("\n");
                 }
 
                 // Read command errors
@@ -32,6 +39,10 @@ public class WindowsCommand {
                     System.out.println(s);
                 }
 
+                process.waitFor();
+
+                netstatHistory.add(output.toString());
+
                 // delay for while loop
                 Thread.sleep(2000);
 
@@ -39,5 +50,6 @@ public class WindowsCommand {
                 e.printStackTrace(System.err);
             }
         }
+        System.out.println("History: " + netstatHistory);
     }
 }
