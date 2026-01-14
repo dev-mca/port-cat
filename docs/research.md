@@ -23,7 +23,10 @@ Das Kommando `netstat`
 
 ## Java RegEx  
 Für das Parsen mit einem vorgegebenen Muster ist `RegEx` (Regular Expression) die passende Bibliothek.
+
+Ein Beispiel mit einer ArrayList an Strings:
+Die List enthält lauter Wörter in einer wiederkehrender Konstellation.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTc2MDExODA4LC0zNTU2NjEwNDEsOTg3Mj
-YyMjQyXX0=
+eyJoaXN0b3J5IjpbMTAwNDk1NjkwNywtMzU1NjYxMDQxLDk4Nz
+I2MjI0Ml19
 -->
