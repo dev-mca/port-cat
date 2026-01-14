@@ -42,7 +42,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Mo  | 09:00–14:00 | Kickoff| Erledigt  |
 | Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
 | Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |  Erledigt    |
-| Do  | 07:30-17:00 |Output parsen |        |
+| Do  | 07:30-17:00 |Output korrekt parsen |        |
 | Fr  | 07:30-17:00            |           |        |
 
 ---
@@ -91,6 +91,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MDQ1NzgxNiwtMjA5NDAzMTMxNiwxMz
-A2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbMjY2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMD
+Y5OTk5MjRdfQ==
 -->
