@@ -13,6 +13,12 @@ Ziel: Ein lauffähiges Programm, das in einer definierten Umgebung einsatzfähig
 Dieser Plan wird während des Projekts laufend aktualisiert.
 Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde wöchentlich etwas fertigstellen können.
 
+1.  Skateboard (Woche 1)
+2. Scooter (Woche 2)
+3. Fahrrad (Woche 3)
+4. Motorrad (Woche 4)
+5. Cabriolet (Woche 5)
+
 - [x] Plan erstellt
 - [ ] Plan mit Betreuer:in besprochen
 
@@ -21,7 +27,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde wöchentlich e
 ## Kalender / Wochenübersicht
 
 ### Woche 1 (12.01 – 18.01)
-Skateboard = Ein funktionsfähiges 
+**Skateboard** = Ein funktionsfähiges Programm, der den Netstat befehl parsen und einfacher in der Konsole darstellen kann.
 
 **Ziele dieser Woche**
 S
@@ -169,6 +175,6 @@ Offene Fragen an Betreuer:in:
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE3MjQ4NzIyLC0yMDk0MDMxMzE2LDEzMD
-Y5OTk5MjRdfQ==
+eyJoaXN0b3J5IjpbMjEzNTkyMTI1OSwtMjA5NDAzMTMxNiwxMz
+A2OTk5OTI0XX0=
 -->
