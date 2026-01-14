@@ -23,7 +23,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ## Kalender / Wochenübersicht
 
 ### Woche 1 (12.01 – 18.01)
-**Skateboard** = Ein funktionsfähiges Programm, der den **netstat** Befehl parsen und einfacher in der Konsole darstellen kann.
+**Skateboard** = Ein funktionsfähiges Programm, der den **netstat** Befehl parsen und einfach in der Konsole darstellen kann.
 
 **Wichtige Termine:**
 
@@ -42,7 +42,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Mo  | 09:00–14:00 | Kickoff| Erledigt  |
 | Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
 | Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |  Erledigt      |
-| Do  | 07:30-17:00 | Output aus Windows command in einfacher JavaFX UI anzeigen lassen          |        |
+| Do  | 07:30-17:00 |Output parsen |        |
 | Fr  | 07:30-17:00            |           |        |
 
 ---
@@ -166,6 +166,6 @@ Offene Fragen an Betreuer:in:
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTczMzY0NDI0OSwtMjA5NDAzMTMxNiwxMz
-A2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbMTIxNDYxNDc3LC0yMDk0MDMxMzE2LDEzMD
+Y5OTk5MjRdfQ==
 -->
