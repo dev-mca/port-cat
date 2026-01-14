@@ -28,12 +28,33 @@ Ein Beispiel mit einer ArrayList an Strings:
 
     String[] notParsed = {"10Hello", "30Hi", "20Noo"};
 
-Die List enthält Wörter in einer wiederkehrender Konstellation. Zahlen zuerst und darauf folgend Buchstaben. Ich muss als allererstes das Pattern bestimmen. 
+Die List enthält Wörter in einer wiederkehrender Konstellation. Zahlen zuerst und darauf folgend Buchstaben. Ich muss als allererstes das Pattern bestimmen und es kompilieren damit ich es dann mit einem `Matcher` vergleichen kann. 
 
     // Regex: eine oder mehr Ziffern, gefolgt von einer oder mehr Buchstaben
     Pattern p = Pattern.compile("(\\d+)([A-Za-z]+)");
 
+Anschliessend iteriere ich durch die Liste 
+
+    for (int i = 0; i < notParsed.length; i++) {
+            String s = notParsed[i];
+            Matcher m = p.matcher(s); // Matcher für den aktuellen String
+
+            if (m.matches()) {
+                String number = m.group(1); // z.B. "10"
+                String text   = m.group(2); // z.B. "Hello"
+                System.out.println("Original: " + s);
+                System.out.println("Zahl: " + number);
+                System.out.println("Text: " + text);
+                System.out.println();
+                
+            } else {
+                System.out.println(
+                    "String \"" + s + "\" auf Index " + i + " passt nicht zum Pattern."
+                );
+            }
+        }
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTYwNTMwNDk2NiwtMzU1NjYxMDQxLDk4Nz
+eyJoaXN0b3J5IjpbMTMzODE4MzA4OSwtMzU1NjYxMDQxLDk4Nz
 I2MjI0Ml19
 -->
