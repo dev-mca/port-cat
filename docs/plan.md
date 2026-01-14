@@ -48,7 +48,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 1 (12.01 – 18.01)
-**Scooter** = ...
+**Scooter** = Den geparsten netstat-Befehl in einer einfachen GUI anzeigen lassen. 
 
 **Wichtige Termine:**
 
@@ -91,6 +91,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjY2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMD
-Y5OTk5MjRdfQ==
+eyJoaXN0b3J5IjpbLTg3ODk4NjU2NywyNjY3OTM2MzAsLTIwOT
+QwMzEzMTYsMTMwNjk5OTkyNF19
 -->
