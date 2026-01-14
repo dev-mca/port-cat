@@ -58,17 +58,17 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 
 ## Quellenverzeichnis
 
-|Java FX | ([Getting Started with JavaFX](https://openjfx.io/openjfx-docs/)) |
-|-------------------------------------------------------------------------|--|
-| Java | [Java Documentation - Get Started)](https://docs.oracle.com/en/java/)                                                                   |  |
-UI-Mockup Figma| https://www.figma.com/
-|netstat- Befehl | [netstat | Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat)]|
-|RegEx und weitere Java Doku | [Java Tutorial](https://www.w3schools.com/java/default.asp)
-| AI als Unterstützung 
-
+| Thema                         | Beschreibung                                           | Link                                                                                                  |
+|-------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| JavaFX                        | Einstieg in GUI-Entwicklung mit JavaFX                 | [Getting Started with JavaFX](https://openjfx.io/openjfx-docs/)                                      |
+| Java allgemein                | Offizielle Java-Dokumentation und Getting Started      | [Java Documentation – Get Started](https://docs.oracle.com/en/java/)                                 |
+| UI-Mockups (Figma)           | Tool zum Erstellen von UI-Designs und Prototypen       | https://www.figma.com/                                                                                |
+| `netstat`-Befehl (Windows)   | Dokumentation des `netstat`-Befehls unter Windows      | [netstat – Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat) |
+| RegEx & Java-Grundlagen      | Tutorial zu Java, inkl. RegEx und weiteren Themen      | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp)                              |
+| KI-Unterstützung (ChatGPT etc.) | KI-Tools zur Beantwortung von Fragen und Recherche | https://chat.openai.com/  https://www.perplexity.ai/                                                |
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MDQ2OTY4NDksLTM1NTY2MTA0MSw5OD
-cyNjIyNDJdfQ==
+eyJoaXN0b3J5IjpbLTU5MjQ3NDQzNCwtMzU1NjYxMDQxLDk4Nz
+I2MjI0Ml19
 -->
