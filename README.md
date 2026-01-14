@@ -79,3 +79,5 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 
 Entwickelt mit ❤️ von Melih Can Abay 
 📫 **Kontakt:** <melihcan05@protonmail.com>
+
+*Dieses Readme wurde mit Hilfe von KI erstellt*
