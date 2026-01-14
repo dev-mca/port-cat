@@ -62,10 +62,13 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 |-------------------------------------------------------------------------|--|
 | Java | [Java Documentation - Get Started)](https://docs.oracle.com/en/java/)                                                                   |  |
 UI-Mockup Figma| https://www.figma.com/
+|netstat- Befehl | [netstat | Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat)]|
+|RegEx und weitere Java Doku | [Java Tutorial](https://www.w3schools.com/java/default.asp)
+| AI als Unterstützung 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzgzMDg4Mzk3LC0zNTU2NjEwNDEsOTg3Mj
-YyMjQyXX0=
+eyJoaXN0b3J5IjpbLTE0MDQ2OTY4NDksLTM1NTY2MTA0MSw5OD
+cyNjIyNDJdfQ==
 -->
