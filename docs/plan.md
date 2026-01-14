@@ -11,7 +11,7 @@
 
 Ziel: Ein lauffähiges Programm, das in einer definierten Umgebung einsatzfähig ist.  
 Dieser Plan wird während des Projekts laufend aktualisiert.
-Ich halte mich an d
+Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde wöchentlich etwas fertigstellen können.
 
 - [x] Plan erstellt
 - [ ] Plan mit Betreuer:in besprochen
@@ -21,6 +21,7 @@ Ich halte mich an d
 ## Kalender / Wochenübersicht
 
 ### Woche 1 (12.01 – 18.01)
+Skateboard = Ein funktionsfähiges 
 
 **Ziele dieser Woche**
 S
@@ -168,6 +169,6 @@ Offene Fragen an Betreuer:in:
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxNjM1NzI2MywtMjA5NDAzMTMxNiwxMz
-A2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbMjE3MjQ4NzIyLC0yMDk0MDMxMzE2LDEzMD
+Y5OTk5MjRdfQ==
 -->
