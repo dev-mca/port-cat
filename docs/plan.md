@@ -12,11 +12,14 @@
 Ziel: Ein lauffähiges Programm, das in einer definierten Umgebung einsatzfähig ist.  
 Dieser Plan wird während des Projekts laufend aktualisiert.
 Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde wöchentlich etwas fertigstellen können.
-- * **Skateboard** (Woche 1) *
-- * **Scooter** (Woche 2) *
-- * **Fahrrad** (Woche 3) *
-- * **Motorrad** (Woche 4) *
-- * **Cabriolet** (Woche 5) *
+
+
+
+- ***Skateboard*** _(Woche 1)_ 
+- ***Scooter*** _(Woche 2)_
+- ***Fahrrad*** _(Woche 3)_
+- ***Motorrad*** _(Woche 4)_
+- ***Cabriolet*** _(Woche 5)_
 ---
 
 ## Kalender / Wochenübersicht
@@ -170,6 +173,6 @@ Offene Fragen an Betreuer:in:
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM2MzU3ODgsLTIwOTQwMzEzMTYsMTMwNj
-k5OTkyNF19
+eyJoaXN0b3J5IjpbMTI2Mjg5MzQxNCwtMjA5NDAzMTMxNiwxMz
+A2OTk5OTI0XX0=
 -->
