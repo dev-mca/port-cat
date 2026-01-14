@@ -41,102 +41,13 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 |-----|-------------|-----------|--------|
 | Mo  | 09:00–14:00 | Kickoff| Erledigt  |
 | Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
-| Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |  Erledigt      |
+| Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |  Erledigt    |
 | Do  | 07:30-17:00 |Output parsen |        |
 | Fr  | 07:30-17:00            |           |        |
 
 ---
 
-### Woche 2 (20.01 – 26.01)
 
-**Ziele dieser Woche**
-
-- _z.B. Anforderungen & Architektur festlegen, einfacher CLI-Prototyp_
-
-**Wichtige Termine**
-
-- Feedback-Markt: 26.01, 11:00 – 12:30 (Langvariante) [2]  
-- Treffen mit Betreuer: _Datum/Zeit_
-
-**Aufgaben**
-
-- [ ] …
-- [ ] …
-
-**Tagesplanung (optional)**
-
-| Tag | Zeitfenster | Aufgabe(n) | Status |
-|-----|-------------|-----------|--------|
-| Mo  |             |           |        |
-| Di  |             |           |        |
-| Mi  |             |           |        |
-| Do  |             |           |        |
-| Fr  |             |           |        |
-
----
-
-### Woche 3 (27.01 – 02.02)
-
-**Ziele dieser Woche**
-
-- _z.B. Netstat-Anbindung und einfache UI (Skateboard fährt)_
-
-**Wichtige Termine**
-
-- Feedback-Markt (Kurzvariante): 02.02, 11:00 – 12:00 [2]
-
-**Aufgaben**
-
-- [ ] …
-- [ ] …
-
----
-
-### Woche 4 (03.02 – 09.02)
-
-**Ziele dieser Woche**
-
-- _z.B. Visualisierung verbessern, Filter, Ports-Beschreibungen_
-
-**Wichtige Termine**
-
-- Treffen mit Betreuer: _Datum/Zeit_
-
-**Aufgaben**
-
-- [ ] …
-- [ ] …
-
----
-
-### Woche 5 (10.02 – 13.02)
-
-**Ziele dieser Woche**
-
-- _z.B. Stabilisierung, Dokumentation, Vorbereitung Abschluss/Feedback-Markt_
-
-**Wichtige Termine**
-
-- Zwischenabgabe / Freeze bis 13.02 (Variante lang) [2]
-
-**Aufgaben**
-
-- [ ] …
-- [ ] …
-
----
-
-## Aufgabenliste (Backlog)
-
-Offene Aufgaben unabhängig von der Woche:
-
-- [ ] UI-Design fertig
-- [ ] Netstat-Parser implementieren
-- [ ] Visualisierung mit Pfeilen/Icons
-- [ ] Ports-Liste mit „sprechenden“ Namen [1]
-- [ ] …
-
----
 
 ## Zeitaufwand (Zeiterfassung)
 
@@ -147,25 +58,17 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 |       |           |           |             |
 |       |           |           |             |
 
----
 
-## Risiken & offene Fragen
 
-- Risiko 1: _z.B. Netstat-Ausgabe auf verschiedenen Windows-Versionen_  
-- Risiko 2: _…_
 
-Offene Fragen an Betreuer:in:
 
-- [ ] Frage 1
-- [ ] Frage 2
 
----
 
 ## Plan-Revisionen
 
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxNDYxNDc3LC0yMDk0MDMxMzE2LDEzMD
-Y5OTk5MjRdfQ==
+eyJoaXN0b3J5IjpbLTE2MDY0ODU1MzUsLTIwOTQwMzEzMTYsMT
+MwNjk5OTkyNF19
 -->
