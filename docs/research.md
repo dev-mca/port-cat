@@ -65,10 +65,10 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 | UI-Mockups (Figma)           | Tool zum Erstellen von UI-Designs und Prototypen       | https://www.figma.com/                                                                                |
 | `netstat`-Befehl (Windows)   | Dokumentation des `netstat`-Befehls unter Windows      | [netstat – Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat) |
 | RegEx & Java-Grundlagen      | Tutorial zu Java, inkl. RegEx und weiteren Themen      | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp)                              |
-| KI-Unterstützung (ChatGPT etc.) | KI-Tools zur Beantwortung von Fragen und Recherche | https://chat.openai.com/  https://www.perplexity.ai/                                                |
+| KI-Unterstützung (ChatGPT etc.) | KI-Tools zur Beantwortung von Fragen, Recherche und Code-Snippets | https://chat.openai.com/  https://www.perplexity.ai/                                                |
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU5MjQ3NDQzNCwtMzU1NjYxMDQxLDk4Nz
+eyJoaXN0b3J5IjpbLTUwNzQ5NTE3NiwtMzU1NjYxMDQxLDk4Nz
 I2MjI0Ml19
 -->
