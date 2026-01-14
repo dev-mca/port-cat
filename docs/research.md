@@ -33,7 +33,7 @@ Die List enthält Wörter in einer wiederkehrender Konstellation. Zahlen zuerst 
     // Regex: eine oder mehr Ziffern, gefolgt von einer oder mehr Buchstaben
     Pattern p = Pattern.compile("(\\d+)([A-Za-z]+)");
 
-Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich kann dann einfach die einzelnen Gruppen im String unterteilen und benennen
+Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich kann dann einfach die einzelnen Gruppen im String unterteilen und benennen. Ein Handler für einen String der nicht mit dem Pattern ist auch vorhanden.
 
     for (int i = 0; i < notParsed.length; i++) {
             String s = notParsed[i];
@@ -55,6 +55,6 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
         }
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDU3MDQ2MDc0LC0zNTU2NjEwNDEsOTg3Mj
-YyMjQyXX0=
+eyJoaXN0b3J5IjpbLTE0MTI0NDM2MjksLTM1NTY2MTA0MSw5OD
+cyNjIyNDJdfQ==
 -->
