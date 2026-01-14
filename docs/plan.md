@@ -5,7 +5,7 @@
 - Projekt: **PortCat – Visualizer** für Netzwerkverbindungen am eigenen PC
 - Zeitraum: 13.01.2026 – 13.02.2026 (5 Wochen)
 - Variante:  lang 
----
+
 
 ## Überblick
 
@@ -19,18 +19,13 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - ***Fahrrad*** _(Woche 3)_
 - ***Motorrad*** _(Woche 4)_
 - ***Cabriolet*** _(Woche 5)_
-- 
+
 ## Kalender / Wochenübersicht
 
 ### Woche 1 (12.01 – 18.01)
-**Skateboard** = Ein funktionsfähiges Programm, der den Netstat befehl parsen und einfacher in der Konsole darstellen kann.
+**Skateboard** = Ein funktionsfähiges Programm, der den **netstat** Befehl parsen und einfacher in der Konsole darstellen kann.
 
-**Ziele dieser Woche**
-S
-
-- _Projektvision schärfen, Problem beschreiben, Skateboard definieren, Repo einrichten_
-
-**Wichtige Termine**
+**Wichtige Termine:**
 
 - Feedback-Markt: 19.01, 11:00 – 12:00 (Kurzvariante)  
 - Wöchentliches Meeting mit Betreuer: _Montag, 19.01.2026 um 14:15 Uhr_
@@ -46,7 +41,7 @@ S
 |-----|-------------|-----------|--------|
 | Mo  | 09:00–14:00 | Kickoff| Erledigt  |
 | Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
-| Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |        |
+| Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |  Erledigt      |
 | Do  | 07:30-17:00 | Output aus Windows command in einfacher JavaFX UI anzeigen lassen          |        |
 | Fr  | 07:30-17:00            |           |        |
 
@@ -171,6 +166,6 @@ Offene Fragen an Betreuer:in:
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUxNzA5MzExMSwtMjA5NDAzMTMxNiwxMz
+eyJoaXN0b3J5IjpbMTczMzY0NDI0OSwtMjA5NDAzMTMxNiwxMz
 A2OTk5OTI0XX0=
 -->
