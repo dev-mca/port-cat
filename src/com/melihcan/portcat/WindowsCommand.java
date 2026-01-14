@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class WindowsCommand {
-    static final String cmd = "echo Hello World!";
+    static final String cmd = "cmd /c netstat";
 
     public static void main(String[] args){
         try {
