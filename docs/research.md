@@ -57,7 +57,13 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
         }
 
 ## Quellenverzeichnis
+
+|Java FX | ([Getting Started with JavaFX](https://openjfx.io/openjfx-docs/)) |
+|-------------------------------------------------------------------------|--|
+|                                                                         |  |
+
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjcyNzU3NjQ5LC0zNTU2NjEwNDEsOTg3Mj
-YyMjQyXX0=
+eyJoaXN0b3J5IjpbLTE3MDcxNjk5ODYsLTM1NTY2MTA0MSw5OD
+cyNjIyNDJdfQ==
 -->
