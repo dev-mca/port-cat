@@ -60,10 +60,12 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 
 |Java FX | ([Getting Started with JavaFX](https://openjfx.io/openjfx-docs/)) |
 |-------------------------------------------------------------------------|--|
-|                                                                         |  |
+| Java | [Java Documentation - Get Started)](https://docs.oracle.com/en/java/)                                                                   |  |
+UI-Mockup Figma| https://www.figma.com/
+
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDcxNjk5ODYsLTM1NTY2MTA0MSw5OD
-cyNjIyNDJdfQ==
+eyJoaXN0b3J5IjpbMzgzMDg4Mzk3LC0zNTU2NjEwNDEsOTg3Mj
+YyMjQyXX0=
 -->
