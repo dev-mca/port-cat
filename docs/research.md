@@ -25,8 +25,12 @@ Das Kommando `netstat`
 Für das Parsen mit einem vorgegebenen Muster ist `RegEx` (Regular Expression) die passende Bibliothek.
 
 Ein Beispiel mit einer ArrayList an Strings:
-Die List enthält lauter Wörter in einer wiederkehrender Konstellation.
+
+    String[] notParsed = {"10Hello", "30Hi", "20Noo"};
+
+Die List enthält Wörter in einer wiederkehrender Konstellation. Zwei Zahlen und darauf
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAwNDk1NjkwNywtMzU1NjYxMDQxLDk4Nz
-I2MjI0Ml19
+eyJoaXN0b3J5IjpbLTE4OTQ0Nzg4MzksLTM1NTY2MTA0MSw5OD
+cyNjIyNDJdfQ==
 -->
