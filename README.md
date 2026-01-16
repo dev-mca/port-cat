@@ -1,6 +1,6 @@
 
-
-# 🐱 PortCat – Visualizer für Netzwerkverbindungen
+![enter image description here](https://i.imgur.com/lSglvpp.png)
+#  PortCat – Visualizer für Netzwerkverbindungen
 
 **PortCat** ist eine Java-/JavaFX-Anwendung, die dir zeigt, welche Netzwerkverbindungen dein PC gerade hat – **verständlich, visuell und in Echtzeit**.
 
@@ -53,8 +53,8 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 
 ## 🧰 Voraussetzungen
 
-- Java  17 oder neuer
-- JavaFX  SDK
+- Java 17 oder neuer
+- JavaFX SDK
 - Betriebssystem mit `netstat` (Windows, macOS, Linux)
 
 ---
@@ -84,5 +84,5 @@ Entwickelt mit ❤️ von Melih Can Abay
 
 *Dieses Readme wurde mit Hilfe von KI erstellt*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NDA1OTE1M119
+eyJoaXN0b3J5IjpbODg1MTE0NV19
 -->
