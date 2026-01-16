@@ -12,7 +12,7 @@
 
 ## 🚀 Beschreibung
 
-PortCat liest regelmäßig die Ausgabe des **`netstat`-Befehls** aus und zeigt zu jeder aktiven Verbindung wichtige Informationen an:
+PortCat liest regelmässig die Ausgabe des **`netstat`-Befehls** aus und zeigt zu jeder aktiven Verbindung wichtige Informationen an:
 
 - 🕒 **Zeitstempel** – Wann wurde die Verbindung erkannt
 - 💻 **Lokale & entfernte IP-Adresse**
@@ -21,7 +21,7 @@ PortCat liest regelmäßig die Ausgabe des **`netstat`-Befehls** aus und zeigt z
 - 🧭 **Richtung** (eingehend/ausgehend)
 - 📡 **DNS-Name** (falls auflösbar)
 
-Die Verbindungen werden mit **Icons, Pfeilen und Farben** visualisiert. So siehst du auf einen Blick, wie dein Rechner mit der Außenwelt kommuniziert.
+Die Verbindungen werden mit **Icons, Pfeilen und Farben** visualisiert. So siehst du auf einen Blick, wie dein Rechner mit der Aussenwelt kommuniziert.
 
 Dank einer internen, erweiterbaren **Ports-Liste** werden viele bekannte Dienste automatisch erkannt und benannt – beispielsweise:
 
@@ -75,7 +75,7 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 ## 📘 Quellen & Hinweise
 
 - `netstat` liefert nur Momentaufnahmen der Verbindungen.  
-  PortCat ruft diesen Befehl regelmäßig auf, um Aktivitäten **nahezu in Echtzeit** anzuzeigen.
+  PortCat ruft diesen Befehl regelmässig auf, um Aktivitäten **nahezu in Echtzeit** anzuzeigen.
 - Weitere Infos zu `netstat`:  
   [Microsoft Docs](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat) · [Linux man page](https://man7.org/linux/man-pages/man8/netstat.8.html)
 
@@ -88,5 +88,5 @@ Entwickelt mit ❤️ von Melih Can Abay
 
 *Dieses Readme wurde mit Hilfe von KI erstellt*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxMzA1OTM3N119
+eyJoaXN0b3J5IjpbLTc0MzExNDQ5Ml19
 -->
