@@ -1,5 +1,7 @@
 
-<img src="https://i.imgur.com/lSglvpp.png" alt="PortCat logo" width="300">
+<p align="center">
+  <img src="https://i.imgur.com/lSglvpp.png" alt="PortCat logo" width="500">
+</p>
 
 #  PortCat – Visualizer für Netzwerkverbindungen
 
@@ -85,5 +87,5 @@ Entwickelt mit ❤️ von Melih Can Abay
 
 *Dieses Readme wurde mit Hilfe von KI erstellt*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzMyMjQyMjEwXX0=
+eyJoaXN0b3J5IjpbLTk3NjQ4ODM3OF19
 -->
