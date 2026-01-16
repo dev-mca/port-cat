@@ -41,13 +41,13 @@ PortCat bietet eine **einfache und anschauliche Einstiegslösung**, um zu lernen
 - Welche Programme mit welchen Servern sprechen
 - Wie Netzwerkaktivität in Echtzeit aussieht
 
-Für mich persönlich ist PortCat außerdem ein Lernprojekt, um meine **Kenntnisse in Java, JavaFX und Netzwerktechnik** zu vertiefen.
+Für mich persönlich ist PortCat ausserdem ein Lernprojekt, um meine **Kenntnisse in Java, JavaFX und Netzwerktechnik** zu vertiefen.
 
 ---
 
 ## ⚙️ Funktionsweise
 
-1. PortCat führt regelmäßig `netstat` aus (z. B. alle paar Sekunden).
+1. PortCat führt regelmässig `netstat` aus (z. B. alle paar Sekunden).
 2. Die Ergebnisse werden mit dem vorherigen Stand verglichen.
 3. Neue, beendete oder geänderte Verbindungen werden erkannt und **live visualisiert**.
 
@@ -88,5 +88,5 @@ Entwickelt mit ❤️ von Melih Can Abay
 
 *Dieses Readme wurde mit Hilfe von KI erstellt*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDc2MjI3NjddfQ==
+eyJoaXN0b3J5IjpbMTIxMzA1OTM3N119
 -->
