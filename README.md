@@ -9,7 +9,6 @@
 <p align="center">
   <img src="https://i.imgur.com/lSglvpp.png" alt="PortCat logo" width="500">
 </p>
----
 
 ## 🚀 Beschreibung
 
@@ -89,5 +88,5 @@ Entwickelt mit ❤️ von Melih Can Abay
 
 *Dieses Readme wurde mit Hilfe von KI erstellt*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4NTA2NzM2MF19
+eyJoaXN0b3J5IjpbLTIwMDc2MjI3NjddfQ==
 -->
