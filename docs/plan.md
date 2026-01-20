@@ -71,7 +71,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 
 ### Woche 3 (26.01 – 30.01)
-**Fahrrad** = Der Visualizer 
+**Fahrrad** = Der Visualizer enthält speichert Verbindungen und kann sie auf Abruf des Users wieder anzeigen lassen, egal wie lange her sie war.
 
 
 **Wichtige Termine:**
@@ -115,6 +115,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4NzAyNzQ0NywtMTM0MzM4NDMwOCwyNj
-Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
+eyJoaXN0b3J5IjpbLTIwMjM4MTA4NDIsLTEzNDMzODQzMDgsMj
+Y2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
 -->
