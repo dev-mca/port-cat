@@ -81,7 +81,7 @@ Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-A
 | `Get-NetTCPConnection`-Befehl (Windows PowerShell) | Dokumentation des `Get-NetTCPConnection`-Cmdlets (Modul **NetTCPIP**) | [Get-NetTCPConnection – Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection?view=windowsserver2025-ps) |
 | RegEx & Java-Grundlagen | Tutorial zu Java inkl. RegEx und weiteren Themen | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp) |
 | KI-Unterstuetzung (ChatGPT, Perplexity) | KI-Tools fuer Fragen, Recherche und Code-Snippets | [ChatGPT](https://chat.openai.com/) · [Perplexity](https://www.perplexity.ai/) |
-| DNS-Aufloesung (Java) | JavaDoc: `InetAddress` (z.B. Namensaufloesung, Hostname/IP) | [InetAddress (Java SE 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html) |
+| DNS-Auflösung (Java) | JavaDoc: `InetAddress` (z.B. Namensauflösung, Hostname/IP) | [InetAddress (Java SE 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html) |
 
 
 <!--stackedit_data:
@@ -89,6 +89,6 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5MTQ1NjQ3MiwtMzM1MzA1NTA5LC0xMz
-c3NjAxNjQ1XX0=
+eyJoaXN0b3J5IjpbODgwOTgyNDI0LC0zMzUzMDU1MDksLTEzNz
+c2MDE2NDVdfQ==
 -->
