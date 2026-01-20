@@ -35,7 +35,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - [x] Repo auf GitHub einrichten
 - [x] Plan, Vision und sontige wichtige Dokumente hochladen
 
-**Tagesplanung (optional)**
+**Tagesplanung**
 
 | Tag | Zeitfenster | Aufgabe(n) | Status |
 |-----|-------------|-----------|--------|
@@ -59,7 +59,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 - [ ] ...
 
-**Tagesplanung (optional)**
+**Tagesplanung**
 
 | Tag | Zeitfenster | Aufgabe(n) | Status |
 |-----|-------------|-----------|--------|
@@ -82,7 +82,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 - [ ] ...
 
-**Tagesplanung (optional)**
+**Tagesplanung**
 
 | Tag | Zeitfenster | Aufgabe(n)| Status |
 |-----|-------------|-----------|---------|
@@ -107,6 +107,6 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYwNjUyODQ1NiwtMTM0MzM4NDMwOCwyNj
-Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
+eyJoaXN0b3J5IjpbNDI2MDExMzMzLC0xMzQzMzg0MzA4LDI2Nj
+c5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
 -->
