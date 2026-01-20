@@ -32,8 +32,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 **Aufgaben**
 
-- [ ] Repo auf GitHub einrichten
-- [ ] Plan, Vision und sontige wichtige Dokumente hochladen
+- [x] Repo auf GitHub einrichten
+- [x] Plan, Vision und sontige wichtige Dokumente hochladen
 
 **Tagesplanung (optional)**
 
@@ -48,7 +48,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 2 (19.01 – 23.01)
-**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage, Start&Stop Logik für Echtzeit-Updates
+**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage, Start&Stop Logik für Echtzeit-Updates. Ausserdem Cross-Platform einführen mit Linux Unterstützung.
 
 
 **Wichtige Termine:**
@@ -92,6 +92,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU1NTk3MzE2OCwtMTM0MzM4NDMwOCwyNj
-Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
+eyJoaXN0b3J5IjpbMjAxMjY4Nzg1LC0xMzQzMzg0MzA4LDI2Nj
+c5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
 -->
