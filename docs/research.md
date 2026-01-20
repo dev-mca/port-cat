@@ -14,13 +14,13 @@ Eine Swing-UI zu erstellen, ist deutlich einfacher als mit JavaFX. Allerdings ka
 
 Schlussendlich habe ich mir vorgenommen, mich mit JavaFX auseinanderzusetzen, obwohl Swing viel einfacher ist. Das heisst, ich möchte JavaFX lernen und gleich anwenden.
 
-## UI-Mockup mit Figma oche 
+## UI-Mockup mit Figma
 
-ch habe zwei UI-Mockups erstellt. Das erste habe ich bereits zu Beginn des Projekts erstellt. Mit einem einfachen Tool zum Hinzufügen und Verschieben von Formen und Bildern konnte ich das erste Mockup fertigstellen. Es gibt mir eine erste Vorstellung davon, wie das Programm etwa aussehen wird.
+Ich habe zwei UI-Mockups erstellt. Das erste habe ich bereits zu Beginn des Projekts erstellt. Mit einem einfachen Tool zum Hinzufügen und Verschieben von Formen und Bildern konnte ich das erste Mockup fertigstellen. Es gibt mir eine erste Vorstellung davon, wie das Programm etwa aussehen wird.
 
 Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mockup gemacht und dazu das weltweit beliebtpopuläre Tool **Figma** verwendet. Mit Unterstützung der in Figma integrierten KI konnte ich ein ansprechenderes, ausführlicheres und strukturierteres UI entwerfen. Es ist bereits funktionstüchtig in Figma und genau so, wie ich es mir vorgestellt habe. Allerdings bietet Figma keine direkte Konvertierung für UI-Frameworks/Backend an. Daher dient es vielmehr als Inspiration/Entwurf.
 
-## D Windows-Kommando Get-NetTCPConnection
+##  Windows-Kommando `Get-NetTCPConnection` vs `netstat`
 
 Nach gründlicher Recherche habe ich tatsächlich ein besseres Kommando als `netstat` gefunden. Das PowerShell-Kommando `Get-NetTCPConnection` kann dank dem `ConvertTo-Json` Parameter den Output als JSON ausgeben somit entfällt das mühsame Parsen des rohen String-Outputs aus `netstat`. Das vereinfacht das Parsen erheblich.
 
@@ -89,5 +89,5 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDEwNTA0OTc3LC0xMzc3NjAxNjQ1XX0=
+eyJoaXN0b3J5IjpbLTMzNTMwNTUwOSwtMTM3NzYwMTY0NV19
 -->
