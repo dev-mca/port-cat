@@ -23,7 +23,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ## Kalender / Wochenübersicht
 
 ### Woche 1 (12.01 – 18.01)
-**Skateboard** = Ein funktionsfähiges Programm, der den **netstat** Befehl parsen und einfach in der Konsole darstellen kann.
+**Skateboard** = Ein funktionsfähiges Programm, der einen Windows-Befehl ausführt und Netzwerkverbindungen anzeigt.
 
 **Wichtige Termine:**
 
@@ -92,6 +92,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjgwMDc0MjEzLC0xMzQzMzg0MzA4LDI2Nj
-c5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbLTU1NTk3MzE2OCwtMTM0MzM4NDMwOCwyNj
+Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
