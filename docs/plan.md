@@ -42,18 +42,18 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Mo  | 09:00–14:00 | Kickoff| Erledigt  |
 | Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
 | Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |  Erledigt    |
-| Do  | 07:30-17:00 |Output korrekt parsen |        |
-| Fr  | 07:30-17:00            |           |        |
+| Do  | 07:30-17:00 |Output korrekt parsen |    Erledigt    |
+| Fr  | 07:30-17:00            |      GUI Erstellen     |    Erledigt    |
 
 ---
 
 ### Woche 2 (19.01 – 23.01)
-**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage, Start&Stop Logik
+**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage, Start&Stop Logik für Echtzeit-Updates
 
 
 **Wichtige Termine:**
 
-- Wöchentliches Meeting mit Betreuer: _Montag, 19.01.2026 um 14:15 Uhr_
+- Wöchentliches Meeting mit Betreuer: _Montag, 26.01.2026 um 14:15 Uhr_
 
 **Aufgaben**
 
@@ -92,6 +92,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMzYxOTc0OTcsLTEzNDMzODQzMDgsMj
-Y2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
+eyJoaXN0b3J5IjpbNjgwMDc0MjEzLC0xMzQzMzg0MzA4LDI2Nj
+c5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
 -->
