@@ -17,7 +17,7 @@ PortCat liest regelmässig die Ausgabe des **`netstat`-Befehls** aus und zeigt z
 - 🕒 **Zeitstempel** – Wann wurde die Verbindung erkannt
 - 💻 **Lokale & entfernte IP-Adresse**
 - 🔌 **Ports**
-- 🌐 **Protokoll (TCP/UDP)**
+- 🌐 **TCP-Protokoll**
 - 🧭 **Richtung** (eingehend/ausgehend)
 - 📡 **DNS-Name** (falls auflösbar)
 
@@ -88,5 +88,5 @@ Entwickelt mit ❤️ von Melih Can Abay
 
 *Dieses Readme wurde mit Hilfe von KI erstellt*
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc0MzExNDQ5Ml19
+eyJoaXN0b3J5IjpbLTU2MjAzODkxOCwtNzQzMTE0NDkyXX0=
 -->
