@@ -68,7 +68,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |      |
 | Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |        |
 | Fr  | 07:30-17:00            |     DNS-Auflösung      |        |
-
+---
 
 ### Woche 3 (26.01 – 30.01)
 **Fahrrad** = Der Visualizer enthält speichert Verbindungen und kann sie auf Abruf des Users wieder anzeigen lassen, egal wie lange her sie war.
@@ -107,6 +107,6 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDI2MDExMzMzLC0xMzQzMzg0MzA4LDI2Nj
-c5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbMTU0ODQ3MTMyMCwtMTM0MzM4NDMwOCwyNj
+Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
