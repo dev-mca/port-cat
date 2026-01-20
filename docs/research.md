@@ -22,7 +22,7 @@ Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mo
 
 ##  Windows-Kommando `Get-NetTCPConnection` vs `netstat`
 
-Nach gründlicher Recherche habe ich tatsächlich ein besseres Kommando als `netstat` gefunden. Das PowerShell-Kommando `Get-NetTCPConnection` kann dank dem `ConvertTo-Json` Parameter den Output als JSON ausgeben somit entfällt das mühsame Parsen des rohen String-Outputs aus `netstat`. Das vereinfacht das Parsen erheblich.
+Nach gründlicher Recherche habe ich tatsächlich ein besseres Kommando als `netstat` gefunden. Das PowerShell-Kommando `Get-NetTCPConnection` kann dank dem `ConvertTo-Json` Pipe-Parameter den Output sauber als JSON ausgeben somit entfällt das mühsame Parsen des rohen String-Outputs aus `netstat`.  Der `netstat` Befehl kann zwar auch als JSON ausgegeben werden, allerdings Das vereinfacht das Parsen erheblich. 
 
 
 Nach gründlicher Recherche habe ich tatsächlich ein besseres Kommando als `netstat` gefunden. 
@@ -89,5 +89,6 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzNTMwNTUwOSwtMTM3NzYwMTY0NV19
+eyJoaXN0b3J5IjpbMTc3NjEwMTI0NywtMzM1MzA1NTA5LC0xMz
+c3NjAxNjQ1XX0=
 -->
