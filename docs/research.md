@@ -19,9 +19,9 @@ Ich habe zwei UI-Mockups erstellt. Das erste habe ich bereits zu Beginn des Proj
 
 Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mockup gemacht und dazu das weltweit beliebtpopuläre Tool **Figma** verwendet. Mit Unterstützung der in Figma integrierten KI konnte ich ein ansprechenderes, ausführlicheres und strukturierteres UI entwerfen. Es ist bereits funktionstüchtig in Figma und genau so, wie ich es mir vorgestellt habe. Allerdings bietet Figma keine direkte Konvertierung für UI-Frameworks/Backend an. Daher dient es vielmehr als Inspiration/Entwurf.
 
-## Deras Windows Netstat command (Woche 1)
+## Das Windows-Kommando Get-NetTCPConnection
 
-Da-Kommando Get-NetTCPConnection (Woche 1)
+Nach gründlicher Recherche habe ich tatsächlich ein besseres Kommando als `netstat` gefunden. Das PowerShell-Kommando `Get-NetTCPConnection` kann dank dem `ConvertTo-Json` Parameter den Output als JSON ausgeben somit entfällt das mühsame Parsen des rohen String-Outputs aus `netstat`. Das vereinfacht das Parsen erheblich.
 
 
 Nach gründlicher Recherche habe ich tatsächlich ein besseres Kommando als `netstat` gefunden. 
@@ -59,12 +59,16 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
             }
         }
 
-## DNS-Auflösung (Woche 2)
 
 ## Bottom Pannel statt VBox (Woche 2)
 
 ## Timers in Java (Multithreading) (Woche 2)
 ## Cross-Platform (Woche 2)
+
+## DNS-Auflösung (Woche 2)
+
+Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist.
+
 
 ## Quellenverzeichnis
 
@@ -75,7 +79,8 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 | UI-Mockups (Figma)           | Tool zum Erstellen von UI-Designs und Prototypen       | https://www.figma.com/                                                                                |
 | `netstat`-Befehl (Windows)   | Dokumentation des `netstat`-Befehls unter Windows      | [netstat – Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat) |
 | RegEx & Java-Grundlagen      | Tutorial zu Java, inkl. RegEx und weiteren Themen      | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp)                              |
-| KI-Unterstützung (ChatGPT etc.) | KI-Tools zur Beantwortung von Fragen, Recherche und Code-Snippets | https://chat.openai.com/  https://www.perplexity.ai/                                                |
+| KI-Unterstützung (ChatGPT etc.) | KI-Tools zur Beantwortung von Fragen, Recherche und Code-Snippets | https://chat.openai.com/  https://www.perplexity.ai/                                   |
+| DNS-Auflösung Java            | Dokumentation auf JavaDoc. Die benötigten Methoden usw. | https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html |
 
 
 <!--stackedit_data:
