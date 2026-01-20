@@ -76,7 +76,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 **Wichtige Termine:**
 
-- Wöchentliches Meeting mit Betreuer: _Montag, 26.01.2026 um 14:15 Uhr_
+- Wöchentliches Meeting mit Betreuer: _Montag, 02.02.2026 um 14:15 Uhr_
 
 **Aufgaben**
 
@@ -115,6 +115,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMjM4MTA4NDIsLTEzNDMzODQzMDgsMj
-Y2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
+eyJoaXN0b3J5IjpbMTE5MTQzMzczMSwtMTM0MzM4NDMwOCwyNj
+Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
