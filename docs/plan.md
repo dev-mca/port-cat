@@ -48,7 +48,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 2 (19.01 – 23.01)
-**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage, Start&Stop Logik für Echtzeit-Updates. Ausserdem Cross-Platform einführen mit Linux Unterstützung.
+**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage, Start&Stop Logik für Echtzeit-Updates. Ausserdem Cross-Plattform einführen mit Linux Unterstützung.
 
 
 **Wichtige Termine:**
@@ -64,9 +64,9 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Tag | Zeitfenster | Aufgabe(n) | Status |
 |-----|-------------|-----------|--------|
 | Mo  | 09:00–14:00 | Feedback von Coach einholen| Erledigt        |
-| Di  | 07:30-17:00 |  Cross-Platform einrichten für Linux   | In Bearbeitung       |
-| Mi  | 07:30-17:00 |           |      |
-| Do  | 07:30-17:00 | |        |
+| Di  | 07:30-17:00 |  Cross-Plattform einrichten für Linux   | In Bearbeitung       |
+| Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |      |
+| Do  | 07:30-17:00 |Timer für Multithreading  |        |
 | Fr  | 07:30-17:00            |           |        |
 
 
@@ -92,6 +92,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2ODQ5MzI4NywtMTM0MzM4NDMwOCwyNj
+eyJoaXN0b3J5IjpbMTQzMzYzNzAwNCwtMTM0MzM4NDMwOCwyNj
 Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
