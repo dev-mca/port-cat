@@ -84,8 +84,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 **Tagesplanung (optional)**
 
-| Tag | Zeitfenster | Aufgabe(n) | Status |
-|-----|-------------|-----------|-------- |
+| Tag | Zeitfenster | Aufgabe(n)| Status |
+|-----|-------------|-----------|---------|
 | Mo  | 09:00–14:00 |           |        |
 | Di  | 07:30-17:00 |           |        | 
 | Mi  | 07:30-17:00 |           |        |
@@ -94,14 +94,6 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 
 
-## Zeitaufwand (Zeiterfassung)
-
-Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
-
-| Datum | Dauer (h) | Tätigkeit | Bemerkungen |
-|-------|-----------|-----------|-------------|
-|       |           |           |             |
-|       |           |           |             |
 
 
 
@@ -115,6 +107,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNjgyMzQ0MTMsLTEzNDMzODQzMDgsMj
-Y2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
+eyJoaXN0b3J5IjpbMTYwNjUyODQ1NiwtMTM0MzM4NDMwOCwyNj
+Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
