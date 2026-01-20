@@ -47,7 +47,7 @@ Für mich persönlich ist PortCat ausserdem ein Lernprojekt, um meine **Kenntnis
 
 ## ⚙️ Funktionsweise
 
-1. PortCat führt regelmässig `netstat` aus (z. B. alle paar Sekunden).
+1. PortCat führt regelmässig einen Netzwerk-Befehl aus (z. B. alle paar Sekunden).
 2. Die Ergebnisse werden mit dem vorherigen Stand verglichen.
 3. Neue, beendete oder geänderte Verbindungen werden erkannt und **live visualisiert**.
 
@@ -59,7 +59,7 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 
 - Java 17 oder neuer
 - JavaFX SDK
-- Betriebssystem mit `netstat` (Windows, macOS, Linux)
+- Windows oder Linux
 
 ---
 
@@ -69,15 +69,6 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 - 🔍 Filter nach Prozessname oder IP
 - 🎨 Anpassbare Themes
 - 📁 Exportfunktion (CSV oder JSON)
-
----
-
-## 📘 Quellen & Hinweise
-
-- `netstat` liefert nur Momentaufnahmen der Verbindungen.  
-  PortCat ruft diesen Befehl regelmässig auf, um Aktivitäten **nahezu in Echtzeit** anzuzeigen.
-- Weitere Infos zu `netstat`:  
-  [Microsoft Docs](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat) · [Linux man page](https://man7.org/linux/man-pages/man8/netstat.8.html)
 
 ---
 
