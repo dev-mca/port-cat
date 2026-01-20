@@ -66,8 +66,31 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Mo  | 09:00–14:00 | Feedback von Coach einholen| Erledigt        |
 | Di  | 07:30-17:00 |  Cross-Plattform einrichten für Linux   | In Bearbeitung       |
 | Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |      |
-| Do  | 07:30-17:00 |Timer für Multithreading  |        |
-| Fr  | 07:30-17:00            |           |        |
+| Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |        |
+| Fr  | 07:30-17:00            |     DNS-Auflösung      |        |
+
+
+### Woche 3 (26.01 – 30.01)
+**Fahrrad** = Der Visualizer 
+
+
+**Wichtige Termine:**
+
+- Wöchentliches Meeting mit Betreuer: _Montag, 26.01.2026 um 14:15 Uhr_
+
+**Aufgaben**
+
+- [ ] ...
+
+**Tagesplanung (optional)**
+
+| Tag | Zeitfenster | Aufgabe(n) | Status |
+|-----|-------------|-----------|--------|
+| Mo  | 09:00–14:00 | Feedback von Coach einholen| Erledigt        |
+| Di  | 07:30-17:00 |  Cross-Plattform einrichten für Linux   | In Bearbeitung       |
+| Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |      |
+| Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |        |
+| Fr  | 07:30-17:00            |     DNS-Auflösung      |        |
 
 
 
@@ -92,6 +115,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQzMzYzNzAwNCwtMTM0MzM4NDMwOCwyNj
+eyJoaXN0b3J5IjpbLTk4NzAyNzQ0NywtMTM0MzM4NDMwOCwyNj
 Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
