@@ -69,8 +69,8 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 ## DNS-Auflösung (Woche 2)
 
 Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist.
-
-
+## GitHub Licensing
+ToDo. Die einzelnen Lizenzen erklärt..
 
 | Thema | Beschreibung | Link |
 |---|---|---|
@@ -89,6 +89,6 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODgwOTgyNDI0LC0zMzUzMDU1MDksLTEzNz
-c2MDE2NDVdfQ==
+eyJoaXN0b3J5IjpbMTE4NjU2NDMyLDg4MDk4MjQyNCwtMzM1Mz
+A1NTA5LC0xMzc3NjAxNjQ1XX0=
 -->
