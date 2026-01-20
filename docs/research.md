@@ -71,18 +71,17 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist.
 
 
-## Quellenverzeichnis
 
-| Thema                         | Beschreibung                                           | Link                                                                                                  |
-|-------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| JavaFX                        | Einstieg in GUI-Entwicklung mit JavaFX                 | [Getting Started with JavaFX](https://openjfx.io/openjfx-docs/)                                      |
-| Java allgemein                | Offizielle Java-Dokumentation und Getting Started      | [Java Documentation – Get Started](https://docs.oracle.com/en/java/)                                 |
-| UI-Mockups (Figma)           | Tool zum Erstellen von UI-Designs und Prototypen       | https://www.figma.com/                                                                                |
-| `netstat`-Befehl (Windows)   | Dokumentation des `netstat`-Befehls unter Windows      | [netstat – Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat) |
-|`Get-NetTCPConnection`- Befehl (Windows PS) | Dokumentation des `Get-NetTCPConnection`- Befehls für PowerShell | https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection?view=windowsserver2025-ps
-| RegEx & Java-Grundlagen      | Tutorial zu Java, inkl. RegEx und weiteren Themen      | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp)                              |
-| KI-Unterstützung (ChatGPT etc.) | KI-Tools zur Beantwortung von Fragen, Recherche und Code-Snippets | https://chat.openai.com/  https://www.perplexity.ai/                                   |
-| DNS-Auflösung Java            | Dokumentation auf JavaDoc. Die benötigten Methoden usw. | https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html |
+| Thema | Beschreibung | Link |
+|---|---|---|
+| JavaFX | Einstieg in GUI-Entwicklung mit JavaFX | [Getting Started with JavaFX](https://openjfx.io/openjfx-docs/) |
+| Java allgemein | Offizielle Java-Dokumentation und Getting Started | [Java Documentation – Get Started](https://docs.oracle.com/en/java/) |
+| UI-Mockups (Figma) | Tool zum Erstellen von UI-Designs und Prototypen | [Figma](https://www.figma.com/) |
+| `netstat`-Befehl (Windows) | Dokumentation des `netstat`-Befehls unter Windows | [netstat – Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat) |
+| `Get-NetTCPConnection`-Befehl (Windows PowerShell) | Dokumentation des `Get-NetTCPConnection`-Cmdlets (Modul **NetTCPIP**) | [Get-NetTCPConnection – Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection?view=windowsserver2025-ps) |
+| RegEx & Java-Grundlagen | Tutorial zu Java inkl. RegEx und weiteren Themen | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp) |
+| KI-Unterstuetzung (ChatGPT, Perplexity) | KI-Tools fuer Fragen, Recherche und Code-Snippets | [ChatGPT](https://chat.openai.com/) · [Perplexity](https://www.perplexity.ai/) |
+| DNS-Aufloesung (Java) | JavaDoc: `InetAddress` (z.B. Namensaufloesung, Hostname/IP) | [InetAddress (Java SE 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html) |
 
 
 <!--stackedit_data:
@@ -90,6 +89,6 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMTUwMzk0MDgsLTMzNTMwNTUwOSwtMT
-M3NzYwMTY0NV19
+eyJoaXN0b3J5IjpbMTg3ODY5MzMwNCwtMzM1MzA1NTA5LC0xMz
+c3NjAxNjQ1XX0=
 -->
