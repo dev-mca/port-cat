@@ -47,8 +47,9 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 ---
 
-### Woche 2 (12.01 – 18.01)
-**Scooter** = Den geparsten netstat-Befehl in einer einfachen GUI anzeigen lassen. Per Knopfdruck kann man das Programm Starten oder Stoppen
+### Woche 2 (19.01 – 23.01)
+**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage, Start&Stop Logik
+
 
 **Wichtige Termine:**
 
@@ -91,6 +92,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MTY2MDMwOSwtMTM0MzM4NDMwOCwyNj
-Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
+eyJoaXN0b3J5IjpbLTExMzYxOTc0OTcsLTEzNDMzODQzMDgsMj
+Y2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
 -->
