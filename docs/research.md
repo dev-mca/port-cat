@@ -59,6 +59,7 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
                 );
             }
         }
+**Wichtig**: Ich konnte mir die Arbeit mit `RegEx` ersparen, da ich wie schon oben erwähnt einen besseren Befehl mit sauberem JSON-Output gefunden habe.
 
 
 ## Bottom Pannel statt VBox (Woche 2)
@@ -89,6 +90,6 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc3NjEwMTI0NywtMzM1MzA1NTA5LC0xMz
+eyJoaXN0b3J5IjpbMTI2MzcxODM5MiwtMzM1MzA1NTA5LC0xMz
 c3NjAxNjQ1XX0=
 -->
