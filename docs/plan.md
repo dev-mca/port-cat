@@ -85,12 +85,12 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 **Tagesplanung (optional)**
 
 | Tag | Zeitfenster | Aufgabe(n) | Status |
-|-----|-------------|-----------|--------|
-| Mo  | 09:00–14:00 | Feedback von Coach einholen| Erledigt        |
-| Di  | 07:30-17:00 |  Cross-Plattform einrichten für Linux   | In Bearbeitung       |
-| Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |      |
-| Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |        |
-| Fr  | 07:30-17:00            |     DNS-Auflösung      |        |
+|-----|-------------|-----------|-------- |
+| Mo  | 09:00–14:00 |           |        |
+| Di  | 07:30-17:00 |           |        | 
+| Mi  | 07:30-17:00 |           |        |
+| Do  | 07:30-17:00 |           |        |
+| Fr  | 07:30-17:00 |           |        | 
 
 
 
@@ -115,6 +115,6 @@ Trage hier deinen Aufwand pro Tag ein, um Richtung 180h zu kommen [2].
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE5MTQzMzczMSwtMTM0MzM4NDMwOCwyNj
-Y3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
+eyJoaXN0b3J5IjpbLTExNjgyMzQ0MTMsLTEzNDMzODQzMDgsMj
+Y2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
 -->
