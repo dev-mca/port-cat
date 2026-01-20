@@ -22,10 +22,9 @@ Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mo
 
 ##  Windows-Kommando `Get-NetTCPConnection` vs `netstat`
 
-Nach gründlicher Recherche habe ich tatsächlich ein besseres Kommando als `netstat` gefunden. Das PowerShell-Kommando `Get-NetTCPConnection` kann dank dem `ConvertTo-Json` Pipe-Parameter den Output sauber als JSON ausgeben somit entfällt das mühsame Parsen des rohen String-Outputs aus `netstat`.  Der `netstat` Befehl kann zwar auch als JSON ausgegeben werden, allerdings Das vereinfacht das Parsen erheblich. 
+Nach gründlicher Recherche habe ich eine geeignetere Alternative zu `netstat` gefunden: Das PowerShell-Cmdlet `Get-NetTCPConnection`. Es liefert strukturierte Objekte, die sich direkt per Pipeline mit `ConvertTo-Json` in sauberes JSON umwandeln lassen. Dadurch entfällt das mühsame und fehleranfällige Parsen des reinen Textoutputs von `netstat`. Zwar kann auch `netstat` nach JSON konvertiert werden, dabei entsteht jedoch in der Regel nur ein JSON-Array aus Textzeilen und keine sauber strukturierte Datendarstellung.
 
 
-Nach gründlicher Recherche habe ich tatsächlich ein besseres Kommando als `netstat` gefunden. 
 
 ## Java RegEx  (Woche 1)
 Für das Parsen mit einem vorgegebenen Muster ist `RegEx` (Regular Expression) die passende Bibliothek.
@@ -80,6 +79,7 @@ Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-A
 | Java allgemein                | Offizielle Java-Dokumentation und Getting Started      | [Java Documentation – Get Started](https://docs.oracle.com/en/java/)                                 |
 | UI-Mockups (Figma)           | Tool zum Erstellen von UI-Designs und Prototypen       | https://www.figma.com/                                                                                |
 | `netstat`-Befehl (Windows)   | Dokumentation des `netstat`-Befehls unter Windows      | [netstat – Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat) |
+|
 | RegEx & Java-Grundlagen      | Tutorial zu Java, inkl. RegEx und weiteren Themen      | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp)                              |
 | KI-Unterstützung (ChatGPT etc.) | KI-Tools zur Beantwortung von Fragen, Recherche und Code-Snippets | https://chat.openai.com/  https://www.perplexity.ai/                                   |
 | DNS-Auflösung Java            | Dokumentation auf JavaDoc. Die benötigten Methoden usw. | https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html |
@@ -90,6 +90,6 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2MzcxODM5MiwtMzM1MzA1NTA5LC0xMz
-c3NjAxNjQ1XX0=
+eyJoaXN0b3J5IjpbLTIwMjc0ODc2NDUsLTMzNTMwNTUwOSwtMT
+M3NzYwMTY0NV19
 -->
