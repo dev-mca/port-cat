@@ -7,6 +7,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -48,7 +49,7 @@ public class Gui extends Application {
             logoView.setImage(logo);
             logoView.setPreserveRatio(true);
             logoView.setSmooth(true);
-            logoView.setFitHeight(165); // kompakt
+            logoView.setFitHeight(150); // kompakt
         } else {
             System.err.println("Logo not found in path!: /images/logo.png");
         }
@@ -66,7 +67,22 @@ public class Gui extends Application {
         Button btnRefresh = new Button("Refresh");
         btnRefresh.setPrefSize(125, 40);
         styleButton(btnRefresh, "#FFFBFC", "#999394", "#30332e");
-        btnRefresh.setOnAction(e -> output.setText("Output: " + ladeDaten()));
+        btnRefresh.setOnAction(e -> {
+            output.setText("Refreshing...");
+
+            Task<String> task = new Task<>() {
+                @Override
+                protected String call() {
+                    return ladeDaten(); // läuft im Background
+                }
+            };
+
+            task.setOnSucceeded(ev ->
+                    output.setText("Output: " + task.getValue())
+            );
+
+            new Thread(task).start();
+        });
 
         Button btnClear = new Button("Clear");
         btnClear.setPrefSize(95, 40);
@@ -76,11 +92,11 @@ public class Gui extends Application {
         /* ---------------------------------------------------
            TopBar (liegt neu im selben Container wie die Tabelle)
         --------------------------------------------------- */
-        HBox topBar = new HBox(12);
-        topBar.setAlignment(Pos.CENTER);
-        topBar.setMinHeight(90);
-        topBar.setMaxHeight(110);
-        topBar.setPadding(new Insets(8, 12, 8, 12));
+        HBox topBar = new HBox();
+        topBar.setMinHeight(85);
+        topBar.setPrefHeight(85);
+        topBar.setAlignment(Pos.CENTER);    // oder CENTER_LEFT, wie gewünscht
+        topBar.setPadding(new Insets(4, 10, 4, 10));
         topBar.setStyle("-fx-background-color: #30332E; "
                 + "-fx-border-color: #30332E; -fx-border-width: 0 0 1 0;");
 
