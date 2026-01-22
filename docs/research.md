@@ -77,9 +77,9 @@ Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftig
 Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux equivalenten Befehl zu suchen. 
 Es gibt leider keinen Befehl, wessen Ausgabe 1:1 der selbe ist wie der von Windows, daher musste ich die PortParser-Klasse leicht umbauen.
 
-Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der Check funktioniert durch System.getProperty("os.name"). 
+Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der Check funktioniert durch `System.getProperty("os.name").` 
 
-Im Gegensatz zum 
+Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux variante `ss -tunH -J` genommen. SS steht für Socket Statistic und liefert viel Informationen rund um das Netwerk. 
 
 ## DNS-Auflösung (Woche 2)
 
@@ -104,7 +104,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5NTIyNDM0MCwxNDI0Nzc5MzIzLDEyNj
-kwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5
-LC0xMzc3NjAxNjQ1XX0=
+eyJoaXN0b3J5IjpbLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMj
+Y5MDA5OTU2LDExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUw
+OSwtMTM3NzYwMTY0NV19
 -->
