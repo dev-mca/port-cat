@@ -66,6 +66,10 @@ Beim Gespräch mit meinem Experten sind wir das Problem angegangen, dass die Tab
 Daher hat mir mein Expert hat mir Empfohlen anstelle der VBox ein Border Panel Layout zu verwenden.  
 Es war einfach zu implementieren und das Problem wurde somit behoben.
 
+## Color Palettes für UX (Woche 2)
+Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreundlich aus und auch nicht wirklich modern. Ich habe mich darum entschiededen mit Farben zu arbeiten, um die UI lebendiger 
+
+
 ## Timers in Java (Multithreading) (Woche 2)
 ## Cross-Platform (Woche 2)
 
@@ -92,6 +96,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2OTAwOTk1NiwxMTg2NTY0MzIsODgwOT
-gyNDI0LC0zMzUzMDU1MDksLTEzNzc2MDE2NDVdfQ==
+eyJoaXN0b3J5IjpbMTUwOTk0ODY5NSwxMjY5MDA5OTU2LDExOD
+Y1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMTM3NzYwMTY0
+NV19
 -->
