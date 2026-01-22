@@ -75,6 +75,11 @@ Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftig
 ## Timers in Java (Multithreading) (Woche 2)
 ## Cross-Platform (Woche 2)
 Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux equivalenten Befehl zu suchen. 
+Es gibt leider keinen Befehl, wessen Ausgabe 1:1 der selbe ist wie der von Windows, daher musste ich die PortParser-Klasse leicht umbauen.
+
+Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der Check funktioniert durch System.getProperty("os.name"). 
+
+Im Gegensatz zum 
 
 ## DNS-Auflösung (Woche 2)
 
@@ -99,7 +104,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzAyMjI1MDU0LDE0MjQ3NzkzMjMsMTI2OT
-AwOTk1NiwxMTg2NTY0MzIsODgwOTgyNDI0LC0zMzUzMDU1MDks
-LTEzNzc2MDE2NDVdfQ==
+eyJoaXN0b3J5IjpbMTk5NTIyNDM0MCwxNDI0Nzc5MzIzLDEyNj
+kwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5
+LC0xMzc3NjAxNjQ1XX0=
 -->
