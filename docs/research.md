@@ -62,6 +62,9 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 
 
 ## Bottom Pannel statt VBox (Woche 2)
+Beim Gespräch mit meinem Experten sind wir das Problem angegangen, dass die Tabelle nicht die zur verfügung stehende Höhe nutzen kann. Selbst mit ausdrücken wie setMinHeight()` usw. konnte es nicht gelöst werden 
+Daher hat mir mein Expert hat mir Empfohlen anstelle der VBox ein Border Panel Layout zu verwenden.  
+Es war einfach zu implementieren und das Problem wurde somit behoben.
 
 ## Timers in Java (Multithreading) (Woche 2)
 ## Cross-Platform (Woche 2)
@@ -89,6 +92,6 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE4NjU2NDMyLDg4MDk4MjQyNCwtMzM1Mz
-A1NTA5LC0xMzc3NjAxNjQ1XX0=
+eyJoaXN0b3J5IjpbMTI2OTAwOTk1NiwxMTg2NTY0MzIsODgwOT
+gyNDI0LC0zMzUzMDU1MDksLTEzNzc2MDE2NDVdfQ==
 -->
