@@ -11,8 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -24,68 +25,114 @@ public class Gui extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("PortCat v1");
+        stage.setTitle("PortCat v2");
 
-        Label label = new Label("Active TCP connections:");
-        label.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
-
-        // Output text
-        Label output = new Label("Output:");
         BorderPane root = new BorderPane();
-        root.setBottom(output);
-        BorderPane.setAlignment(output, Pos.CENTER);
-        BorderPane.setMargin(output, new Insets(10));
 
-        TableColumn<Connection, String> colLocalIP = new TableColumn<>("Lokal IP");
-        colLocalIP.setCellValueFactory(new PropertyValueFactory<>("localAddress"));
-        colLocalIP.setMinWidth(120);
+        ImageView logoView = new ImageView();
 
-        TableColumn<Connection, Integer> colLocalPort = new TableColumn<>("Lokal Port");
-        colLocalPort.setCellValueFactory(new PropertyValueFactory<>("localPort"));
+        var stream = getClass().getResourceAsStream("/images/logo.png");
+        if (stream != null) {
+            Image logo = new Image(stream);
+            logoView.setImage(logo);
 
-        TableColumn<Connection, String> colRemoteIP = new TableColumn<>("Remote IP");
-        colRemoteIP.setCellValueFactory(new PropertyValueFactory<>("remoteAddress"));
-        colRemoteIP.setMinWidth(120);
+            logoView.setFitHeight(30);
+            logoView.setPreserveRatio(true);
+            logoView.setSmooth(true);
+        } else {
+            System.err.println("Logo nicht gefunden: /images/logo.png");
+        }
 
-        TableColumn<Connection, Integer> colRemotePort = new TableColumn<>("Remote Port");
-        colRemotePort.setCellValueFactory(new PropertyValueFactory<>("remotePort"));
-
-        TableColumn<Connection, String> colState = new TableColumn<>("Status");
-        colState.setCellValueFactory(new PropertyValueFactory<>("state"));
-
-        // table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
-
-
-        // Alle Spalten zur Tabelle hinzufügen
-        table.getColumns().addAll(colLocalIP, colLocalPort, colRemoteIP, colRemotePort, colState);
-
+        Label output = new Label("Output:");
 
         Button btnRefresh = new Button("🔄 Verbindungen aktualisieren");
         btnRefresh.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;"); // Ein bisschen Farbe 🎨
         btnRefresh.setOnMouseEntered(e -> btnRefresh.setStyle("-fx-background-color: #3e4951;  -fx-text-fill: white;"));
-        btnRefresh.setOnMouseExited(e ->  btnRefresh.setStyle("-fx-background-color: #2196F3;  -fx-text-fill: white;")
+        btnRefresh.setOnMouseExited(e -> btnRefresh.setStyle("-fx-background-color: #2196F3;  -fx-text-fill: white;")
         );
-        btnRefresh.setOnAction(e -> {String result = ladeDaten();output.setText("Output: " + result);
+        btnRefresh.setOnAction(e -> {
+            output.setText("Output: " + ladeDaten());
+        });
+
+        Button btnClear = new Button("Clear");
+        btnClear.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;"); // Ein bisschen Farbe 🎨
+        btnClear.setOnMouseEntered(e -> btnClear.setStyle("-fx-background-color: #631616;  -fx-text-fill: white;"));
+        btnClear.setOnMouseExited(e -> btnClear.setStyle("-fx-background-color: #2196F3;  -fx-text-fill: white;")
+        );
+        btnClear.setOnAction(e -> {
+            output.setText("Output: Cleared!");
         });
 
 
-        // 4. Alles zusammenpacken (VBox stapelt Elemente untereinander)
-        VBox vbox = new VBox(10); // 10 ist der Abstand zwischen den Elementen
-        vbox.setPadding(new Insets(15));
-        vbox.getChildren().addAll(label, btnRefresh, output, table);
+        HBox topBar = new HBox(12);
+        topBar.setAlignment(Pos.CENTER_LEFT);
+        topBar.setPadding(new Insets(8, 14, 8, 14));
 
-        // 5. Erstes Laden der Daten beim Start
-        ladeDaten();
+        logoView.setFitHeight(42);
+        logoView.setPreserveRatio(true);
 
-        // 6. Szene erstellen und zeigen
-        Scene scene = new Scene(vbox, 600, 400);
+        Region spacerLeft = new Region();
+        HBox.setHgrow(spacerLeft, Priority.ALWAYS);
+
+        Region spacerRight = new Region();
+        HBox.setHgrow(spacerRight, Priority.ALWAYS);
+
+        topBar.getChildren().addAll(
+                logoView,
+                spacerLeft,
+                spacerRight,
+                output,
+                btnRefresh,
+                btnClear
+        );
+
+        HBox bottomBar = new HBox();
+
+        bottomBar.setPrefHeight(42);
+
+        VBox leftPanel = new VBox();
+        VBox rightPanel = new VBox();
+
+        leftPanel.setPrefWidth(50);
+        rightPanel.setPrefWidth(50);
+
+
+        root.setLeft(leftPanel);
+        root.setRight(rightPanel);
+        root.setTop(topBar);
+        root.setBottom(bottomBar);
+        root.setCenter(table);
+
+
+        Scene scene = new Scene(root, 600, 400);
         stage.setScene(scene);
-        stage.setMaximized(true);
+        stage.centerOnScreen();
         stage.show();
-    }
 
-    // Hilfsmethode: Holt Daten vom Parser und packt sie in die Tabelle
+    TableColumn<Connection, String> colLocalIP = new TableColumn<>("Lokal IP");
+        colLocalIP.setCellValueFactory(new PropertyValueFactory<>("localAddress"));
+        colLocalIP.setMinWidth(120);
+
+    TableColumn<Connection, Integer> colLocalPort = new TableColumn<>("Lokal Port");
+        colLocalPort.setCellValueFactory(new PropertyValueFactory<>("localPort"));
+
+    TableColumn<Connection, String> colRemoteIP = new TableColumn<>("Remote IP");
+        colRemoteIP.setCellValueFactory(new PropertyValueFactory<>("remoteAddress"));
+        colRemoteIP.setMinWidth(120);
+
+    TableColumn<Connection, Integer> colRemotePort = new TableColumn<>("Remote Port");
+        colRemotePort.setCellValueFactory(new PropertyValueFactory<>("remotePort"));
+
+    TableColumn<Connection, String> colState = new TableColumn<>("Status");
+        colState.setCellValueFactory(new PropertyValueFactory<>("state"));
+
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+
+
+    // Alle Spalten zur Tabelle hinzufügen
+        table.getColumns().addAll(colLocalIP, colLocalPort, colRemoteIP, colRemotePort, colState);
+        ladeDaten();
+}
     private String ladeDaten() {
         // Hole die Liste aus unserer Parser-Klasse
         List<Connection> datenListe = parser.getConnections();
@@ -97,3 +144,4 @@ public class Gui extends Application {
         return (("Daten aktualisiert! Anzahl: " + datenListe.size()));
     }
 }
+
