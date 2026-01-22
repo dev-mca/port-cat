@@ -74,6 +74,7 @@ Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftig
 
 ## Timers in Java (Multithreading) (Woche 2)
 ## Cross-Platform (Woche 2)
+Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux equivalenten Befehl zu suchen. 
 
 ## DNS-Auflösung (Woche 2)
 
@@ -98,7 +99,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQyNDc3OTMyMywxMjY5MDA5OTU2LDExOD
-Y1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMTM3NzYwMTY0
-NV19
+eyJoaXN0b3J5IjpbMzAyMjI1MDU0LDE0MjQ3NzkzMjMsMTI2OT
+AwOTk1NiwxMTg2NTY0MzIsODgwOTgyNDI0LC0zMzUzMDU1MDks
+LTEzNzc2MDE2NDVdfQ==
 -->
