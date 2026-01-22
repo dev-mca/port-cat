@@ -71,8 +71,8 @@ Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreun
 
 Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftigen erstellen und bearbeiten von Button-Styles helfen.
 
-
 ## Timers in Java (Multithreading) (Woche 2)
+
 ## Cross-Platform (Woche 2)
 Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux equivalenten Befehl zu suchen. 
 Es gibt leider keinen Befehl, wessen Ausgabe 1:1 der selbe ist wie der von Windows, daher musste ich die PortParser-Klasse leicht umbauen.
@@ -84,6 +84,7 @@ Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux
 ## DNS-Auflösung (Woche 2)
 
 Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist.
+
 ## GitHub Licensing
 ToDo. Die einzelnen Lizenzen erklärt..
 
@@ -104,7 +105,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMj
-Y5MDA5OTU2LDExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUw
-OSwtMTM3NzYwMTY0NV19
+eyJoaXN0b3J5IjpbLTk2NjM3OTE4NiwtMTc2MzI5MzQ3MiwxND
+I0Nzc5MzIzLDEyNjkwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQy
+NCwtMzM1MzA1NTA5LC0xMzc3NjAxNjQ1XX0=
 -->
