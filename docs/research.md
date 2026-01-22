@@ -69,7 +69,7 @@ Es war einfach zu implementieren und das Problem wurde somit behoben.
 ## Color Palettes für UX (Woche 2)
 Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreundlich aus und auch nicht wirklich modern. Ich habe mich darum entschiededen mit Farben zu arbeiten, um die UI lebendiger zu machen. Für die Farben habe ich ein Tool gefunden was einem eine passende Palette generiert. Ich habe mich für eine entschieden und konnte das mittels kopieren des HEX-Codes dort anwenden, wo ich wollte. Das Tool nennt sich coolors.co. 
 
-Abgesehen davon habe ich 
+Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftigen erstellen und bearbeiten von Button-Styles helfen.
 
 
 ## Timers in Java (Multithreading) (Woche 2)
@@ -98,7 +98,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDk5Njg5ODMsMTI2OTAwOTk1NiwxMTg2NT
-Y0MzIsODgwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2MDE2NDVd
-fQ==
+eyJoaXN0b3J5IjpbMTQyNDc3OTMyMywxMjY5MDA5OTU2LDExOD
+Y1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMTM3NzYwMTY0
+NV19
 -->
