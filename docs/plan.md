@@ -104,10 +104,10 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ## Plan-Revisionen
 
 - **v1 – 13.01.2026**: Initiale Planung erstellt - wird laufend aktualisiert.
-- **v2 - 14.01.2026**: Verbessertes Format
+- **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNDA5MDY3ODUsLTE1NjkxMzQ1LC0xMz
-QzMzg0MzA4LDI2Njc5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5
-OTI0XX0=
+eyJoaXN0b3J5IjpbMzQ4NDI1NDAxLC0xNTY5MTM0NSwtMTM0Mz
+M4NDMwOCwyNjY3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTky
+NF19
 -->
