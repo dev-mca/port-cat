@@ -65,9 +65,9 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 |-----|-------------|-----------|--------|
 | Mo  | 09:00–14:00 | Feedback von Coach einholen| Erledigt        |
 | Di  | 07:30-17:00 |  Cross-Plattform einrichten für Linux   | In Bearbeitung       |
-| Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |      |
-| Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |        |
-| Fr  | 07:30-17:00            |     DNS-Auflösung      |        |
+| Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |  Erledigt    |
+| Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |    In Arbeit    |
+| Fr  | 07:30-17:00            |     DNS-Auflösung      |   In Arbeit     |
 ---
 
 ### Woche 3 (26.01 – 30.01)
@@ -107,7 +107,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMjQ5NzkzNzQsLTE1NjkxMzQ1LC0xMz
-QzMzg0MzA4LDI2Njc5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5
-OTI0XX0=
+eyJoaXN0b3J5IjpbMzYzNTUzMzYyLC0xNTY5MTM0NSwtMTM0Mz
+M4NDMwOCwyNjY3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTky
+NF19
 -->
