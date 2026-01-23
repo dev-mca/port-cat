@@ -48,7 +48,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 2 (19.01 – 23.01)
-**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage, Start&Stop Logik für Echtzeit-Updates. Ausserdem Cross-Plattform einführen mit Linux Unterstützung.
+**Scooter** = Das Skateboard weiter ausarbeiten mit einer schöneren GUI und folgenden wichtigen Features: DNS-Auflösung per Abfrage (falls auflösbar), Start&Stop Logik für Echtzeit-Updates. Ausserdem Cross-Plattform einführen mit Linux Unterstützung.
 
 
 **Wichtige Termine:**
@@ -107,6 +107,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 - 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NjkxMzQ1LC0xMzQzMzg0MzA4LDI2Nj
-c5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbLTEzMjQ5NzkzNzQsLTE1NjkxMzQ1LC0xMz
+QzMzg0MzA4LDI2Njc5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5
+OTI0XX0=
 -->
