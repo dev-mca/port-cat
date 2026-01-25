@@ -1,142 +1,235 @@
 package com.melihcan.portcat;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PortParser {
 
-    static final String CMD = "powershell.exe -Command \"Get-NetTCPConnection | Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort, State | ConvertTo-Json -Compress\"";
+    /* -------- Betriebssystem erkennen -------- */
+    private static final boolean IS_WINDOWS =
+            System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("win");
 
+    /* -------- Kommandos -------- */
+    private static final String POWERSHELL_CMD =
+            "powershell.exe -Command \"Get-NetTCPConnection | "
+                    + "Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State "
+                    + "| ConvertTo-Json -Compress\"";
+
+    // zuerst versuchen wir die JSON-Option (-J). Scheitert das, nehmen wir Text.
+    private static final String SS_JSON = "ss -tnH -J";   // -u für UDP später | JSON (requires iproute2 ≥ 5.9)
+    private static final String SS_TEXT = "ss -tanH";      // Text-Fallback
+
+    /* =====================================================================
+       Öffentliche API
+    ===================================================================== */
     public List<Connection> getConnections() {
-        List<Connection> connectionList = new ArrayList<>();
-
-        try {
-            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", CMD);
-            builder.redirectErrorStream(true);
-            Process process = builder.start();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder jsonOutput = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                jsonOutput.append(line);
-            }
-
-            String json = jsonOutput.toString();
-
-            if (json.length() > 2) {
-                json = json.substring(1, json.length() - 1);
-
-
-                // Split JSON-Format
-                String[] objects = json.split("\\},\\{");
-
-                for (String obj : objects) {
-                    obj = obj.replace("{", "").replace("}", "");
-                    Connection conn = parseSingleObject(obj);
-                    if (conn != null) {
-                        connectionList.add(conn);
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error: " + e.getMessage());
-        }
-
-        return connectionList;
+        return IS_WINDOWS ? parseWindows() : parseLinux();
     }
 
-    //Erstellt ein Connection-Objekt, um getConnections() zu vereinfachen
-    private Connection parseSingleObject(String rawData) {
+    /* =====================================================================
+       Windows
+    ===================================================================== */
+    private List<Connection> parseWindows() {
+        List<Connection> list = new ArrayList<>();
         try {
+            Process proc = new ProcessBuilder("cmd.exe", "/c", POWERSHELL_CMD)
+                    .redirectErrorStream(true).start();
 
-            String localAddr = extractValue(rawData, "LocalAddress");
+            String json = readAll(proc);
+            // Ausgabe enthält ein JSON-Array – bei unserer Kommandokette ohne Klammern.
+            if (json.length() < 2) return list;
 
-            if (localAddr.equals("::") || localAddr.equals("::1") || localAddr.equals("0.0.0.0")) {
-                return null; // Ignorieren, gibt null zurück
+            // Klammern einklammern -> valides Array
+            json = "[" + json + "]";
+            // sehr simples Split-Parsing (wie in deiner alten Klasse)
+            String[] objects = json.substring(1, json.length() - 1).split("\\},\\{");
+            for (String obj : objects) {
+                obj = obj.replace("{", "").replace("}", "");
+                Connection c = parseWinObject(obj);
+                if (c != null) list.add(c);
             }
-            if (localAddr.equals("127.0.0.1")) {
-                localAddr = "127.0.0.1 (Loopback)";
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
-            String remoteAddr = extractValue(rawData, "RemoteAddress");
+    private Connection parseWinObject(String raw) {
+        try {
+            String localAddr  = value(raw, "LocalAddress");
+            if (skip(localAddr)) return null;
+            if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
 
-            String state = extractValue(rawData, "State");
-
-            switch (state) {
-                case "5":
-                    state = "Established";
-                    break;
-                case "2":
-                    state = "Listening";
-                    break;
-                case "1":
-                    state = "Closed";
-                    break;
-                case "3":
-                    state = "Establishing outgoing";
-                    break;
-                case "4":
-                    state = "Establishing ingoing";
-                    break;
-                case "8":
-                    state = "Remote disconnected --> cleaning up";
-                    break;
-                case "9":
-                    state = "Remote disconnected --> remote awaits ack from you";
-                case "11":
-                    state = "Remote disconnected --> safe wait for packages";
-                    break;
-            }
-
-            // Ports sind Zahlen, daher Integer.parseInt
-            int localPort = Integer.parseInt(extractValue(rawData, "LocalPort"));
-
-            String remotePort = extractValue(rawData, "RemotePort");
-
-            switch (remotePort) {
-                case "443":
-                    remotePort = "443 (HTTPS)";
-                    break;
-                case "80":
-                    remotePort = "80 (HTTP)";
-                    break;
-                case "22":
-                    remotePort = "22 (SSH)";
-                    break;
-                default:
-                    break;
-            }
-
+            int    localPort  = Integer.parseInt(value(raw, "LocalPort"));
+            String remoteAddr = value(raw, "RemoteAddress");
+            String remotePort = decoratePort(value(raw, "RemotePort"));
+            String state      = mapState(value(raw, "State"));
 
             return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
-        } catch (Exception e) {
-            // Falls mal ein Feld fehlt oder leer ist, ignorieren wir es
+        } catch (Exception ex) {
             return null;
         }
     }
 
+    /* =====================================================================
+       Linux
+    ===================================================================== */
+    private List<Connection> parseLinux() {
+        List<Connection> list;
 
-    // Hilfsmethode: Sucht den Wert zu einem Key (z.B. "LocalAddress")
-    private String extractValue(String data, String key) {
-        // Wir suchen nach: "Key": "Wert" oder "Key": 123
-        String searchKey = "\"" + key + "\":";
-        int start = data.indexOf(searchKey);
-        if (start == -1) return "0"; // Fallback falls nicht gefunden
+        // 1) JSON-Versuch
+        list = trySsJson();
+        if (!list.isEmpty()) return list;
 
-        start += searchKey.length();
+        // 2) Text-Fallback
+        return trySsText();
+    }
 
-        // Finden, wo der Wert endet (beim nächsten Komma oder am Ende)
-        int end = data.indexOf(",", start);
-        if (end == -1) end = data.length();
+    /* ---------- 1) ss … -J ------------------------------------------------ */
+    private List<Connection> trySsJson() {
+        List<Connection> list = new ArrayList<>();
+        try {
+            Process proc = new ProcessBuilder("bash", "-c", SS_JSON)
+                    .redirectErrorStream(true).start();
 
-        String value = data.substring(start, end).trim();
+            String json = readAll(proc).trim();
+            if (json.isEmpty() || json.charAt(0) != '{') return list; // kein JSON → alte Version
 
-        // Anführungszeichen entfernen, falls es ein String ist
-        return value.replace("\"", "");
+            /*
+              JSON-Schema von ss -J ist:
+              {
+                 "tcp": [
+                   {"state":"ESTAB",
+                    "local_addr":"192.168.0.2",
+                    "local_port":"22",
+                    "remote_addr":"192.168.0.10",
+                    "remote_port":"56544",
+                    …},
+                    …
+                 ]
+              }
+             */
+
+            // ganz leichter Parser, kein externes JSON-Lib benötigt:
+            String inner = json.substring(json.indexOf('[') + 1, json.lastIndexOf(']'));
+            String[] objects = inner.split("\\},\\{");
+            for (String obj : objects) {
+                obj = obj.replace("{", "").replace("}", "");
+                String state      = value(obj, "state");
+                String localAddr  = value(obj, "local_addr");
+                if (skip(localAddr)) continue;
+                if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
+
+                int    localPort  = Integer.parseInt(value(obj, "local_port"));
+                String remoteAddr = value(obj, "remote_addr");
+                String remotePort = decoratePort(value(obj, "remote_port"));
+                state = stateFromName(state); // "ESTAB", "LISTEN" …
+
+                list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
+            }
+        } catch (IOException ignored) { }
+        return list;
+    }
+
+    /* ---------- 2) ss … -tanH  (Text) ------------------------------------ */
+    private List<Connection> trySsText() {
+        List<Connection> list = new ArrayList<>();
+        try {
+            Process proc = new ProcessBuilder("bash", "-c", SS_TEXT)
+                    .redirectErrorStream(true).start();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+            /*
+              Beispielausgabe (ss -tanH):
+              LISTEN 0      128         0.0.0.0:22        0.0.0.0:*
+              ESTAB  0      0       192.168.0.2:22    192.168.0.10:56544
+              …
+             */
+
+            Pattern p = Pattern.compile(
+                    "(\\w+)\\s+\\d+\\s+\\d+\\s+([^:]+):(\\d+)\\s+([^:]+):(\\S+)");
+            String line;
+            while ((line = br.readLine()) != null) {
+                Matcher m = p.matcher(line.trim());
+                if (!m.matches()) continue;
+
+                String state      = stateFromName(m.group(1));       // LISTEN, ESTAB …
+                String localAddr  = m.group(2);
+                if (skip(localAddr)) continue;
+                if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
+                int    localPort  = Integer.parseInt(m.group(3));
+                String remoteAddr = m.group(4);
+                String remotePort = decoratePort(m.group(5));
+
+                list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
+            }
+        } catch (IOException ignored) { }
+        return list;
+    }
+
+    /* =====================================================================
+       Hilfsfunktionen
+    ===================================================================== */
+    private static String readAll(Process p) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) sb.append(line);
+        return sb.toString();
+    }
+
+    // extrahiert "Key":"Value" oder "Key":number (sehr einfacher Parser)
+    private static String value(String jsonObject, String key) {
+        String k = "\"" + key + "\":";
+        int idx = jsonObject.indexOf(k);
+        if (idx == -1) return "";
+        idx += k.length();
+        int end = jsonObject.indexOf(",", idx);
+        if (end == -1) end = jsonObject.length();
+        return jsonObject.substring(idx, end).replace("\"", "").trim();
+    }
+
+    private static boolean skip(String addr) {
+        return "::".equals(addr) || "::1".equals(addr) || "0.0.0.0".equals(addr);
+    }
+
+    private static String decoratePort(String port) {
+        switch (port) {
+            case "443": return "443 (HTTPS)";
+            case "80":  return "80 (HTTP)";
+            case "22":  return "22 (SSH)";
+            default:    return port;
+        }
+    }
+
+    private static String mapState(String numeric) {
+        switch (numeric) {
+            case "5":  return "Established";
+            case "2":  return "Listening";
+            case "1":  return "Closed";
+            case "3":  return "SYN-Sent";
+            case "4":  return "SYN-Recv";
+            case "8":  return "Fin-Wait-1";
+            case "9":  return "Fin-Wait-2";
+            case "11": return "Time-Wait";
+            default:   return numeric;
+        }
+    }
+
+    private static String stateFromName(String name) {
+        switch (name) {
+            case "ESTAB":   return "Established";
+            case "LISTEN":  return "Listening";
+            case "CLOSE-WAIT": return "Close-Wait";
+            case "TIME-WAIT":  return "Time-Wait";
+            default: return name;
+        }
     }
 }
