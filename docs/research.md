@@ -85,6 +85,9 @@ Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux
 
 Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige einen **PTR-Record** haben. Ein gutes Beispiel zur Demonstration ist die DNS von coop:
 
+## CSS Style-Sheets für JavaFx (Woche 3)
+..
+
 | Eingabe | Ausgabe |
 |---------|---------|
 | `nslookup coop.ch` | **Server:** 62.2.17.61<br>**Address:** 62.2.17.61#53<br><br>Non-authoritative answer:<br>**Name:** coop.ch<br>**Address:** 185.170.88.26 |
@@ -118,8 +121,8 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM5Nzc0NzA5OSwtOTY2Mzc5MTg2LC0xNz
-YzMjkzNDcyLDE0MjQ3NzkzMjMsMTI2OTAwOTk1NiwxMTg2NTY0
-MzIsODgwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2MDE2NDVdfQ
-==
+eyJoaXN0b3J5IjpbMTE5NDc2NjEzMCwxMzk3NzQ3MDk5LC05Nj
+YzNzkxODYsLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMjY5MDA5
+OTU2LDExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMT
+M3NzYwMTY0NV19
 -->
