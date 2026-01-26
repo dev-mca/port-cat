@@ -81,9 +81,9 @@ Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der
 
 Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux variante `ss -tunH -J` genommen. SS steht für Socket Statistic und liefert viel Informationen rund um das Netwerk. 
 
-## DNS-Auflösung (Woche 2)
+## DNS-Auflösung (Woche 2-3)
 
-Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist.
+Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige 
 
 ## GitHub Licensing
 ToDo. Die einzelnen Lizenzen erklärt..
@@ -105,7 +105,8 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk2NjM3OTE4NiwtMTc2MzI5MzQ3MiwxND
-I0Nzc5MzIzLDEyNjkwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQy
-NCwtMzM1MzA1NTA5LC0xMzc3NjAxNjQ1XX0=
+eyJoaXN0b3J5IjpbLTE2NzE2ODk4NDksLTk2NjM3OTE4NiwtMT
+c2MzI5MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMTE4NjU2
+NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAxNjQ1XX
+0=
 -->
