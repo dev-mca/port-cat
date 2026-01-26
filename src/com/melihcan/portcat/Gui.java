@@ -88,8 +88,7 @@ public class Gui extends Application {
         HBox topBar = new HBox();
         topBar.setMinHeight(85);
         topBar.setPrefHeight(85);
-        topBar.setAlignment(Pos.CENTER);    // oder CENTER_LEFT, wie gewünscht
-        topBar.setPadding(new Insets(4, 10, 4, 10));
+        topBar.setAlignment(Pos.CENTER);
         topBar.setStyle("-fx-background-color: #30332E; "
                 + "-fx-border-color: #30332E; -fx-border-width: 0 0 1 0;");
 
