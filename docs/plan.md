@@ -87,8 +87,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Tag | Zeitfenster | Aufgabe(n)| Status |
 |-----|-------------|-----------|---------|
 | Mo  | 09:00–14:00 |  GUI Struktur erneut revidieren und fehler beheben         | Erledigt        |
-| Di  | 07:30-17:00 |            |        | 
-| Mi  | 07:30-17:00 |           |        |
+| Di  | 07:30-17:00 | Auto-update und Unit-Tests finalisieren           |        | 
+| Mi  | 07:30-17:00 | UDP implementierung (evtl. 2 Ansichten)          |        |
 | Do  | 07:30-17:00 |           |        |
 | Fr  | 07:30-17:00 |           |        | 
 
@@ -107,7 +107,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODI1NjkzNTk4LDkyMjAwNDAwMCwzNDg0Mj
+eyJoaXN0b3J5IjpbNTQ0MzQzODcyLDkyMjAwNDAwMCwzNDg0Mj
 U0MDEsLTE1NjkxMzQ1LC0xMzQzMzg0MzA4LDI2Njc5MzYzMCwt
 MjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
 -->
