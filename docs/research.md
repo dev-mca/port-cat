@@ -83,7 +83,7 @@ Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux
 
 ## DNS-Auflösung (Woche 2-3)
 
-Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige 
+Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige einen **PTR-Record** haben.
 
 ## GitHub Licensing
 ToDo. Die einzelnen Lizenzen erklärt..
@@ -105,7 +105,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NzE2ODk4NDksLTk2NjM3OTE4NiwtMT
+eyJoaXN0b3J5IjpbLTE3MDM1MzE3MzYsLTk2NjM3OTE4NiwtMT
 c2MzI5MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMTE4NjU2
 NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAxNjQ1XX
 0=
