@@ -71,7 +71,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 3 (26.01 – 30.01)
-**Fahrrad** = Der Visualizer enthält speichert Verbindungen und kann sie auf Abruf des Users wieder anzeigen lassen, egal wie lange her sie war.hat nun eine benutzerfreundliche Darstellung anstatt einer Tabelle und kann nun Historie ab
+**Fahrrad** = Der Visualizer enthält speichert Verbindungen und kann sie auf Abruf des Users wieder anzeigen lassen, egal wie lange her sie war.hat nun eine benutzerfreundliche Darstellung anstatt einer Tabelle und kann nun Historie abrufen.
 
 
 **Wichtige Termine:**
@@ -107,7 +107,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA3NzIyNzg2LDM0ODQyNTQwMSwtMTU2OT
+eyJoaXN0b3J5IjpbOTIyMDA0MDAwLDM0ODQyNTQwMSwtMTU2OT
 EzNDUsLTEzNDMzODQzMDgsMjY2NzkzNjMwLC0yMDk0MDMxMzE2
 LDEzMDY5OTk5MjRdfQ==
 -->
