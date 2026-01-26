@@ -89,8 +89,6 @@ public class Gui extends Application {
         topBar.setMinHeight(85);
         topBar.setPrefHeight(85);
         topBar.setAlignment(Pos.CENTER);
-        topBar.setStyle("-fx-background-color: #30332E; "
-                + "-fx-border-color: #30332E; -fx-border-width: 0 0 1 0;");
 
         // links: Logo + Titel
         HBox leftPart = new HBox(10, logoView, title);
