@@ -76,7 +76,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 **Wichtige Termine:**
 
-- Wöchentliches Meeting mit Betreuer: _Montag, 02.02.2026 um 14:15 Uhr_
+- Wöchentliches Meeting mit Betreuer: _Montag, 01.02.2026 um 13:15 Uhr_
 
 **Aufgaben**
 
@@ -86,8 +86,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 | Tag | Zeitfenster | Aufgabe(n)| Status |
 |-----|-------------|-----------|---------|
-| Mo  | 09:00–14:00 |           |        |
-| Di  | 07:30-17:00 |           |        | 
+| Mo  | 09:00–14:00 |  GUI Struktur erneut revidieren und fehler beheben         | Erledigt        |
+| Di  | 07:30-17:00 |            |        | 
 | Mi  | 07:30-17:00 |           |        |
 | Do  | 07:30-17:00 |           |        |
 | Fr  | 07:30-17:00 |           |        | 
@@ -107,7 +107,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNzA3ODk0MjEsOTIyMDA0MDAwLDM0OD
-QyNTQwMSwtMTU2OTEzNDUsLTEzNDMzODQzMDgsMjY2NzkzNjMw
-LC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
+eyJoaXN0b3J5IjpbODI1NjkzNTk4LDkyMjAwNDAwMCwzNDg0Mj
+U0MDEsLTE1NjkxMzQ1LC0xMzQzMzg0MzA4LDI2Njc5MzYzMCwt
+MjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
 -->
