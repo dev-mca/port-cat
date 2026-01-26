@@ -64,14 +64,14 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Tag | Zeitfenster | Aufgabe(n) | Status |
 |-----|-------------|-----------|--------|
 | Mo  | 09:00–14:00 | Feedback von Coach einholen| Erledigt        |
-| Di  | 07:30-17:00 |  Cross-Plattform einrichten für Linux   | In Bearbeitung       |
+| Di  | 07:30-17:00 |  Cross-Plattform einrichten für Linux   | In Bearbeitung Erledigt      |
 | Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |  Erledigt    |
-| Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |    In Arbeit    |
-| Fr  | 07:30-17:00            |     DNS-Auflösung  + Unit-Tests erstellen    |   In Arbeit     |
+| Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |    In ArbeiErledigt    |
+| Fr  | 07:30-17:00            |     DNS-Auflösung  + Unit-Tests erstellen    |   In ArbeiErledigt     |
 ---
 
 ### Woche 3 (26.01 – 30.01)
-**Fahrrad** = Der Visualizer enthält speichert Verbindungen und kann sie auf Abruf des Users wieder anzeigen lassen, egal wie lange her sie war.
+**Fahrrad** = Der Visualizer enthält speichert Verbindungen und kann sie auf Abruf des Users wieder anzeigen lassen, egal wie lange her sie war.hat nun eine benutzerfreundliche Darstellung anstatt einer Tabelle und kann nun Historie ab
 
 
 **Wichtige Termine:**
@@ -107,7 +107,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzQ4NDI1NDAxLC0xNTY5MTM0NSwtMTM0Mz
-M4NDMwOCwyNjY3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTky
-NF19
+eyJoaXN0b3J5IjpbMTA3NzIyNzg2LDM0ODQyNTQwMSwtMTU2OT
+EzNDUsLTEzNDMzODQzMDgsMjY2NzkzNjMwLC0yMDk0MDMxMzE2
+LDEzMDY5OTk5MjRdfQ==
 -->
