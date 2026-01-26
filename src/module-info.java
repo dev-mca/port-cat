@@ -1,8 +1,8 @@
-module port.cat {  // <- dein Modul-Name!
+module port.cat {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
 
-    opens com.melihcan.portcat to javafx.fxml;  // dein Package!
+    opens com.melihcan.portcat to javafx.fxml;
     exports com.melihcan.portcat;
 }

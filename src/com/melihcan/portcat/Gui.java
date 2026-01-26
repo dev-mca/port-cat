@@ -1,46 +1,40 @@
 package com.melihcan.portcat;
 
 import javafx.application.Application;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
+import javafx.collections.*;
+
 import javafx.concurrent.Task;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
+
+import javafx.geometry.*;
+
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.layout.*;
+
 import javafx.stage.Stage;
 
 import java.util.List;
 
 public class Gui extends Application {
 
-    /* =======================================================
-       Felder
-    ======================================================= */
+    /* ---------------------------------------------------
+        Felder
+     --------------------------------------------------- */
     private final TableView<Connection> table = new TableView<>();
     private final PortParser            parser = new PortParser();
 
-    /* =======================================================
-       Einstieg
-    ======================================================= */
+    /* ---------------------------------------------------
+        Start/Einstieg
+     --------------------------------------------------- */
     @Override
     public void start(Stage stage) {
         stage.setTitle("PortCat v2");
 
         /* ---------------------------------------------------
-           Logo vorbereiten
+           Logo
         --------------------------------------------------- */
         ImageView logoView = new ImageView();
         var stream = getClass().getResourceAsStream("/images/logo.png");
@@ -59,7 +53,6 @@ public class Gui extends Application {
         --------------------------------------------------- */
         Label output = new Label("Output:");
         output.setStyle("-fx-text-fill: #fffbfc; -fx-font-weight: bold; -fx-font-size: 17.5px;");
-
 
         Label title  = new Label("PortCat - TCP-Connections");
         title.setStyle("-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #FFFBFC;");
@@ -90,7 +83,7 @@ public class Gui extends Application {
         btnClear.setOnAction(e -> output.setText("Output: Cleared!"));
 
         /* ---------------------------------------------------
-           TopBar (liegt neu im selben Container wie die Tabelle)
+           TopBar
         --------------------------------------------------- */
         HBox topBar = new HBox();
         topBar.setMinHeight(85);
@@ -115,44 +108,14 @@ public class Gui extends Application {
         topBar.getChildren().addAll(leftPart, spacer, rightPart);
 
         /* ---------------------------------------------------
-           Side-Panels (nur Deko / Begrenzung)
-        --------------------------------------------------- */
-        VBox leftPanel  = createSidePanel(50);
-        VBox rightPanel = createSidePanel(50);
-
-        leftPanel.setStyle("-fx-background-color: #30332E; "
-                + "-fx-border-color: #30332E; -fx-border-width: 0 0 1 0;");
-
-        rightPanel.setStyle("-fx-background-color: #30332E; "
-                + "-fx-border-color: #30332E; -fx-border-width: 0 0 1 0;");
-
-        /* ---------------------------------------------------
-           Tabelle + TopBar als gemeinsamer Block
-        --------------------------------------------------- */
-        VBox tableContainer = new VBox();
-        tableContainer.getChildren().addAll(topBar, table);
-        VBox.setVgrow(table, Priority.ALWAYS);     // Tabelle darf wachsen
-        HBox.setHgrow(tableContainer, Priority.ALWAYS);
-
-        /* ---------------------------------------------------
-           Hauptinhalt
-        --------------------------------------------------- */
-        HBox mainContent = new HBox();
-        mainContent.getChildren().addAll(leftPanel, tableContainer, rightPanel);
-        VBox.setVgrow(mainContent, Priority.ALWAYS);
-
-        /* ---------------------------------------------------
            Root-Layout
         --------------------------------------------------- */
         BorderPane root = new BorderPane();
-        root.setCenter(mainContent);
+        root.setStyle("-fx-background-color: #30332E");
+        root.setPadding(new Insets(20, 50, 50, 50)); // top, right, bottom, left
+        root.setTop(topBar);
+        root.setCenter(table);
 
-        // optionale Bottom-Bar
-        HBox bottomBar = new HBox();
-        bottomBar.setPrefHeight(28);
-        bottomBar.setStyle("-fx-background-color: #30332E; "
-                + "-fx-border-color: #30332E; -fx-border-width: 0 0 1 0;");
-        root.setBottom(bottomBar);
 
         /* ---------------------------------------------------
            Tabellen-Spalten
@@ -161,62 +124,23 @@ public class Gui extends Application {
         table.setPlaceholder(new Label("Keine Verbindungen gefunden"));
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 
-//Generiert mit ChatGPT o3 für auto-scale Logik
-// =======================================================
-// Szene anzeigen  (neuer, robuster Block)
-// =======================================================
-        double designW   = 950;   // Entwurfsbreite
-        double designH   = 680;   // Entwurfshöhe
-        double minScale  = 0.6;   // kleiner darf es nicht werden
 
-        Group rootGroup   = new Group(root);            // BorderPane -> Group
-        StackPane wrapper = new StackPane(rootGroup);   // Group -> StackPane
-        StackPane.setAlignment(rootGroup, Pos.TOP_LEFT);
-        wrapper.setStyle("-fx-background-color: #30332E;");
-
-// -------------------------------------------------------
-// Skalierungsfaktor berechnen – aber nie > 1, nie < minScale
-// -------------------------------------------------------
-        DoubleProperty scale = new SimpleDoubleProperty(1.0);
-
-        NumberBinding ratio = Bindings.min(
-                wrapper.widthProperty().divide(designW),
-                wrapper.heightProperty().divide(designH));
-
-        scale.bind(
-                Bindings.max(minScale,        // untere Schranke
-                        Bindings.min(1.0, ratio)));   // obere Schranke
-
-        rootGroup.scaleXProperty().bind(scale);
-        rootGroup.scaleYProperty().bind(scale);
-
-// -------------------------------------------------------
-// BorderPane-Grösse an Wrapper binden
-// -------------------------------------------------------
-        root.prefWidthProperty() .bind(wrapper.widthProperty() .divide(scale));
-        root.prefHeightProperty().bind(wrapper.heightProperty().divide(scale));
-
-// -------------------------------------------------------
-// Szene / Stage
-// -------------------------------------------------------
-        Scene scene = new Scene(wrapper, designW, designH);
+        /* ---------------------------------------------------
+           Scene
+        --------------------------------------------------- */
+        Scene scene = new Scene(root);
         stage.setScene(scene);
-
-// Verhindert, dass der User kleiner als das Minimum ziehen kann
-        stage.setMinWidth (designW  * minScale);
-        stage.setMinHeight(designH  * minScale);
 
         stage.centerOnScreen();
         stage.show();
-
 
         // erste Datenladung
         output.setText("Output: " + ladeDaten());
     }
 
-    /* =======================================================
-       Hilfsmethoden
-    ======================================================= */
+    /* ---------------------------------------------------
+        Hilfsmethoden
+     --------------------------------------------------- */
     private void styleButton(Button btn,
                              String normalColor,
                              String hoverColor,
@@ -243,15 +167,6 @@ public class Gui extends Application {
                         "-fx-text-fill: " + textColor + ";"));
     }
 
-    private VBox createSidePanel(double width) {
-        VBox panel = new VBox();
-        panel.setPrefWidth(width);
-        panel.setMinWidth(width);
-        panel.setMaxWidth(width);
-        panel.setStyle("-fx-background-color: #ffffff;");
-        VBox.setVgrow(panel, Priority.ALWAYS);
-        return panel;
-    }
 
     private void addTableColumns() {
         TableColumn<Connection, String> colLocalIP = new TableColumn<>("Lokal IP");
