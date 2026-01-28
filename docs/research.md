@@ -72,18 +72,16 @@ Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreun
 Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftigen erstellen und bearbeiten von Button-Styles helfen.
 
 ## Cross-Platform (Woche 2)
-Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux equivalenten Befehl zu suchen. 
+Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux äquivalenten Befehl zu suchen. 
 Es gibt leider keinen Befehl, wessen Ausgabe 1:1 der selbe ist wie der von Windows, daher musste ich die PortParser-Klasse leicht umbauen.
 
 Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der Check funktioniert durch `System.getProperty("os.name").` 
 
 Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux variante `ss -tunH -J` genommen. SS steht für Socket Statistic und liefert viel Informationen rund um das Netwerk. 
 
-## DNS-Auflösung (Woche 2-3 )
 
-Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige einen **PTR-Record** haben. Ein gutes Beispiel zur Demonstration ist die DNS von coop:
 
-## Java ScheduledExecutorService (Woche 2-3)
+## Java ScheduledExecutorService (Woche 3)
 
 
 
@@ -91,12 +89,15 @@ Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-A
 ## CSS Style-Sheets für JavaFx (Woche 3)
 ..
 
+## DNS-Auflösung (Woche 2-3 )
+
+Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige einen **PTR-Record** haben. Ein gutes Beispiel zur Demonstration ist die DNS von coop:
 | Eingabe | Ausgabe |
 |---------|---------|
 | `nslookup coop.ch` | **Server:** 62.2.17.61<br>**Address:** 62.2.17.61#53<br><br>Non-authoritative answer:<br>**Name:** coop.ch<br>**Address:** 185.170.88.26 |
 | `nslookup 185.170.88.26` |  **server can't find 26.88.170.185.in-addr.arpa: NXDOMAIN** |
 
-Die IP gehört sehr warscheinlich einem Host-Provider und Coop mietet dort Server, besitzt daher die IP nicht selbst.
+Die IP gehört sehr wahrscheinlich einem Host-Provider und Coop mietet dort Server, besitzt daher die IP nicht selbst.
 
 
 
@@ -124,7 +125,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0Mzk4MjQwOTAsMTAwNjMxMzYzNiwxMT
+eyJoaXN0b3J5IjpbLTE0MDE2NjgwNDAsMTAwNjMxMzYzNiwxMT
 k0NzY2MTMwLDEzOTc3NDcwOTksLTk2NjM3OTE4NiwtMTc2MzI5
 MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMTE4NjU2NDMyLD
 g4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAxNjQ1XX0=
