@@ -79,16 +79,6 @@ Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der
 
 Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux variante `ss -tunH -J` genommen. SS steht für Socket Statistic und liefert viel Informationen rund um das Netwerk. 
 
-
-
-## Java ScheduledExecutorService (Woche 3)
-
-
-
-
-## CSS Style-Sheets für JavaFx (Woche 3)
-..
-
 ## DNS-Auflösung (Woche 2-3 )
 
 Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige einen **PTR-Record** haben. Ein gutes Beispiel zur Demonstration ist die DNS von coop:
@@ -98,6 +88,17 @@ Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-A
 | `nslookup 185.170.88.26` |  **server can't find 26.88.170.185.in-addr.arpa: NXDOMAIN** |
 
 Die IP gehört sehr wahrscheinlich einem Host-Provider und Coop mietet dort Server, besitzt daher die IP nicht selbst.
+
+
+## Java ScheduledExecutorService (Woche 3)
+
+
+
+## CSS Style-Sheets für JavaFx (Woche 3)
+..
+
+
+
 
 
 
@@ -125,8 +126,8 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MDE2NjgwNDAsMTAwNjMxMzYzNiwxMT
-k0NzY2MTMwLDEzOTc3NDcwOTksLTk2NjM3OTE4NiwtMTc2MzI5
-MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMTE4NjU2NDMyLD
-g4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAxNjQ1XX0=
+eyJoaXN0b3J5IjpbMTM1Njk1NjAxMCwxMDA2MzEzNjM2LDExOT
+Q3NjYxMzAsMTM5Nzc0NzA5OSwtOTY2Mzc5MTg2LC0xNzYzMjkz
+NDcyLDE0MjQ3NzkzMjMsMTI2OTAwOTk1NiwxMTg2NTY0MzIsOD
+gwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2MDE2NDVdfQ==
 -->
