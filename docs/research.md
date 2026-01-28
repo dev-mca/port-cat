@@ -71,8 +71,6 @@ Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreun
 
 Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftigen erstellen und bearbeiten von Button-Styles helfen.
 
-## Timers in Java (Multithreading) (Woche 2)
-
 ## Cross-Platform (Woche 2)
 Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux equivalenten Befehl zu suchen. 
 Es gibt leider keinen Befehl, wessen Ausgabe 1:1 der selbe ist wie der von Windows, daher musste ich die PortParser-Klasse leicht umbauen.
@@ -126,8 +124,8 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEwODEzNjA1MiwxMDA2MzEzNjM2LDExOT
-Q3NjYxMzAsMTM5Nzc0NzA5OSwtOTY2Mzc5MTg2LC0xNzYzMjkz
-NDcyLDE0MjQ3NzkzMjMsMTI2OTAwOTk1NiwxMTg2NTY0MzIsOD
-gwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2MDE2NDVdfQ==
+eyJoaXN0b3J5IjpbLTE0Mzk4MjQwOTAsMTAwNjMxMzYzNiwxMT
+k0NzY2MTMwLDEzOTc3NDcwOTksLTk2NjM3OTE4NiwtMTc2MzI5
+MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMTE4NjU2NDMyLD
+g4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAxNjQ1XX0=
 -->
