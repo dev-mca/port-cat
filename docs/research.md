@@ -81,7 +81,15 @@ Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der
 
 Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux variante `ss -tunH -J` genommen. SS steht für Socket Statistic und liefert viel Informationen rund um das Netwerk. 
 
-## DNS-Auflösung (Woche 2-3)
+## DNS-Auflösung
+## Cross-Platform (Woche 2)
+
+## DNS-Auflösung (Woche 2-3 (Woche )
+
+Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist.
+
+## Java ScheduledExecutorService (Woche 2-3)
+
 
 Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige einen **PTR-Record** haben. Ein gutes Beispiel zur Demonstration ist die DNS von coop:
 
@@ -121,8 +129,8 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE5NDc2NjEzMCwxMzk3NzQ3MDk5LC05Nj
-YzNzkxODYsLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMjY5MDA5
-OTU2LDExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMT
-M3NzYwMTY0NV19
+eyJoaXN0b3J5IjpbMTAwNjMxMzYzNiwxMTk0NzY2MTMwLDEzOT
+c3NDcwOTksLTk2NjM3OTE4NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5
+MzIzLDEyNjkwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQyNCwtMz
+M1MzA1NTA5LC0xMzc3NjAxNjQ1XX0=
 -->
