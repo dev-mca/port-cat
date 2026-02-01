@@ -16,6 +16,7 @@ import javafx.scene.layout.*;
 
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.util.List;
 
 public class Gui extends Application {
@@ -24,7 +25,11 @@ public class Gui extends Application {
         Felder
      --------------------------------------------------- */
     private final TableView<Connection> table = new TableView<>();
-    private final PortParser            parser = new PortParser();
+    private final PortParser parser = new PortParser();
+    private Scheduler scheduler;
+    private Label output;
+    private final Label placeholder = new Label();
+
 
     /* ---------------------------------------------------
         Start/Einstieg
@@ -51,36 +56,17 @@ public class Gui extends Application {
         /* ---------------------------------------------------
            Labels & Buttons
         --------------------------------------------------- */
-        Label output = new Label("Output:");
+        output = new Label("Output: ");
         output.setStyle("-fx-text-fill: #fffbfc; -fx-font-weight: bold; -fx-font-size: 17.5px;");
 
-        Label title  = new Label("PortCat - TCP-Connections");
+        Label title = new Label("PortCat - TCP-Connections");
         title.setStyle("-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #FFFBFC;");
 
-        Button btnRefresh = new Button("Refresh");
-        btnRefresh.setPrefSize(125, 40);
-        styleButton(btnRefresh, "#FFFBFC", "#999394", "#30332e");
-        btnRefresh.setOnAction(e -> {
-            output.setText("Refreshing...");
-
-            Task<String> task = new Task<>() {
-                @Override
-                protected String call() {
-                    return ladeDaten(); // läuft im Background
-                }
-            };
-
-            task.setOnSucceeded(ev ->
-                    output.setText("Output: " + task.getValue())
-            );
-
-            new Thread(task).start();
-        });
 
         Button btnClear = new Button("Clear");
         btnClear.setPrefSize(95, 40);
         styleButton(btnClear, "#F44336", "#D32F2F", "#FFFBFC");  // jetzt wirklich rot!
-        btnClear.setOnAction(e -> output.setText("Output: Cleared!"));
+        btnClear.setOnAction(e -> clearBtnLogic());
 
         /* ---------------------------------------------------
            TopBar
@@ -95,7 +81,7 @@ public class Gui extends Application {
         leftPart.setAlignment(Pos.CENTER_LEFT);
 
         // rechts: Output + Buttons
-        HBox rightPart = new HBox(10, output, btnRefresh, btnClear);
+        HBox rightPart = new HBox(10, output, btnClear);
         rightPart.setAlignment(Pos.CENTER_RIGHT);
 
         // Spacer in der Mitte
@@ -118,7 +104,8 @@ public class Gui extends Application {
            Tabellen-Spalten
         --------------------------------------------------- */
         addTableColumns();
-        table.setPlaceholder(new Label("Keine Verbindungen gefunden"));
+        placeholder.setText("Keine Verbindungen gefunden!");
+        table.setPlaceholder(placeholder);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 
 
@@ -132,7 +119,12 @@ public class Gui extends Application {
         stage.show();
 
         // erste Datenladung
-        output.setText("Output: " + ladeDaten());
+        List<Connection> daten = ladeDaten(); // nur Daten holen
+        updateUi(daten);                      // UI initialisieren
+
+        //scheduler starten
+        scheduler = new Scheduler(this);
+        scheduler.start();
     }
 
     /* ---------------------------------------------------
@@ -190,11 +182,28 @@ public class Gui extends Application {
                 colRemotePort, colState);
     }
 
-    private String ladeDaten() {
-        List<Connection> datenListe = parser.getConnections();
-        ObservableList<Connection> observableListe =
-                FXCollections.observableArrayList(datenListe);
-        table.setItems(observableListe);
-        return "Daten aktualisiert! Anzahl: " + datenListe.size();
+    @Override
+    public void stop() {
+        if (scheduler != null) {
+            scheduler.stop();
+        }
+    }
+
+    private void clearBtnLogic() {
+        output.setText("Output: Cleared!");
+        table.getItems().clear();
+        placeholder.setText("Cleared!");
+        table.setPlaceholder(placeholder);
+    }
+
+    public List<Connection> ladeDaten() {
+        return parser.getConnections();
+    }
+
+    public void updateUi(List<Connection> daten) {
+        ObservableList<Connection> observable =
+                FXCollections.observableArrayList(daten);
+        table.setItems(observable);
+        output.setText("Output: Daten aktualisiert! Anzahl: " + daten.size());
     }
 }

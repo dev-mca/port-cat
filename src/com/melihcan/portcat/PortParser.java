@@ -210,26 +210,26 @@ public class PortParser {
     }
 
     private static String mapState(String numeric) {
-        switch (numeric) {
-            case "5":  return "Established";
-            case "2":  return "Listening";
-            case "1":  return "Closed";
-            case "3":  return "SYN-Sent";
-            case "4":  return "SYN-Recv";
-            case "8":  return "Fin-Wait-1";
-            case "9":  return "Fin-Wait-2";
-            case "11": return "Time-Wait";
-            default:   return numeric;
-        }
+        return switch (numeric) {
+            case "5" -> "Established";
+            case "2" -> "Listening";
+            case "1" -> "Closed";
+            case "3" -> "SYN-Sent";
+            case "4" -> "SYN-Recv";
+            case "8" -> "Fin-Wait-1";
+            case "9" -> "Fin-Wait-2";
+            case "11" -> "Time-Wait";
+            default -> numeric;
+        };
     }
 
     private static String stateFromName(String name) {
-        switch (name) {
-            case "ESTAB":   return "Established";
-            case "LISTEN":  return "Listening";
-            case "CLOSE-WAIT": return "Close-Wait";
-            case "TIME-WAIT":  return "Time-Wait";
-            default: return name;
-        }
+        return switch (name) {
+            case "ESTAB" -> "Established";
+            case "LISTEN" -> "Listening";
+            case "CLOSE-WAIT" -> "Close-Wait";
+            case "TIME-WAIT" -> "Time-Wait";
+            default -> name;
+        };
     }
 }
