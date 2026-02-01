@@ -204,6 +204,6 @@ public class Gui extends Application {
         ObservableList<Connection> observable =
                 FXCollections.observableArrayList(daten);
         table.setItems(observable);
-        output.setText("Output: Daten aktualisiert! Anzahl: " + daten.size());
+        output.setText("Output: Aktive Verbindungen: " + daten.size());
     }
 }
