@@ -117,15 +117,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Mo  | 09:00–14:00 |  Start&Stop Logik         | In Arbeit|
 | Di  | 07:30-17:00 | Historie-Funktion (Export als CSV) (1/2) | In Arbeit
 | Mi  | 07:30-17:00 |  Historie-Funktion (Export als CSV) (2/2)        |  In Arbeit|
-| Do  | 07:30-17:00 | Unit-      |  In Arbeit|
-
-
-
-
-
-
-
-
+| Do  | 07:30-17:00 | Unit-Tests aktualisieren, um Programm auf letzte Fehler zu prüfen      |  In Arbeit|
 
 ## Plan-Revisionen
 
@@ -133,8 +125,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0OTA2NjA5MSwtMTU0Njc0Nzk1NSw1ND
-QzNDM4NzIsOTIyMDA0MDAwLDM0ODQyNTQwMSwtMTU2OTEzNDUs
-LTEzNDMzODQzMDgsMjY2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMD
-Y5OTk5MjRdfQ==
+eyJoaXN0b3J5IjpbMjQzNDU5NjQ0LC0xNTQ2NzQ3OTU1LDU0ND
+M0Mzg3Miw5MjIwMDQwMDAsMzQ4NDI1NDAxLC0xNTY5MTM0NSwt
+MTM0MzM4NDMwOCwyNjY3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNj
+k5OTkyNF19
 -->
