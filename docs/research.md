@@ -98,7 +98,9 @@ Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig
 
 **scheduleWithFixedDelay vs scheduleWithFixedRate**
 - scheduleWithFixedDelay(...): Wartet nachdem ein Durchlauf fertig ist noch die angegebene Zeit und startet dann den nächsten Durchlauf. Wenn ladeDaten() länger dauert, verschiebt sich der nächste Start automatisch nach hinten. Es gibt keine Aufholversuche.
-- scheduleWithFixedRate(...): Versucht, die Starts in einem fixen Takt auszuführen
+- scheduleWithFixedRate(...): Versucht, die Starts in einem fixen Takt auszuführen (z.B. immer gena jede Sekunde ab Startzeit). Wenn ein Durchlauf zu lange dauert, kann der Scheduler versuchen "aufzuholen" (bei Single-Thread heisst das vor allem: der nächste Lauf startet sofort nach dem vorherigen, um den Takt wieder zu treffen). Das kann zu hoher last führen.
+
+Es wird somit die G
 
 
 ## CSS Style-Sheets für JavaFx (Woche 3)
@@ -133,9 +135,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI1ODI5MDIzOSwxMzU2OTU2MDEwLDEwMD
-YzMTM2MzYsMTE5NDc2NjEzMCwxMzk3NzQ3MDk5LC05NjYzNzkx
-ODYsLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMjY5MDA5OTU2LD
-ExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMTM3NzYw
-MTY0NV19
+eyJoaXN0b3J5IjpbNzg5NTIzMzEyLDEzNTY5NTYwMTAsMTAwNj
+MxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcwOTksLTk2NjM3OTE4
+NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMT
+E4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAx
+NjQ1XX0=
 -->
