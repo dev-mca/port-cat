@@ -97,10 +97,10 @@ Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig
 `ScheduledExecutorService scheduler` erstellt einen Executor mit genau einem Worker-Thread. Dadurch laufen die periodischen Tasks seriell d.h. es kann nie mehr als ein Aktualisierungslauf gleichzeitig laufen (keine Überlappungen). 
 
 **scheduleWithFixedDelay vs scheduleWithFixedRate**
-- scheduleWithFixedDelay(...): Wartet nachdem ein Durchlauf fertig ist noch die angegebene Zeit und startet dann den nächsten Durchlauf. Wenn ladeDaten() länger dauert, verschiebt sich der nächste Start automatisch nach hinten. Es gibt keine Aufholversuche.
-- scheduleWithFixedRate(...): Versucht, die Starts in einem fixen Takt auszuführen (z.B. immer gena jede Sekunde ab Startzeit). Wenn ein Durchlauf zu lange dauert, kann der Scheduler versuchen "aufzuholen" (bei Single-Thread heisst das vor allem: der nächste Lauf startet sofort nach dem vorherigen, um den Takt wieder zu treffen). Das kann zu hoher last führen.
+- `scheduleWithFixedDelay(...)`: Wartet nachdem ein Durchlauf fertig ist noch die angegebene Zeit und startet dann den nächsten Durchlauf. Wenn ladeDaten() länger dauert, verschiebt sich der nächste Start automatisch nach hinten. Es gibt keine Aufholversuche.
+- `scheduleWithFixedRate(...)`: Versucht, die Starts in einem fixen Takt auszuführen (z.B. immer gena jede Sekunde ab Startzeit). Wenn ein Durchlauf zu lange dauert, kann der Scheduler versuchen "aufzuholen" (bei Single-Thread heisst das vor allem: der nächste Lauf startet sofort nach dem vorherigen, um den Takt wieder zu treffen). Das kann zu hoher last führen.
 
-Es wird somit die G
+`scheduleWithFixedDelay` berücksichtigt somit die Geschwindigkeit des Rechners, da gewartet wird, bis der vorherige Prozess ladeDaten() beendet ist, bevor der nächste Zyklus (ink. Wartezeit) startet.
 
 
 ## CSS Style-Sheets für JavaFx (Woche 3)
@@ -135,9 +135,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzg5NTIzMzEyLDEzNTY5NTYwMTAsMTAwNj
-MxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcwOTksLTk2NjM3OTE4
-NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMT
-E4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAx
-NjQ1XX0=
+eyJoaXN0b3J5IjpbLTEyNTUzNTM5ODMsMTM1Njk1NjAxMCwxMD
+A2MzEzNjM2LDExOTQ3NjYxMzAsMTM5Nzc0NzA5OSwtOTY2Mzc5
+MTg2LC0xNzYzMjkzNDcyLDE0MjQ3NzkzMjMsMTI2OTAwOTk1Ni
+wxMTg2NTY0MzIsODgwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2
+MDE2NDVdfQ==
 -->
