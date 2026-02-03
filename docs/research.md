@@ -30,15 +30,13 @@ Nach gründlicher Recherche habe ich eine geeignetere Alternative zu `netstat` g
 Für das Parsen mit einem vorgegebenen Muster ist `RegEx` (Regular Expression) die passende Bibliothek.
 
 Ein Beispiel mit einer ArrayList an Strings:
-```java
+
 String[] notParsed = {"10Hello", "30Hi", "20Noo"};
-```
+
 Die List enthält Wörter in einer wiederkehrender Konstellation. Zahlen zuerst und darauf folgend Buchstaben. Ich muss als allererstes das Pattern bestimmen und es kompilieren damit ich es dann mit einem `Matcher` vergleichen kann. 
 
 ```java
-// Regex: eine oder mehr Ziffern, gefolgt von einer oder mehr Buchstaben
-    Pattern p = Pattern.compile("(\\d+)([A-Za-z]+)");
-    ```
+
 
 Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich kann dann einfach die einzelnen Gruppen im String unterteilen und benennen. Ein Handler für einen String der nicht mit dem Pattern ist auch vorhanden.
 
@@ -131,9 +129,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTgyMzQyNjc4LDE0ODU5NDk1NTgsMTM1Nj
-k1NjAxMCwxMDA2MzEzNjM2LDExOTQ3NjYxMzAsMTM5Nzc0NzA5
-OSwtOTY2Mzc5MTg2LC0xNzYzMjkzNDcyLDE0MjQ3NzkzMjMsMT
-I2OTAwOTk1NiwxMTg2NTY0MzIsODgwOTgyNDI0LC0zMzUzMDU1
-MDksLTEzNzc2MDE2NDVdfQ==
+eyJoaXN0b3J5IjpbLTY2NzA0ODkyMSwxNDg1OTQ5NTU4LDEzNT
+Y5NTYwMTAsMTAwNjMxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcw
+OTksLTk2NjM3OTE4NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLD
+EyNjkwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1
+NTA5LC0xMzc3NjAxNjQ1XX0=
 -->
