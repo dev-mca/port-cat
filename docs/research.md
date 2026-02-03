@@ -89,6 +89,8 @@ Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-A
 
 Die IP gehört sehr wahrscheinlich einem Host-Provider und Coop mietet dort Server, besitzt daher die IP nicht selbst.
 
+Im Programm wird versucht die DNS aufzulösen.
+
 
 ## Java ScheduledExecutorService
 Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig, ohne den JavaFX-UI-Thread zu blockieren. Die Daten werden in einem Hintergrund-Thread geladen und anschliessend thread-sicher im UI-Thread angezeigt.
@@ -103,20 +105,9 @@ Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig
 `scheduleWithFixedDelay` berücksichtigt somit die Geschwindigkeit des Rechners, da gewartet wird, bis der vorherige Prozess ladeDaten() beendet ist, bevor der nächste Zyklus (ink. Wartezeit) startet.
 
 
-## CSS Style-Sheets für JavaFx (Woche 3)
-..
+## Unit-Tests in Java
 
 
-
-
-
-
-
-
-
-
-## GitHub Licensing
-ToDo. Die einzelnen Lizenzen erklärt..
 
 | Thema | Beschreibung | Link |
 |---|---|---|
@@ -135,9 +126,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDc5ODY3NTkxLDEzNTY5NTYwMTAsMTAwNj
-MxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcwOTksLTk2NjM3OTE4
-NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMT
-E4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAx
-NjQ1XX0=
+eyJoaXN0b3J5IjpbMTQ4NTk0OTU1OCwxMzU2OTU2MDEwLDEwMD
+YzMTM2MzYsMTE5NDc2NjEzMCwxMzk3NzQ3MDk5LC05NjYzNzkx
+ODYsLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMjY5MDA5OTU2LD
+ExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMTM3NzYw
+MTY0NV19
 -->
