@@ -97,7 +97,8 @@ Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig
 `ScheduledExecutorService scheduler` erstellt einen Executor mit genau einem Worker-Thread. Dadurch laufen die periodischen Tasks seriell d.h. es kann nie mehr als ein Aktualisierungslauf gleichzeitig laufen (keine Überlappungen). 
 
 **scheduleWithFixedDelay vs scheduleWithFixedRate**
-- j
+- scheduleWithFixedDelay(...): Wartet nachdem ein Durchlauf fertig ist noch die angegebene Zeit und startet dann den nächsten Durchlauf. Wenn ladeDaten() länger dauert, verschiebt sich der nächste Start automatisch nach hinten. Es gibt keine Aufholversuche.
+- scheduleWithFixedRate(...): Versucht, die Starts in einem fixen Takt auszuführen
 
 
 ## CSS Style-Sheets für JavaFx (Woche 3)
@@ -132,9 +133,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0Mjg0NTQ1MDgsMTM1Njk1NjAxMCwxMD
-A2MzEzNjM2LDExOTQ3NjYxMzAsMTM5Nzc0NzA5OSwtOTY2Mzc5
-MTg2LC0xNzYzMjkzNDcyLDE0MjQ3NzkzMjMsMTI2OTAwOTk1Ni
-wxMTg2NTY0MzIsODgwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2
-MDE2NDVdfQ==
+eyJoaXN0b3J5IjpbLTI1ODI5MDIzOSwxMzU2OTU2MDEwLDEwMD
+YzMTM2MzYsMTE5NDc2NjEzMCwxMzk3NzQ3MDk5LC05NjYzNzkx
+ODYsLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMjY5MDA5OTU2LD
+ExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMTM3NzYw
+MTY0NV19
 -->
