@@ -35,7 +35,8 @@ Ein Beispiel mit einer ArrayList an Strings:
 
 Die List enthält Wörter in einer wiederkehrender Konstellation. Zahlen zuerst und darauf folgend Buchstaben. Ich muss als allererstes das Pattern bestimmen und es kompilieren damit ich es dann mit einem `Matcher` vergleichen kann. 
 
-    // Regex: eine oder mehr Ziffern, gefolgt von einer oder mehr Buchstaben
+```java
+// Regex: eine oder mehr Ziffern, gefolgt von einer oder mehr Buchstaben
     Pattern p = Pattern.compile("(\\d+)([A-Za-z]+)");
 
 Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich kann dann einfach die einzelnen Gruppen im String unterteilen und benennen. Ein Handler für einen String der nicht mit dem Pattern ist auch vorhanden.
@@ -126,9 +127,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ4NTk0OTU1OCwxMzU2OTU2MDEwLDEwMD
-YzMTM2MzYsMTE5NDc2NjEzMCwxMzk3NzQ3MDk5LC05NjYzNzkx
-ODYsLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMjY5MDA5OTU2LD
-ExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMTM3NzYw
-MTY0NV19
+eyJoaXN0b3J5IjpbMTY5MTczODg0NiwxNDg1OTQ5NTU4LDEzNT
+Y5NTYwMTAsMTAwNjMxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcw
+OTksLTk2NjM3OTE4NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLD
+EyNjkwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1
+NTA5LC0xMzc3NjAxNjQ1XX0=
 -->
