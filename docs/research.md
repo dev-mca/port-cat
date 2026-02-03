@@ -67,7 +67,7 @@ Daher hat mir mein Expert hat mir Empfohlen anstelle der VBox ein Border Panel L
 Es war einfach zu implementieren und das Problem wurde somit behoben.
 
 ## Color Palettes für UX
-Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreundlich aus und auch nicht wirklich modern. Ich habe mich darum entschiededen mit Farben zu arbeiten, um die UI lebendiger zu machen. Für die Farben habe ich ein Tool gefunden was einem eine passende Palette generiert. Ich habe mich für eine entschieden und konnte das mittels kopieren des HEX-Codes dort anwenden, wo ich wollte. Das Tool nennt sich coolors.co. 
+Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreundlich aus und auch nicht wirklich modern. Ich habe mich darum entschieden mit Farben zu arbeiten, um die UI lebendiger zu machen. Für die Farben habe ich ein Tool gefunden was einem eine passende Palette generiert. Ich habe mich für eine entschieden und konnte das mittels kopieren des HEX-Codes dort anwenden, wo ich wollte. Das Tool nennt sich coolors.co. 
 
 Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftigen erstellen und bearbeiten von Button-Styles helfen.
 
@@ -98,7 +98,7 @@ Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig
 
 **scheduleWithFixedDelay vs scheduleWithFixedRate**
 - `scheduleWithFixedDelay(...)`: Wartet nachdem ein Durchlauf fertig ist noch die angegebene Zeit und startet dann den nächsten Durchlauf. Wenn ladeDaten() länger dauert, verschiebt sich der nächste Start automatisch nach hinten. Es gibt keine Aufholversuche.
-- `scheduleWithFixedRate(...)`: Versucht, die Starts in einem fixen Takt auszuführen (z.B. immer gena jede Sekunde ab Startzeit). Wenn ein Durchlauf zu lange dauert, kann der Scheduler versuchen "aufzuholen" (bei Single-Thread heisst das vor allem: der nächste Lauf startet sofort nach dem vorherigen, um den Takt wieder zu treffen). Das kann zu hoher last führen.
+- `scheduleWithFixedRate(...)`: Versucht, die Starts in einem fixen Takt auszuführen (z.B. immer genau jede Sekunde ab Startzeit). Wenn ein Durchlauf zu lange dauert, kann der Scheduler versuchen "aufzuholen" (bei Single-Thread heisst das vor allem: der nächste Lauf startet sofort nach dem vorherigen, um den Takt wieder zu treffen). Das kann zu hoher last führen.
 
 `scheduleWithFixedDelay` berücksichtigt somit die Geschwindigkeit des Rechners, da gewartet wird, bis der vorherige Prozess ladeDaten() beendet ist, bevor der nächste Zyklus (ink. Wartezeit) startet.
 
@@ -135,9 +135,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNTUzNTM5ODMsMTM1Njk1NjAxMCwxMD
-A2MzEzNjM2LDExOTQ3NjYxMzAsMTM5Nzc0NzA5OSwtOTY2Mzc5
-MTg2LC0xNzYzMjkzNDcyLDE0MjQ3NzkzMjMsMTI2OTAwOTk1Ni
-wxMTg2NTY0MzIsODgwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2
-MDE2NDVdfQ==
+eyJoaXN0b3J5IjpbNDc5ODY3NTkxLDEzNTY5NTYwMTAsMTAwNj
+MxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcwOTksLTk2NjM3OTE4
+NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMT
+E4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAx
+NjQ1XX0=
 -->
