@@ -115,10 +115,9 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Tag | Zeitfenster | Aufgabe(n)| Status |
 |-----|-------------|-----------|---------|
 | Mo  | 09:00–14:00 |  Start&Stop Logik         | In Arbeit|
-| Di  | 07:30-17:00 | Historie-Funktion | 
-| Mi  | 07:30-17:00 |  TableView durch ListView ersetzen (2/2)        |  In Arbeit|
-| Do  | 07:30-17:00 |  Unit Tests für ungültige Werte usw.        |  In Arbeit|
-| Fr | 07:30-17:00 | UDP sauber implementieren | In Arbeit
+| Di  | 07:30-17:00 | Historie-Funktion (Export als CSV) (1/2) | In Arbeit
+| Mi  | 07:30-17:00 |  Historie-Funktion (Export als CSV) (2/2)        |  In Arbeit|
+| Do  | 07:30-17:00 | Unit-      |  In Arbeit|
 
 
 
@@ -134,7 +133,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDY3NDc5NTUsNTQ0MzQzODcyLDkyMj
-AwNDAwMCwzNDg0MjU0MDEsLTE1NjkxMzQ1LC0xMzQzMzg0MzA4
-LDI2Njc5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbLTk0OTA2NjA5MSwtMTU0Njc0Nzk1NSw1ND
+QzNDM4NzIsOTIyMDA0MDAwLDM0ODQyNTQwMSwtMTU2OTEzNDUs
+LTEzNDMzODQzMDgsMjY2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMD
+Y5OTk5MjRdfQ==
 -->
