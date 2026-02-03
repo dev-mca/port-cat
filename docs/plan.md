@@ -89,7 +89,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 4-5 (02.02 – 13.02)
-**Motorrad** = 
+**Motorrad** = Um die Benutzerfreundlichkeit deutlich zu verbessern, wird die TableView durch eine ListView ersetzt. Somit werden Einträge und keine öden Zeilen angezeigt. DNS-Auflösung und UDP
+**Cabriolet** = 
 
 
 **Wichtige Termine:**
@@ -121,7 +122,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2ODUwMTM4MzksNTQ0MzQzODcyLDkyMj
-AwNDAwMCwzNDg0MjU0MDEsLTE1NjkxMzQ1LC0xMzQzMzg0MzA4
-LDI2Njc5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbNzc1MzM5NzQsNTQ0MzQzODcyLDkyMjAwND
+AwMCwzNDg0MjU0MDEsLTE1NjkxMzQ1LC0xMzQzMzg0MzA4LDI2
+Njc5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
 -->
