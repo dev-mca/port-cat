@@ -30,12 +30,12 @@ Nach gründlicher Recherche habe ich eine geeignetere Alternative zu `netstat` g
 Für das Parsen mit einem vorgegebenen Muster ist `RegEx` (Regular Expression) die passende Bibliothek.
 
 Ein Beispiel mit einer ArrayList an Strings:
-
-    String[] notParsed = {"10Hello", "30Hi", "20Noo"};
-
+```java
+String[] notParsed = {"10Hello", "30Hi", "20Noo"};
+```
 Die List enthält Wörter in einer wiederkehrender Konstellation. Zahlen zuerst und darauf folgend Buchstaben. Ich muss als allererstes das Pattern bestimmen und es kompilieren damit ich es dann mit einem `Matcher` vergleichen kann. 
 
-```java
+
 // Regex: eine oder mehr Ziffern, gefolgt von einer oder mehr Buchstaben
     Pattern p = Pattern.compile("(\\d+)([A-Za-z]+)");
 
@@ -59,6 +59,7 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
                 );
             }
         }
+        
 **Wichtig**: Ich konnte mir die Arbeit mit `RegEx` ersparen, da ich wie schon oben erwähnt einen besseren Befehl mit sauberem JSON-Output gefunden habe.
 
 
@@ -127,7 +128,7 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY5MTczODg0NiwxNDg1OTQ5NTU4LDEzNT
+eyJoaXN0b3J5IjpbLTI0MzY5Mzg2MCwxNDg1OTQ5NTU4LDEzNT
 Y5NTYwMTAsMTAwNjMxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcw
 OTksLTk2NjM3OTE4NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLD
 EyNjkwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1
