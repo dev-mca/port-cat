@@ -91,7 +91,10 @@ Die IP gehört sehr wahrscheinlich einem Host-Provider und Coop mietet dort Serv
 
 
 ## Java ScheduledExecutorService
-Die Klasse Scheduler aktualisiert d
+Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig, ohne den JavaFX-UI-Thread zu blockieren. Die Daten werden in einem Hintergrund-Thread geladen und anschliessend thread-sicher im UI-Thread angezeigt.
+
+**Aufbau**
+ScheduledExecutorService scheduler erstellt einen Executor mit genau einem Worker-Thread. Dadurch laufen die periodischen Tasks 
 
 
 ## CSS Style-Sheets für JavaFx (Woche 3)
@@ -126,9 +129,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc1NzE4NTYyOCwxMzU2OTU2MDEwLDEwMD
-YzMTM2MzYsMTE5NDc2NjEzMCwxMzk3NzQ3MDk5LC05NjYzNzkx
-ODYsLTE3NjMyOTM0NzIsMTQyNDc3OTMyMywxMjY5MDA5OTU2LD
-ExODY1NjQzMiw4ODA5ODI0MjQsLTMzNTMwNTUwOSwtMTM3NzYw
-MTY0NV19
+eyJoaXN0b3J5IjpbLTEwODI2MTY5NjcsMTM1Njk1NjAxMCwxMD
+A2MzEzNjM2LDExOTQ3NjYxMzAsMTM5Nzc0NzA5OSwtOTY2Mzc5
+MTg2LC0xNzYzMjkzNDcyLDE0MjQ3NzkzMjMsMTI2OTAwOTk1Ni
+wxMTg2NTY0MzIsODgwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2
+MDE2NDVdfQ==
 -->
