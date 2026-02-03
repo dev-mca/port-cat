@@ -90,7 +90,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 ### Woche 4-5 (02.02 – 13.02)
 **Motorrad** = Um die Benutzerfreundlichkeit deutlich zu verbessern, wird die TableView durch eine ListView ersetzt. Somit werden Einträge und keine öden Zeilen angezeigt. Ausserdem kann man den Prozess mit einem Knopf stoppen und starten.
-**Cabriolet** = Für den letzten Feinschliff wird eine Historie-Funktion implementiert.  Ausserdem wird es nun auch möglich sein UDP-Verbindu
+**Cabriolet** = Für den letzten Feinschliff wird eine Historie-Funktion implementiert.  Ausserdem wird es nun auch möglich sein UDP-Verbindungen anzeigen zu lassen.
 
 
 **Wichtige Termine:**
@@ -103,8 +103,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 | Tag | Zeitfenster | Aufgabe(n)| Status |
 |-----|-------------|-----------|---------|
-| Mo  | 09:00–14:00 |  GUI Struktur erneut revidieren und fehler beheben         | Erledigt        |
-| Di  | 07:30-17:00 | Auto-update (Scheduler)           |    Erledigt    | 
+| Mo  | 09:00–14:00 |  Doku ergänzen         | Erledigt        |
+| Di  | 07:30-17:00 | TableView durch ListView ersetzen       |    In Arbeit| 
 | Mi  | 07:30-17:00 |  Scheduler finalisieren        |  Erledigt      |
 | Do  | 07:30-17:00 |  Beheben von Fehler beim Linux Befehl        |  Erledigt      |
 ---
@@ -122,7 +122,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODc2ODU4MDY1LDU0NDM0Mzg3Miw5MjIwMD
+eyJoaXN0b3J5IjpbODExODE0MTAzLDU0NDM0Mzg3Miw5MjIwMD
 QwMDAsMzQ4NDI1NDAxLC0xNTY5MTM0NSwtMTM0MzM4NDMwOCwy
 NjY3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
