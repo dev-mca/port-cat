@@ -71,7 +71,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 3 (26.01 – 30.01)
-**Fahrrad** = Der Visualizer hat  eine benutzerfreundliche Darstellung mit Pfeilen und Bildern anstatt einer Tabelle und kann nun Historie abrufen.
+**Fahrrad** = Der Visualizer hat ist nun Performance optimiert
 
 
 **Wichtige Termine:**
@@ -89,8 +89,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Mo  | 09:00–14:00 |  GUI Struktur erneut revidieren und fehler beheben         | Erledigt        |
 | Di  | 07:30-17:00 | Auto-update (Scheduler)           |    Erledigt    | 
 | Mi  | 07:30-17:00 |  Scheduler finalisieren        |  Erledigt      |
-| Do  | 07:30-17:00 |          |  Erledigt      |
-| Fr  | 07:30-17:00 |           |  Erledigt      | 
+| Do  | 07:30-17:00 |  Beheben von Fehler beim Linux Befehl        |  Erledigt      |
+
 
 ---
 
@@ -107,7 +107,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NjM0MTkwOTcsNTQ0MzQzODcyLDkyMj
-AwNDAwMCwzNDg0MjU0MDEsLTE1NjkxMzQ1LC0xMzQzMzg0MzA4
-LDI2Njc5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbMTc0MjYyMjI0Miw1NDQzNDM4NzIsOTIyMD
+A0MDAwLDM0ODQyNTQwMSwtMTU2OTEzNDUsLTEzNDMzODQzMDgs
+MjY2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
 -->
