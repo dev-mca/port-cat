@@ -104,8 +104,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Tag | Zeitfenster | Aufgabe(n)| Status |
 |-----|-------------|-----------|---------|
 | Mo  | 09:00–14:00 |  Doku ergänzen         | Erledigt        |
-| Di  | 07:30-17:00 | TableView durch ListView ersetzen       |    In Arbeit| 
-| Mi  | 07:30-17:00 |  Scheduler finalisieren        |  Erledigt      |
+| Di  | 07:30-17:00 | TableView durch ListView ersetzen (1/2    |    In Arbeit| 
+| Mi  | 07:30-17:00 |  TableView durch ListView ersetzen (2/2)        |  Erledigt      |
 | Do  | 07:30-17:00 |  Beheben von Fehler beim Linux Befehl        |  Erledigt      |
 ---
 
@@ -122,7 +122,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODExODE0MTAzLDU0NDM0Mzg3Miw5MjIwMD
+eyJoaXN0b3J5IjpbNTcyNjYyMjE5LDU0NDM0Mzg3Miw5MjIwMD
 QwMDAsMzQ4NDI1NDAxLC0xNTY5MTM0NSwtMTM0MzM4NDMwOCwy
 NjY3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
