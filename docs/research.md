@@ -5,7 +5,7 @@ In diesem Dokument teile ich meine Entscheide, bedenken und allgemeine Recherche
 *Zu unterst befindet sich ein **Quellenverzeichnis**.*
 
 
-## Auswahl UI Framework – Swing vs JavaFX (Woche 1)
+## Auswahl UI Framework – Swing vs JavaFX
 Schon während der Ideenfindung hat sich gezeigt, dass PortCat ein GUI-/Frontend-intensives Programm wird. Schliesslich sollte es auch Personen mit wenig oder gar keiner Erfahrung gelingen, zu sehen, mit welchen anderen Rechnern sich der eigene verbindet.
 
 Bezüglich des UI-Frameworks war ich anfangs skeptisch, was die Verwendung von JavaFX betrifft. Vor der Entscheidung habe ich mich über die besten Frameworks für Java-Benutzeroberflächen informiert. Meistens wurde dabei über JavaFX und Swing gesprochen. JavaFX ist das deutlich neuere und modernere UI-Framework von Java und hat sich seit Java 11 von der Standardbibliothek abgesetzt. Swing ist bis heute in `javax.swing.*` vorhanden.
@@ -14,19 +14,19 @@ Eine Swing-UI zu erstellen, ist deutlich einfacher als mit JavaFX. Allerdings ka
 
 Schlussendlich habe ich mir vorgenommen, mich mit JavaFX auseinanderzusetzen, obwohl Swing viel einfacher ist. Das heisst, ich möchte JavaFX lernen und gleich anwenden.
 
-## UI-Mockup mit Figma (Woche 1)
+## UI-Mockup mit Figma
 
 Ich habe zwei UI-Mockups erstellt. Das erste habe ich bereits zu Beginn des Projekts erstellt. Mit einem einfachen Tool zum Hinzufügen und Verschieben von Formen und Bildern konnte ich das erste Mockup fertigstellen. Es gibt mir eine erste Vorstellung davon, wie das Programm etwa aussehen wird.
 
 Jetzt, da das Projekt gestartet ist, habe ich mich sofort an ein verbessertes Mockup gemacht und dazu das weltweit beliebtpopuläre Tool **Figma** verwendet. Mit Unterstützung der in Figma integrierten KI konnte ich ein ansprechenderes, ausführlicheres und strukturierteres UI entwerfen. Es ist bereits funktionstüchtig in Figma und genau so, wie ich es mir vorgestellt habe. Allerdings bietet Figma keine direkte Konvertierung für UI-Frameworks/Backend an. Daher dient es vielmehr als Inspiration/Entwurf.
 
-##  Windows-Kommando `Get-NetTCPConnection` vs `netstat` (Woche 1)
+##  Windows-Kommando `Get-NetTCPConnection` vs `netstat` 
 
 Nach gründlicher Recherche habe ich eine geeignetere Alternative zu `netstat` gefunden: Das PowerShell-Cmdlet `Get-NetTCPConnection`. Es liefert strukturierte Objekte, die sich direkt per Pipeline mit `ConvertTo-Json` in sauberes JSON umwandeln lassen. Dadurch entfällt das mühsame und fehleranfällige Parsen des reinen Textoutputs von `netstat`. Zwar kann auch `netstat` nach JSON konvertiert werden, dabei entsteht jedoch in der Regel nur ein JSON-Array aus Textzeilen und keine sauber strukturierte Datendarstellung.
 
 
 
-## Java RegEx  (Woche 1)
+## Java RegEx
 Für das Parsen mit einem vorgegebenen Muster ist `RegEx` (Regular Expression) die passende Bibliothek.
 
 Ein Beispiel mit einer ArrayList an Strings:
@@ -61,17 +61,17 @@ Anschliessend iteriere ich durch die Liste und matche es mit dem Pattern. Ich ka
 **Wichtig**: Ich konnte mir die Arbeit mit `RegEx` ersparen, da ich wie schon oben erwähnt einen besseren Befehl mit sauberem JSON-Output gefunden habe.
 
 
-## Bottom Pannel statt VBox (Woche 2)
+## Bottom Pannel statt VBox
 Beim Gespräch mit meinem Experten sind wir das Problem angegangen, dass die Tabelle nicht die zur verfügung stehende Höhe nutzen kann. Selbst mit ausdrücken wie setMinHeight()` usw. konnte es nicht gelöst werden 
 Daher hat mir mein Expert hat mir Empfohlen anstelle der VBox ein Border Panel Layout zu verwenden.  
 Es war einfach zu implementieren und das Problem wurde somit behoben.
 
-## Color Palettes für UX (Woche 2)
+## Color Palettes für UX
 Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreundlich aus und auch nicht wirklich modern. Ich habe mich darum entschiededen mit Farben zu arbeiten, um die UI lebendiger zu machen. Für die Farben habe ich ein Tool gefunden was einem eine passende Palette generiert. Ich habe mich für eine entschieden und konnte das mittels kopieren des HEX-Codes dort anwenden, wo ich wollte. Das Tool nennt sich coolors.co. 
 
 Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftigen erstellen und bearbeiten von Button-Styles helfen.
 
-## Cross-Platform (Woche 2)
+## Cross-Platform
 Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux äquivalenten Befehl zu suchen. 
 Es gibt leider keinen Befehl, wessen Ausgabe 1:1 der selbe ist wie der von Windows, daher musste ich die PortParser-Klasse leicht umbauen.
 
@@ -79,7 +79,7 @@ Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der
 
 Im Gegensatz zum Powershell-Command Get-NetTCPConnection habe ich für die Linux variante `ss -tunH -J` genommen. SS steht für Socket Statistic und liefert viel Informationen rund um das Netwerk. 
 
-## DNS-Auflösung (Woche 2-3 )
+## DNS-Auflösung
 
 Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-Abfrage ausführt und somit gleichzeitig Plattformübergreifend ist. Leider ist die Anzahl auflösbare IP-Adressen klein, da nur wenige einen **PTR-Record** haben. Ein gutes Beispiel zur Demonstration ist die DNS von coop:
 | Eingabe | Ausgabe |
@@ -90,7 +90,7 @@ Auf JavaDoc gibt es eine Dokumentation zu einer Bibliothek die eine native DNS-A
 Die IP gehört sehr wahrscheinlich einem Host-Provider und Coop mietet dort Server, besitzt daher die IP nicht selbst.
 
 
-## Java ScheduledExecutorService (Woche 3)
+## Java ScheduledExecutorService
 
 
 
@@ -126,8 +126,9 @@ eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
 -->
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1Njk1NjAxMCwxMDA2MzEzNjM2LDExOT
-Q3NjYxMzAsMTM5Nzc0NzA5OSwtOTY2Mzc5MTg2LC0xNzYzMjkz
-NDcyLDE0MjQ3NzkzMjMsMTI2OTAwOTk1NiwxMTg2NTY0MzIsOD
-gwOTgyNDI0LC0zMzUzMDU1MDksLTEzNzc2MDE2NDVdfQ==
+eyJoaXN0b3J5IjpbNzcwMjAwOTQ2LDEzNTY5NTYwMTAsMTAwNj
+MxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcwOTksLTk2NjM3OTE4
+NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLDEyNjkwMDk5NTYsMT
+E4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1NTA5LC0xMzc3NjAx
+NjQ1XX0=
 -->
