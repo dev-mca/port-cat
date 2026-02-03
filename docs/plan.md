@@ -89,8 +89,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 4-5 (02.02 – 13.02)
-**Motorrad** = Um die Benutzerfreundlichkeit deutlich zu verbessern, wird die TableView durch eine ListView ersetzt. Somit werden Einträge und keine öden Zeilen angezeigt. DNS-Auflösung und UDP
-**Cabriolet** = 
+**Motorrad** = Um die Benutzerfreundlichkeit deutlich zu verbessern, wird die TableView durch eine ListView ersetzt. Somit werden Einträge und keine öden Zeilen angezeigt. Ausserdem kann man den Prozess mit einem Knopf stoppen und starten.
+**Cabriolet** = Für den letzten Feinschliff wird eine Historie-Funktion implementiert.  Ausserdem wird es nun auch möglich sein UDP-Verbindu
 
 
 **Wichtige Termine:**
@@ -122,7 +122,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzc1MzM5NzQsNTQ0MzQzODcyLDkyMjAwND
-AwMCwzNDg0MjU0MDEsLTE1NjkxMzQ1LC0xMzQzMzg0MzA4LDI2
-Njc5MzYzMCwtMjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbODc2ODU4MDY1LDU0NDM0Mzg3Miw5MjIwMD
+QwMDAsMzQ4NDI1NDAxLC0xNTY5MTM0NSwtMTM0MzM4NDMwOCwy
+NjY3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNjk5OTkyNF19
 -->
