@@ -55,9 +55,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 - Wöchentliches Meeting mit Betreuer: _Montag, 26.01.2026 um 14:15 Uhr_
 
-**Aufgaben**
 
-- [ ] ...
 
 **Tagesplanung**
 
@@ -78,9 +76,6 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 - Wöchentliches Meeting mit Betreuer: _Montag, 01.02.2026 um 13:15 Uhr_
 
-**Aufgaben**
-
-- [ ] ...
 
 **Tagesplanung**
 
@@ -91,7 +86,25 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 | Mi  | 07:30-17:00 |  Scheduler finalisieren        |  Erledigt      |
 | Do  | 07:30-17:00 |  Beheben von Fehler beim Linux Befehl        |  Erledigt      |
 
+---
 
+### Woche 4 (02.02 – 06.02)
+**Motorrad** = Der Visualizer hat ist nun Performance optimiert
+
+
+**Wichtige Termine:**
+
+- Wöchentliches Meeting mit Betreuer: _Montag, 01.02.2026 um 13:15 Uhr_
+
+
+**Tagesplanung**
+
+| Tag | Zeitfenster | Aufgabe(n)| Status |
+|-----|-------------|-----------|---------|
+| Mo  | 09:00–14:00 |  GUI Struktur erneut revidieren und fehler beheben         | Erledigt        |
+| Di  | 07:30-17:00 | Auto-update (Scheduler)           |    Erledigt    | 
+| Mi  | 07:30-17:00 |  Scheduler finalisieren        |  Erledigt      |
+| Do  | 07:30-17:00 |  Beheben von Fehler beim Linux Befehl        |  Erledigt      |
 ---
 
 
@@ -107,7 +120,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc0MjYyMjI0Miw1NDQzNDM4NzIsOTIyMD
+eyJoaXN0b3J5IjpbMTc3MjQ2NDc5Myw1NDQzNDM4NzIsOTIyMD
 A0MDAwLDM0ODQyNTQwMSwtMTU2OTEzNDUsLTEzNDMzODQzMDgs
 MjY2NzkzNjMwLC0yMDk0MDMxMzE2LDEzMDY5OTk5MjRdfQ==
 -->
