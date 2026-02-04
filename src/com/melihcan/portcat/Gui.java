@@ -4,19 +4,15 @@ import javafx.application.Application;
 
 import javafx.collections.*;
 
-import javafx.concurrent.Task;
-
 import javafx.geometry.*;
 
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.util.List;
 
 public class Gui extends Application {
@@ -24,7 +20,7 @@ public class Gui extends Application {
     /* ---------------------------------------------------
         Felder
      --------------------------------------------------- */
-    private final TableView<Connection> table = new TableView<>();
+    private final ListView<Connection> listView = new ListView<>();
     private final PortParser parser = new PortParser();
     private Scheduler scheduler;
     private Label output;
@@ -42,7 +38,7 @@ public class Gui extends Application {
            Logo
         --------------------------------------------------- */
         ImageView logoView = new ImageView();
-        var stream = getClass().getResourceAsStream("/images/logo.png");
+        var stream = getClass().getResourceAsStream("/logo.png");
         if (stream != null) {
             Image logo = new Image(stream);
             logoView.setImage(logo);
@@ -50,7 +46,7 @@ public class Gui extends Application {
             logoView.setSmooth(true);
             logoView.setFitHeight(150); // kompakt
         } else {
-            System.err.println("Logo not found in path!: /images/logo.png");
+            System.err.println("Logo not found in path!: /resources/logo.png");
         }
 
         /* ---------------------------------------------------
@@ -97,22 +93,21 @@ public class Gui extends Application {
         root.setStyle("-fx-background-color: #30332E");
         root.setPadding(new Insets(20, 50, 50, 50)); // top, right, bottom, left
         root.setTop(topBar);
-        root.setCenter(table);
+        root.setCenter(listView);
 
 
         /* ---------------------------------------------------
            Tabellen-Spalten
         --------------------------------------------------- */
-        addTableColumns();
         placeholder.setText("Keine Verbindungen gefunden!");
-        table.setPlaceholder(placeholder);
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+        listView.setCellFactory(lv -> new ConnectionCell());
 
 
         /* ---------------------------------------------------
            Scene
         --------------------------------------------------- */
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
         stage.setScene(scene);
 
         stage.centerOnScreen();
@@ -156,32 +151,6 @@ public class Gui extends Application {
                         "-fx-text-fill: " + textColor + ";"));
     }
 
-
-    private void addTableColumns() {
-        TableColumn<Connection, String> colLocalIP = new TableColumn<>("Lokal IP");
-        colLocalIP.setCellValueFactory(new PropertyValueFactory<>("localAddress"));
-        colLocalIP.setMinWidth(140);
-
-        TableColumn<Connection, Integer> colLocalPort = new TableColumn<>("Lokal Port");
-        colLocalPort.setCellValueFactory(new PropertyValueFactory<>("localPort"));
-        colLocalPort.setMinWidth(100);
-
-        TableColumn<Connection, String> colRemoteIP = new TableColumn<>("Remote IP");
-        colRemoteIP.setCellValueFactory(new PropertyValueFactory<>("remoteAddress"));
-        colRemoteIP.setMinWidth(140);
-
-        TableColumn<Connection, Integer> colRemotePort = new TableColumn<>("Remote Port");
-        colRemotePort.setCellValueFactory(new PropertyValueFactory<>("remotePort"));
-        colRemotePort.setMinWidth(100);
-
-        TableColumn<Connection, String> colState = new TableColumn<>("Status");
-        colState.setCellValueFactory(new PropertyValueFactory<>("state"));
-        colState.setMinWidth(120);
-
-        table.getColumns().addAll(colLocalIP, colLocalPort, colRemoteIP,
-                colRemotePort, colState);
-    }
-
     @Override
     public void stop() {
         if (scheduler != null) {
@@ -191,9 +160,9 @@ public class Gui extends Application {
 
     private void clearBtnLogic() {
         output.setText("Output: Cleared!");
-        table.getItems().clear();
+        listView.getItems().clear();
         placeholder.setText("Cleared!");
-        table.setPlaceholder(placeholder);
+        listView.setPlaceholder(placeholder);
     }
 
     public List<Connection> ladeDaten() {
@@ -201,9 +170,8 @@ public class Gui extends Application {
     }
 
     public void updateUi(List<Connection> daten) {
-        ObservableList<Connection> observable =
-                FXCollections.observableArrayList(daten);
-        table.setItems(observable);
+        ObservableList<Connection> observable = FXCollections.observableArrayList(daten);
+        listView.setItems(observable);
         output.setText("Output: Aktive Verbindungen: " + daten.size());
     }
 }
