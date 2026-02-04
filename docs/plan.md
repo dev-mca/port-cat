@@ -55,9 +55,7 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 - Wöchentliches Meeting mit Betreuer: _Montag, 26.01.2026 um 14:15 Uhr_
 
-**Aufgaben**
 
-- [ ] ...
 
 **Tagesplanung**
 
@@ -71,35 +69,55 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 ---
 
 ### Woche 3 (26.01 – 30.01)
-**Fahrrad** = Der Visualizer hat  eine benutzerfreundliche Darstellung mit Pfeilen und Bildern anstatt einer Tabelle und kann nun Historie abrufen.
+**Fahrrad** = Der Visualizer hat ist nun Performance optimiert
 
 
 **Wichtige Termine:**
 
 - Wöchentliches Meeting mit Betreuer: _Montag, 01.02.2026 um 13:15 Uhr_
 
-**Aufgaben**
-
-- [ ] ...
 
 **Tagesplanung**
 
 | Tag | Zeitfenster | Aufgabe(n)| Status |
 |-----|-------------|-----------|---------|
 | Mo  | 09:00–14:00 |  GUI Struktur erneut revidieren und fehler beheben         | Erledigt        |
-| Di  | 07:30-17:00 | Auto-update und Unit-Tests finalisieren           |        | 
-| Mi  | 07:30-17:00 | UDP implementierung (evtl. 2 Ansichten)          |        |
-| Do  | 07:30-17:00 |           |        |
-| Fr  | 07:30-17:00 |           |        | 
+| Di  | 07:30-17:00 | Auto-update (Scheduler)           |    Erledigt    | 
+| Mi  | 07:30-17:00 |  Scheduler finalisieren        |  Erledigt      |
+| Do  | 07:30-17:00 |  Beheben von Fehler beim Linux Befehl        |  Erledigt      |
 
 ---
 
+### Woche 4-5 (02.02 – 13.02)
+**Motorrad** = Um die Benutzerfreundlichkeit deutlich zu verbessern, wird die TableView durch eine ListView ersetzt. Somit werden Einträge und keine öden Zeilen angezeigt. Ausserdem kann man den Prozess mit einem Knopf stoppen und starten.
+
+**Cabriolet** = Für den letzten Feinschliff wird eine Historie-Funktion implementiert.  Ausserdem wird es nun auch möglich sein UDP-Verbindungen anzeigen zu lassen.
 
 
+**Wichtige Termine:**
+
+- Wöchentliches Meeting mit Betreuer: _Sonntag, 08.02.2026. Zeit noch ausstehend..._
+- Abgabe **Freitag, 13.02.2026!**
 
 
+**Tagesplanung Woche 4**
 
+| Tag | Zeitfenster | Aufgabe(n)| Status |
+|-----|-------------|-----------|---------|
+| Mo  | 09:00–14:00 |  Doku ergänzen         | Erledigt        |
+| Di  | 07:30-17:00 | TableView durch ListView ersetzen (1/2)    |    In Arbeit| 
+| Mi  | 07:30-17:00 |  TableView durch ListView ersetzen (2/2)        |  In Arbeit|
+| Do  | 07:30-17:00 |  Unit Tests für ungültige Werte usw.        |  In Arbeit|
+| Fr | 07:30-17:00 | UDP sauber implementieren | In Arbeit |
 
+**Tagesplanung Woche 5**
+
+| Tag | Zeitfenster | Aufgabe(n)| Status |
+|-----|-------------|-----------|---------|
+| Mo  | 09:00–14:00 |  Start&Stop Logik         | In Arbeit|
+| Di  | 07:30-17:00 | Historie-Funktion (Export als CSV) (1/2) | In Arbeit
+| Mi  | 07:30-17:00 |  Historie-Funktion (Export als CSV) (2/2)        |  In Arbeit|
+| Do  | 07:30-17:00 | Unit-Tests aktualisieren, um Programm auf letzte Fehler zu prüfen      |  In Arbeit|
 
 ## Plan-Revisionen
 
@@ -107,7 +125,8 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 - **v2 – 14.01.2026**: Verbessertes Format
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTQ0MzQzODcyLDkyMjAwNDAwMCwzNDg0Mj
-U0MDEsLTE1NjkxMzQ1LC0xMzQzMzg0MzA4LDI2Njc5MzYzMCwt
-MjA5NDAzMTMxNiwxMzA2OTk5OTI0XX0=
+eyJoaXN0b3J5IjpbMjQzNDU5NjQ0LC0xNTQ2NzQ3OTU1LDU0ND
+M0Mzg3Miw5MjIwMDQwMDAsMzQ4NDI1NDAxLC0xNTY5MTM0NSwt
+MTM0MzM4NDMwOCwyNjY3OTM2MzAsLTIwOTQwMzEzMTYsMTMwNj
+k5OTkyNF19
 -->
