@@ -72,11 +72,11 @@ Es war einfach zu implementieren und das Problem wurde somit behoben.
 ## Color Palettes für UX
 Die basic JavaFX UI ist schlicht in weiss und sieht nicht wirklich benutzerfreundlich aus und auch nicht wirklich modern. Ich habe mich darum entschieden mit Farben zu arbeiten, um die UI lebendiger zu machen. Für die Farben habe ich ein Tool gefunden was einem eine passende Palette generiert. Ich habe mich für eine entschieden und konnte das mittels kopieren des HEX-Codes dort anwenden, wo ich wollte. Das Tool nennt sich coolors.co. 
 
-Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftigen erstellen und bearbeiten von Button-Styles helfen.
+Abgesehen davon habe ich Hilfsmethoden geschrieben, die mir auch beim zukünftigen Erstellen und bearbeiten von Button-Styles helfen.
 
 ## Cross-Platform
 Am Anfang habe ich mich darauf fokussiert das Programm nur Windows kompatibel zu halten. Da ein wichtiger Teil der UX ist, dass man ein Programm möglichst plattformübergreifend nutzen zu können habe ich mich damit befasst, ein Linux äquivalenten Befehl zu suchen. 
-Es gibt leider keinen Befehl, wessen Ausgabe 1:1 der selbe ist wie der von Windows, daher musste ich die PortParser-Klasse leicht umbauen.
+Es gibt leider keinen Befehl, wessen Ausgabe 1:1 derselbe ist wie der von Windows, daher musste ich die PortParser-Klasse leicht umbauen.
 
 Entscheidend ist am Anfang der Check auf welcher OS man das Programm läuft. Der Check funktioniert durch `System.getProperty("os.name").` 
 
@@ -102,10 +102,16 @@ Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig
 `ScheduledExecutorService scheduler` erstellt einen Executor mit genau einem Worker-Thread. Dadurch laufen die periodischen Tasks seriell d.h. es kann nie mehr als ein Aktualisierungslauf gleichzeitig laufen (keine Überlappungen). 
 
 **scheduleWithFixedDelay vs scheduleWithFixedRate**
-- `scheduleWithFixedDelay(...)`: Wartet nachdem ein Durchlauf fertig ist noch die angegebene Zeit und startet dann den nächsten Durchlauf. Wenn ladeDaten() länger dauert, verschiebt sich der nächste Start automatisch nach hinten. Es gibt keine Aufholversuche.
+- `scheduleWithFixedDelay(...)`: Wartet, nachdem ein Durchlauf fertig ist noch die angegebene Zeit und startet dann den nächsten Durchlauf. Wenn ladeDaten() länger dauert, verschiebt sich der nächste Start automatisch nach hinten. Es gibt keine Aufholversuche.
 - `scheduleWithFixedRate(...)`: Versucht, die Starts in einem fixen Takt auszuführen (z.B. immer genau jede Sekunde ab Startzeit). Wenn ein Durchlauf zu lange dauert, kann der Scheduler versuchen "aufzuholen" (bei Single-Thread heisst das vor allem: der nächste Lauf startet sofort nach dem vorherigen, um den Takt wieder zu treffen). Das kann zu hoher last führen.
 
 `scheduleWithFixedDelay` berücksichtigt somit die Geschwindigkeit des Rechners, da gewartet wird, bis der vorherige Prozess ladeDaten() beendet ist, bevor der nächste Zyklus (ink. Wartezeit) startet.
+
+## Start & Stop Logik
+Ich habe mich mit dem Thema befasst, eine Start&Stop-Logik zu implementieren, damit das Programm erst dann beginnt, Verbindungen zu scannen, wenn man auf "Start" klickt. Dafür habe ich eine Start&Stop-Hilfsmethode erstellt. Allerdings machte meine Konfiguration des Schedulers Probleme: Meine Methode `scheduler.stop()` stoppte den Scheduler nicht nur, sondern beendete den zugrunde liegenden ScheduledExecutorService mit `shutdownNow()`. Dadurch war der Executor danach "Terminated" und nahm beim erneuten Start keine neuen Tasks mehr an (u.a. `RejectedExecutionException`). Ein erneutes Starten war erst nach einem Programmneustart möglich.
+
+Das Problem habe ich behoben, indem ich zwischen "Task stoppen" und "Scheduler endgültig beenden" getrennt habe: Beim Stoppen wird nun nur der geplante Task über ein `ScheduledFuture<?>` gecancelt. Das komplette Beenden des Executors passiert nur noch beim Schliessen der Applikation.
+
 
 
 ## Unit-Tests in Java
@@ -122,16 +128,3 @@ Die Klasse Scheduler aktualisiert den Inhalt der Tabelle in der GUI regelmässig
 | RegEx & Java-Grundlagen | Tutorial zu Java inkl. RegEx und weiteren Themen | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp) |
 | KI-Unterstuetzung (ChatGPT, Perplexity) | KI-Tools fuer Fragen, Recherche und Code-Snippets | [ChatGPT](https://chat.openai.com/) · [Perplexity](https://www.perplexity.ai/) |
 | DNS-Auflösung (Java) | JavaDoc: `InetAddress` (z.B. Namensauflösung, Hostname/IP) | [InetAddress (Java SE 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html) |
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNzc2MDE2NDVdfQ==
--->
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQwMzU0MzAxOCwxNDg1OTQ5NTU4LDEzNT
-Y5NTYwMTAsMTAwNjMxMzYzNiwxMTk0NzY2MTMwLDEzOTc3NDcw
-OTksLTk2NjM3OTE4NiwtMTc2MzI5MzQ3MiwxNDI0Nzc5MzIzLD
-EyNjkwMDk5NTYsMTE4NjU2NDMyLDg4MDk4MjQyNCwtMzM1MzA1
-NTA5LC0xMzc3NjAxNjQ1XX0=
--->

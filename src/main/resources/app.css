@@ -29,7 +29,38 @@
     -fx-text-fill: #6b7280;
 }
 
-/* grob wie im Screenshot: grün/orange */
+.startStopBtn {
+    -fx-font-size: 17.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 8 18 8 18;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.35), 10, 0.3, 0, 3);
+}
+
+.btnClear {
+    -fx-font-size: 17.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #322525;
+    -fx-background-radius: 10;
+    -fx-padding: 8 18 8 18;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.35), 10, 0.3, 0, 3);
+
+}
+
+.startStopBtn.startState { -fx-background-color: #3b57ff; }
+.startStopBtn.stopState  { -fx-background-color: #ff2b2b; }
+
+.startStopBtn:hover.startState { -fx-background-color: #2f48ff; }
+.startStopBtn:hover.stopState  { -fx-background-color: #e62424; }
+.startStopBtn:pressed {-fx-translate-y: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0.0, 0, 1);}
+
+.btnClear:hover {-fx-background-color: rgb(211, 211, 211); }
+.btnClear:pressed {-fx-translate-y: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0.0, 0, 1);}
+
 .list-cell.state-established .conn-card { -fx-background-color: #eefaf1; }
 .list-cell.state-listen .conn-card       { -fx-background-color: #fff6eb; }
 .list-cell.state-other .conn-card        { -fx-background-color: #f6f7fb; }

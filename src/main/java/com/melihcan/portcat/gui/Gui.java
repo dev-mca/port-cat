@@ -28,6 +28,7 @@ public class Gui extends Application {
     private Scheduler scheduler;
     private Label output;
     private final Label placeholder = new Label();
+    private boolean running = false;
 
 
     /* ---------------------------------------------------
@@ -61,11 +62,17 @@ public class Gui extends Application {
         Label title = new Label("PortCat - TCP-Connections");
         title.setStyle("-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #FFFBFC;");
 
-
         Button btnClear = new Button("Clear");
         btnClear.setPrefSize(95, 40);
-        styleButton(btnClear, "#F44336", "#D32F2F", "#FFFBFC");  // jetzt wirklich rot!
+        btnClear.getStyleClass().add("btnClear");
         btnClear.setOnAction(e -> clearBtnLogic());
+
+        Button startStopBtn = new Button("▶ Start");
+        startStopBtn.setPrefSize(95, 40);
+        startStopBtn.getStyleClass().addAll("startStopBtn", "startState");
+
+        startStopBtn.setOnAction(e -> startStopScheduler(startStopBtn));
+
 
         /* ---------------------------------------------------
            TopBar
@@ -80,7 +87,7 @@ public class Gui extends Application {
         leftPart.setAlignment(Pos.CENTER_LEFT);
 
         // rechts: Output + Buttons
-        HBox rightPart = new HBox(10, output, btnClear);
+        HBox rightPart = new HBox(10, output, startStopBtn, btnClear);
         rightPart.setAlignment(Pos.CENTER_RIGHT);
 
         // Spacer in der Mitte
@@ -120,44 +127,18 @@ public class Gui extends Application {
         List<Connection> daten = ladeDaten(); // nur Daten holen
         updateUi(daten);                      // UI initialisieren
 
-        //scheduler starten
+        //scheduler instanziieren
         scheduler = new Scheduler(this);
-        scheduler.start();
     }
 
     /* ---------------------------------------------------
         Hilfsmethoden
      --------------------------------------------------- */
-    private void styleButton(Button btn,
-                             String normalColor,
-                             String hoverColor,
-                             String textColor) {
-
-        // Basis-Style (Schriftgrösse & Gewicht)
-        String base = "-fx-font-size: 17.5px; -fx-font-weight: bold;";
-
-        // Grundzustand
-        btn.setStyle(base +
-                "-fx-background-color: " + normalColor + ";" +
-                "-fx-text-fill: " + textColor + ";");
-
-        // Hover
-        btn.setOnMouseEntered(e ->
-                btn.setStyle(base +
-                        "-fx-background-color: " + hoverColor + ";" +
-                        "-fx-text-fill: " + textColor + ";"));
-
-        // Zurück
-        btn.setOnMouseExited(e ->
-                btn.setStyle(base +
-                        "-fx-background-color: " + normalColor + ";" +
-                        "-fx-text-fill: " + textColor + ";"));
-    }
 
     @Override
     public void stop() {
         if (scheduler != null) {
-            scheduler.stop();
+            scheduler.terminate();
         }
     }
 
@@ -176,5 +157,25 @@ public class Gui extends Application {
         ObservableList<Connection> observable = FXCollections.observableArrayList(daten);
         listView.setItems(observable);
         output.setText("Output: Aktive Verbindungen: " + daten.size());
+    }
+
+    public void startStopScheduler(Button startStopBtn) {
+        running = !running;
+
+        if (running) {
+            scheduler.start();
+            startStopBtn.setText("■ Stop");
+            startStopBtn.getStyleClass().remove("startState");
+            if (!startStopBtn.getStyleClass().contains("stopState")) {
+                startStopBtn.getStyleClass().add("stopState");
+            }
+        } else {
+            scheduler.stop();
+            startStopBtn.setText("▶ Start");
+            startStopBtn.getStyleClass().remove("stopState");
+            if (!startStopBtn.getStyleClass().contains("startState")) {
+                startStopBtn.getStyleClass().add("startState");
+            }
+        }
     }
 }
