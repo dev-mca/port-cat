@@ -112,12 +112,85 @@ Ich habe mich mit dem Thema befasst, eine Start&Stop-Logik zu implementieren, da
 
 Das Problem habe ich behoben, indem ich zwischen "Task stoppen" und "Scheduler endgültig beenden" getrennt habe: Beim Stoppen wird nun nur der geplante Task über ein `ScheduledFuture<?>` gecancelt. Das komplette Beenden des Executors passiert nur noch beim Schliessen der Applikation.
 
+## CSS Style-Sheets für JavaFx
+Ein cooles Features, was das JavaFx Framework anbietet, ist die anbindung von CSS Style-Sheets für Designzwecken. 
 
+Damit man sich nicht im Code selbst allzu sehr mit dem Design von Knöpfen, Labels usw. auseinandersetzen muss, kann man für Elemente, wie z.B. ein Button eine CSS Klasse zuweisen. Im separaten CSS-File kann man dann die Erscheinung des Buttons sauber anpassen.
+
+Für meine Buttons habe ich beispielsweise Schatten und eine schöne 3D-Druckanimation erstellt. 
+
+ Zuerst wird dem Button eine CSS-Klasse zugewiesen: `btnClear.getStyleClass().add("btnClear");`. Anschliessend verweise ich in app.css auf die Klasse und füge die CSS-Properties hinzu:
+
+```CSS
+.btnClear {
+-fx-font-size: 17.5px;
+-fx-font-weight: bold;
+-fx-text-fill: #322525;
+-fx-background-radius: 10;
+-fx-padding: 8 18 8 18;
+-fx-background-color: #ffffff;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.35), 10, 0.3, 0, 3);
+
+}
+```
+Für den 3D-Effekt musste ich folgendes weiter unten ergänzen:
+
+```CSS
+.btnClear:pressed {-fx-translate-y: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0.0, 0, 1);}
+```
+
+Den normalen Zustand des Buttons wird durch `.KlassenName{...}` bearbeitet und wenn es um andere States geht dann mit z.B. `.KlassenName:pressed{...}`.
 
 ## Unit-Tests in Java
 
+Unit-Tests testen einzelne Methoden automatisiert. Mit JUnit 5 können wir Funktionen mit verschiedenen Eingaben prüfen und überprüfen, ob sie das erwartete Ergebnis zurückgeben.
+
+### Ordnerstruktur
+
+Test-Code folgt der gleichen Package-Struktur wie Production-Code, befindet sich aber in `src/test/java/`:
+
+### pom.xml Dependencies
+
+```xml
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.9.2</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.9.2</version>
+    <scope>test</scope>
+</dependency>
+```
+
+### AAA-Pattern
+
+Jeder Test folgt: **Arrange** (Setup) → **Act** (Ausführen) → **Assert** (Überprüfen)
+
+```Java
+
+@Test
+void testConnectionCreation() {
+    Connection conn = new Connection("192.168.1.1", 8080, "10.0.0.1", "443", "ESTABLISHED");
+    assertEquals("192.168.1.1", conn.getLocalAddress());
+}
+```
+
+### Fehler: Source Roots
+
+Ein Fehler den ich gemacht habe und der mir einige Zeit gekostet hat, war dass ich src sowi java als sources-root markiert habe. Somit konnte die JUnit Dependency nicht korrekt bereitgestellt werden.
+
+Lösung:
+
+    src/main/java/ → Mark as Sources Root (blau)
+    src/test/java/ → Mark as Test Sources Root (grün)
 
 
+## Quellenverzeichnis
 | Thema | Beschreibung | Link |
 |---|---|---|
 | JavaFX | Einstieg in GUI-Entwicklung mit JavaFX | [Getting Started with JavaFX](https://openjfx.io/openjfx-docs/) |

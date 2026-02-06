@@ -11,7 +11,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PortParser {
+public class ConnectionParser {
 
     /* -------- Betriebssystem erkennen -------- */
     private static final boolean IS_WINDOWS =
@@ -68,9 +68,9 @@ public class PortParser {
             if (skip(localAddr)) return null;
             if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
 
-            int    localPort  = Integer.parseInt(value(raw, "LocalPort"));
+            int localPort  = Integer.parseInt(value(raw, "LocalPort"));
             String remoteAddr = value(raw, "RemoteAddress");
-            String remotePort = decoratePort(value(raw, "RemotePort"));
+            String remotePort = value(raw, "RemotePort");
             String state      = mapState(value(raw, "State"));
 
             return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
@@ -130,7 +130,7 @@ public class PortParser {
 
                 int    localPort  = Integer.parseInt(value(obj, "local_port"));
                 String remoteAddr = value(obj, "remote_addr");
-                String remotePort = decoratePort(value(obj, "remote_port"));
+                String remotePort = value(obj, "remote_Port");
                 state = stateFromName(state); // "ESTAB", "LISTEN" …
 
                 list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
@@ -168,7 +168,7 @@ public class PortParser {
                 if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
                 int    localPort  = Integer.parseInt(m.group(3));
                 String remoteAddr = m.group(4);
-                String remotePort = decoratePort(m.group(5));
+                String remotePort = m.group(5);
 
                 list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
             }
@@ -200,15 +200,6 @@ public class PortParser {
 
     private static boolean skip(String addr) {
         return "::".equals(addr) || "::1".equals(addr) || "0.0.0.0".equals(addr);
-    }
-
-    private static String decoratePort(String port) {
-        switch (port) {
-            case "443": return "443 (HTTPS)";
-            case "80":  return "80 (HTTP)";
-            case "22":  return "22 (SSH)";
-            default:    return port;
-        }
     }
 
     private static String mapState(String numeric) {
