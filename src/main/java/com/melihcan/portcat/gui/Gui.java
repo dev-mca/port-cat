@@ -1,6 +1,7 @@
 package com.melihcan.portcat.gui;
 
 import com.melihcan.portcat.service.ConnectionParser;
+import com.melihcan.portcat.service.SaveAsCSV;
 import com.melihcan.portcat.service.Scheduler;
 import javafx.application.Application;
 
@@ -29,6 +30,7 @@ import javafx.util.Duration;
 import javafx.stage.Stage;
 import com.melihcan.portcat.model.Connection;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Gui extends Application {
@@ -78,16 +80,33 @@ public class Gui extends Application {
         Label title = new Label("PortCat - TCP-Connections");
         title.setStyle("-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #FFFBFC;");
 
-        Button btnClear = new Button("🗑 Clear");
+        Button btnClear = new Button("Clear");
+        btnClear.setMinSize(110, 40);
         btnClear.setPrefSize(110, 40);
+        btnClear.setMaxSize(110, 40);
         btnClear.getStyleClass().add("btnClear");
+
         btnClear.setOnAction(e -> clearBtnLogic());
 
-        Button startStopBtn = new Button("▶ Start");
-        startStopBtn.setPrefSize(95, 40);
+        Button startStopBtn = new Button("Start");
+        startStopBtn.setMinSize(150, 40);
+        startStopBtn.setPrefSize(150, 40);
+        startStopBtn.setMaxSize(150, 40);
         startStopBtn.getStyleClass().addAll("startStopBtn", "startState");
 
         startStopBtn.setOnAction(e -> startStopScheduler(startStopBtn));
+
+        Button btnSave = new Button("Save state as CSV");
+        btnSave.setMinSize(200, 40);
+        btnSave.setPrefSize(200, 40);
+        btnSave.setMaxSize(200, 40);
+        btnSave.getStyleClass().add("btnSave");
+
+        btnSave.setOnAction(e -> SaveAsCSV.saveAsCsv(
+                btnSave.getScene().getWindow(),   // Owner‑Fenster für den Dialog
+                listView.getItems()));
+
+
 
 
         /* ---------------------------------------------------
@@ -103,7 +122,7 @@ public class Gui extends Application {
         leftPart.setAlignment(Pos.CENTER_LEFT);
 
         // rechts: Output + Buttons
-        HBox rightPart = new HBox(10, output, startStopBtn, btnClear);
+        HBox rightPart = new HBox(10, output, startStopBtn, btnSave, btnClear);
         rightPart.setAlignment(Pos.CENTER_RIGHT);
 
         // Spacer in der Mitte
@@ -227,18 +246,20 @@ public class Gui extends Application {
 
         if (running) {
             scheduler.start();
-            startStopBtn.setText("■ Stop");
+            startStopBtn.setText("Stop");
             startStopBtn.getStyleClass().remove("startState");
             if (!startStopBtn.getStyleClass().contains("stopState")) {
                 startStopBtn.getStyleClass().add("stopState");
             }
         } else {
             scheduler.stop();
-            startStopBtn.setText("▶ Start");
+            startStopBtn.setText("Start");
             startStopBtn.getStyleClass().remove("stopState");
             if (!startStopBtn.getStyleClass().contains("startState")) {
                 startStopBtn.getStyleClass().add("startState");
             }
         }
     }
+
+
 }
