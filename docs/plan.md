@@ -102,22 +102,22 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 **Tagesplanung Woche 4**
 
-| Tag | Zeitfenster | Aufgabe(n)| Status |
-|-----|-------------|-----------|---------|
-| Mo  | 09:00–14:00 |  Doku ergänzen         | Erledigt        |
-| Di  | 07:30-17:00 | TableView durch ListView ersetzen (1/2)    |    In Arbeit| 
-| Mi  | 07:30-17:00 |  TableView durch ListView ersetzen (2/2)        |  In Arbeit|
-| Do  | 07:30-17:00 |  Unit Tests für ungültige Werte usw.        |  In Arbeit|
-| Fr | 07:30-17:00 | UDP sauber implementieren | In Arbeit |
+| Tag | Zeitfenster | Aufgabe(n)| Status     |
+|-----|-------------|-----------|------------|
+| Mo  | 09:00–14:00 |  Doku ergänzen         | Erledigt   |
+| Di  | 07:30-17:00 | TableView durch ListView ersetzen (1/2)    | In Arbeit  | 
+| Mi  | 07:30-17:00 |  TableView durch ListView ersetzen (2/2)        | In Arbeit  |
+| Do  | 07:30-17:00 |  Unit Tests für ungültige Werte usw.        |  In Arbeit |
+| Fr | 07:30-17:00 | UDP sauber implementieren | In Arbeit  |
 
 **Tagesplanung Woche 5**
 
-| Tag | Zeitfenster | Aufgabe(n)| Status |
-|-----|-------------|-----------|---------|
-| Mo  | 09:00–14:00 |  Start&Stop Logik         | In Arbeit|
-| Di  | 07:30-17:00 | Historie-Funktion (Export als CSV) (1/2) | In Arbeit
-| Mi  | 07:30-17:00 |  Historie-Funktion (Export als CSV) (2/2)        |  In Arbeit|
-| Do  | 07:30-17:00 | Unit-Tests aktualisieren, um Programm auf letzte Fehler zu prüfen      |  In Arbeit|
+| Tag | Zeitfenster | Aufgabe(n)                                                                                | Status |
+|-----|-------------|-------------------------------------------------------------------------------------------|---------|
+| Mo  | 09:00–14:00 | Start&Stop Logik                                                                          | In Arbeit|
+| Di  | 07:30-17:00 | Historie-Funktion (Export als CSV) (1/2)                                                  | In Arbeit
+| Mi  | 07:30-17:00 | Historie-Funktion (Export als CSV) (2/2)  + Filter Optionen (Hardcoded Filter entfernen!) |  In Arbeit|
+| Do  | 07:30-17:00 | Unit-Tests aktualisieren, um Programm auf letzte Fehler zu prüfen                         |  In Arbeit|
 
 ## Plan-Revisionen
 
