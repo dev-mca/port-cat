@@ -182,13 +182,18 @@ void testConnectionCreation() {
 
 ### Fehler: Source Roots
 
-Ein Fehler den ich gemacht habe und der mir einige Zeit gekostet hat, war dass ich src sowi java als sources-root markiert habe. Somit konnte die JUnit Dependency nicht korrekt bereitgestellt werden.
+Ein Fehler den ich gemacht habe und der mir einige Zeit gekostet hat, war, dass ich src sowie java als sources-root markiert habe. Somit konnte die JUnit Dependency nicht korrekt bereitgestellt werden.
 
 Lösung:
 
     src/main/java/ → Mark as Sources Root (blau)
     src/test/java/ → Mark as Test Sources Root (grün)
 
+## Liste speichern als CSV
+Ein feature, dass ich bereits zu Beginn geplant habe, war, dass man die Liste mit den Connection-Einträgen speichern kann.
+Ich habe dafür die Klasse `SaveAsCSV` mithilfe von KI geschrieben.
+
+Die Utility-Klasse `SaveAsCSV` kapselt den gesamten Exportvorgang, damit die GUI nur die Methode `saveAsCsv` aufrufen muss. Diese Methode prüft zuerst, ob überhaupt Daten vorhanden sind, öffnet danach einen FileChoser und legt den vom Benutzer gewählten Pfad als Ziel fest. Anschliessend wird mit `Files.newBufferedWriter` ein UTF-8-Writer, um die Datei speichersicher zu schreiben. Die Kernlogik steckt in `writeCsv`: Hier wird zuerst die Kopfziele mit allen Spaltennamen inkl. der neuen Spalte `Direction` ausgegeben, danach werden sämtliche Connection-Objekte zeilenweise in CSV-Format übertragen. Damit Felder mit KOmmas, Anführungszeichen oder Zeilenumbrücken korrekt sind, sorgt die Hilfsmethode `csvEscape`. Sollte der Benutzer den Dialog abbrechen oder ein IO-Fehler auftreten, wird dies durch Rückgabe von `null` bzw. eine Exception-Ausgabe abgefangen.
 
 ## Quellenverzeichnis
 | Thema | Beschreibung | Link |
