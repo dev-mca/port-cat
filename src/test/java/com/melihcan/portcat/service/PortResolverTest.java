@@ -66,7 +66,13 @@ class PortResolverTest {
     void testResolveNegativePort() {
         // Port ist negativ -> Unbekannt
         String result = PortResolver.resolvePort("-1");
-        assertTrue(result.contains("-1"));
+        assertTrue(result.contains("Unbekannt"));
+    }
+
+    @Test
+    void testResolveAnotherNegativePort() {
+        // Port ist negativ -> Unbekannt
+        String result = PortResolver.resolvePort("-22");
         assertTrue(result.contains("Unbekannt"));
     }
 }

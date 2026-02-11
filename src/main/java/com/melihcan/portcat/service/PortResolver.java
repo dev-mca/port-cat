@@ -33,15 +33,20 @@ public class PortResolver {
         PORT_NAMES.put(8080, "HTTP Alt");
         PORT_NAMES.put(8443, "HTTPS Alt");
         PORT_NAMES.put(27017, "MongoDB");
+        PORT_NAMES.put(25565, "Minecraft Server");
     }
 
     public static String resolvePort(String portString) {
+        if (portString == null) return null;
+
         final int port;
         try {
-            port = Integer.parseInt(portString);
+            port = Integer.parseInt(portString.trim());
         } catch (NumberFormatException e) {
-            return portString;
+            return null;
         }
+
+        if (port < 1 || port > 65535) return "Unbekannt";
 
         String name = PORT_NAMES.get(port);
         if (name != null) {
@@ -49,10 +54,9 @@ public class PortResolver {
         }
 
         String range;
-        if (port >= 0 && port <= 1023) range = "Well-known";
+        if (port <= 1023) range = "Well-known";
         else if (port <= 49151) range = "Registered";
-        else if (port <= 65535) range = "Dynamic/Private";
-        else range = "Unbekannt";
+        else range = "Dynamic/Private";
 
         return port + " (" + range + ")";
     }
