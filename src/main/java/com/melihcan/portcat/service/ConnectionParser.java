@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,9 +20,9 @@ public class ConnectionParser {
 
     /* -------- Kommandos -------- */
     private static final String POWERSHELL_CMD =
-            "powershell.exe -Command \"Get-NetTCPConnection | "
-                    + "Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State "
-                    + "| ConvertTo-Json -Compress\"";
+            "powershell.exe -NoProfile -Command \"Get-NetTCPConnection | " +
+                    "Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State | " +
+                    "ConvertTo-Json -Compress -AsArray\"";
 
     // zuerst versuchen wir die JSON-Option (-J). Scheitert das, nehmen wir Text.
     private static final String SS_JSON = "ss -tnH -J";   // -u für UDP später | JSON (requires iproute2 ≥ 5.9)
@@ -41,33 +42,41 @@ public class ConnectionParser {
         List<Connection> list = new ArrayList<>();
         try {
             Process proc = new ProcessBuilder("cmd.exe", "/c", POWERSHELL_CMD)
-                    .redirectErrorStream(true).start();
+                    .redirectErrorStream(true)
+                    .start();
 
             String json = readAll(proc);
-            // Ausgabe enthält ein JSON-Array – bei unserer Kommandokette ohne Klammern.
+
+            // wartet max. 2s, danach gehts weiter (optional: bei Timeout proc.destroyForcibly())
+            boolean finished = proc.waitFor(2, TimeUnit.SECONDS);
+            if (!finished) {
+                proc.destroyForcibly();
+                return list; // oder trotzdem versuchen weiter zu parsen
+            }
+
             if (json.length() < 2) return list;
 
-            // Klammern einklammern -> valides Array
             json = json.trim();
             if (json.startsWith("[")) {
                 json = json.substring(1, json.length() - 1);
             } else if (json.startsWith("{")) {
-                // ok, single object
+                // ok
             } else {
                 return list;
             }
+
             String[] objects = json.split("\\},\\{");
             for (String obj : objects) {
                 obj = obj.replace("{", "").replace("}", "");
                 Connection c = parseWinObject(obj);
                 if (c != null) list.add(c);
             }
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt(); // nur bei InterruptedException sinnvoll, schadet hier aber nicht
         }
         return list;
     }
-
     private Connection parseWinObject(String raw) {
         try {
             String localAddr  = value(raw, "LocalAddress");
@@ -77,7 +86,7 @@ public class ConnectionParser {
             int localPort  = Integer.parseInt(value(raw, "LocalPort"));
             String remoteAddr = value(raw, "RemoteAddress");
             String remotePort = value(raw, "RemotePort");
-            String state      = mapState(value(raw, "State"));
+            String state = value(raw, "State");
 
             return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
         } catch (Exception ex) {
