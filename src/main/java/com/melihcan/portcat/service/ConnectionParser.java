@@ -48,9 +48,15 @@ public class ConnectionParser {
             if (json.length() < 2) return list;
 
             // Klammern einklammern -> valides Array
-            json = "[" + json + "]";
-            // sehr simples Split-Parsing (wie in deiner alten Klasse)
-            String[] objects = json.substring(1, json.length() - 1).split("\\},\\{");
+            json = json.trim();
+            if (json.startsWith("[")) {
+                json = json.substring(1, json.length() - 1);
+            } else if (json.startsWith("{")) {
+                // ok, single object
+            } else {
+                return list;
+            }
+            String[] objects = json.split("\\},\\{");
             for (String obj : objects) {
                 obj = obj.replace("{", "").replace("}", "");
                 Connection c = parseWinObject(obj);
@@ -65,7 +71,7 @@ public class ConnectionParser {
     private Connection parseWinObject(String raw) {
         try {
             String localAddr  = value(raw, "LocalAddress");
-            //if (skip(localAddr)) return null;
+            if (skip(localAddr)) return null;
             if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
 
             int localPort  = Integer.parseInt(value(raw, "LocalPort"));
@@ -125,12 +131,12 @@ public class ConnectionParser {
                 obj = obj.replace("{", "").replace("}", "");
                 String state      = value(obj, "state");
                 String localAddr  = value(obj, "local_addr");
-                //if (skip(localAddr)) continue;
+                if (skip(localAddr)) continue;
                 if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
 
                 int    localPort  = Integer.parseInt(value(obj, "local_port"));
                 String remoteAddr = value(obj, "remote_addr");
-                String remotePort = value(obj, "remote_Port");
+                String remotePort = value(obj, "remote_port");
                 state = stateFromName(state); // "ESTAB", "LISTEN" …
 
                 list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
