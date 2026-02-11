@@ -65,7 +65,7 @@ public class ConnectionParser {
     private Connection parseWinObject(String raw) {
         try {
             String localAddr  = value(raw, "LocalAddress");
-            if (skip(localAddr)) return null;
+            //if (skip(localAddr)) return null;
             if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
 
             int localPort  = Integer.parseInt(value(raw, "LocalPort"));
@@ -125,7 +125,7 @@ public class ConnectionParser {
                 obj = obj.replace("{", "").replace("}", "");
                 String state      = value(obj, "state");
                 String localAddr  = value(obj, "local_addr");
-                if (skip(localAddr)) continue;
+                //if (skip(localAddr)) continue;
                 if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
 
                 int    localPort  = Integer.parseInt(value(obj, "local_port"));
@@ -164,7 +164,7 @@ public class ConnectionParser {
 
                 String state      = stateFromName(m.group(1));       // LISTEN, ESTAB …
                 String localAddr  = m.group(2);
-                if (skip(localAddr)) continue;
+                //if (skip(localAddr)) continue;
                 if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
                 int    localPort  = Integer.parseInt(m.group(3));
                 String remoteAddr = m.group(4);

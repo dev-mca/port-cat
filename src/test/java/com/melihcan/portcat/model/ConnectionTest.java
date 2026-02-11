@@ -13,8 +13,8 @@ class ConnectionTest {
         // Act & Assert
         assertEquals("192.168.1.1", conn.getLocalAddress());
         assertEquals(8080, conn.getLocalPort());
-        assertEquals("10.0.0.1", conn.getRemoteAddress());
-        assertEquals("443", conn.getRemotePort());
+        assertTrue(conn.getRemoteAddress().contains("10.0.0.1"));
+        assertEquals("443 (HTTPS)", conn.getRemotePort());
         assertEquals("ESTABLISHED", conn.getState());
     }
 
@@ -35,5 +35,42 @@ class ConnectionTest {
         assertNull(conn.getLocalAddress());
         assertEquals(0, conn.getLocalPort());
         assertNull(conn.getState());
+    }
+
+    // ===== NEU: Direction Tests =====
+
+    @Test
+    void testDirectionIncoming() {
+        // LISTEN State -> Eingehend
+        Connection conn = new Connection("192.168.1.1", 8080, "10.0.0.1", "443", "LISTEN");
+        assertEquals("INCOMING", conn.getDirection());
+    }
+
+    @Test
+    void testDirectionOutgoing() {
+        // ESTABLISHED State -> Ausgehend
+        Connection conn = new Connection("192.168.1.1", 8080, "10.0.0.1", "443", "ESTABLISHED");
+        assertEquals("OUTGOING", conn.getDirection());
+    }
+
+    @Test
+    void testDirectionUnknown() {
+        // State = null -> Unknown
+        Connection conn = new Connection("192.168.1.1", 8080, "10.0.0.1", "443", null);
+        assertEquals("UNKNOWN", conn.getDirection());
+    }
+
+    @Test
+    void testDirectionUnknownState() {
+        // Unbekannter State
+        Connection conn = new Connection("192.168.1.1", 8080, "10.0.0.1", "443", "CLOSING");
+        assertEquals("UNKNOWN", conn.getDirection());
+    }
+
+    @Test
+    void testDirectionCaseInsensitive() {
+        // State sollte case-insensitive sein
+        Connection conn = new Connection("192.168.1.1", 8080, "10.0.0.1", "443", "listen");
+        assertEquals("INCOMING", conn.getDirection());
     }
 }

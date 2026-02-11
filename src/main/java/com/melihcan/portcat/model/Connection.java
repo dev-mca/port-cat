@@ -44,6 +44,41 @@ public class Connection {
     public String getRemotePort() { return remotePort; }
     public String getState() { return state; }
 
+    /**
+     * Bestimmt die Richtung der Verbindung:
+     * - Eingehend (INCOMING) wenn State = "Listen" (localhost horcht)
+     * - Ausgehend (OUTGOING) wenn State = "Established"
+     * oder wenn Remote-Port standardmäßig ist (HTTP, HTTPS, etc.)
+     */
+    public String getDirection() {
+        if (state == null) return "UNKNOWN";
+
+        String stateUpper = state.toUpperCase();
+
+        // Port-Nummer auslesen
+        try {
+            String portStr = remotePort.split(" ")[0]; // Falls "443 (HTTPS)" -> "443"
+            int port = Integer.parseInt(portStr);
+
+            // Häufige Server-Ports -> eingehend
+            if (port == 80 || port == 443 || port == 22 || port == 21 || port == 25 || port == 3306 || port == 5432) {
+                if (stateUpper.contains("LISTEN")) {
+                    return "INCOMING"; // Server wartet auf Verbindung
+                }
+            }
+        } catch (Exception e) {
+            // Fehler beim Parsen -> Standard-Logik
+        }
+
+        if (stateUpper.contains("LISTEN")) {
+            return "INCOMING";
+        } else if (stateUpper.contains("ESTABLISHED")) {
+            return "OUTGOING";
+        }
+
+        return "UNKNOWN";
+    }
+
     @Override
     public String toString() {
         return "Connection [Local=" + localAddress + ":" + localPort +

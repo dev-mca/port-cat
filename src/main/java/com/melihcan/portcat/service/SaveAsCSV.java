@@ -43,8 +43,8 @@ public final class SaveAsCSV {
      *  Kernlogik – schreibt die eigentliche CSV‑Datei
      *  ------------------------------------------------------ */
     public static void writeCsv(Writer writer, List<Connection> data) throws IOException {
-        // Kopfzeile
-        writer.write("LocalAddress,LocalPort,RemoteAddress,RemotePort,State");
+        // Kopfzeile - UPDATED: Direction hinzugefügt
+        writer.write("LocalAddress,LocalPort,RemoteAddress,RemotePort,State,Direction");
         writer.write(System.lineSeparator());
 
         // Datenzeilen
@@ -58,6 +58,8 @@ public final class SaveAsCSV {
             writer.write(csvEscape(c.getRemotePort()));
             writer.write(',');
             writer.write(csvEscape(c.getState()));
+            writer.write(',');
+            writer.write(csvEscape(c.getDirection())); // UPDATED: Direction hinzugefügt
             writer.write(System.lineSeparator());
         }
         writer.flush();

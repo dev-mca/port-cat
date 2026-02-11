@@ -13,6 +13,9 @@ public final class ConnectionCell extends ListCell<Connection> {
     private final Label local = new Label();
     private final Label localPort = new Label();
 
+    // NEU: Arrow Canvas
+    private final ArrowCanvas arrowCanvas = new ArrowCanvas(60, 70);
+
     private final VBox right = new VBox(4);
     private final Label remote = new Label();
     private final Label remotePortState = new Label();
@@ -34,7 +37,9 @@ public final class ConnectionCell extends ListCell<Connection> {
 
         HBox.setHgrow(spacer, Priority.ALWAYS);
         root.setAlignment(Pos.CENTER_LEFT);
-        root.getChildren().addAll(left, spacer, right);
+
+        // Pfeil in die Mitte
+        root.getChildren().addAll(left, arrowCanvas, spacer, right);
 
         setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
     }
@@ -61,6 +66,9 @@ public final class ConnectionCell extends ListCell<Connection> {
         if (s.contains("ESTABLISHED")) getStyleClass().add("state-established");
         else if (s.contains("LISTEN")) getStyleClass().add("state-listen");
         else getStyleClass().add("state-other");
+
+        // NEU: Pfeil mit Richtung zeichnen
+        arrowCanvas.setDirection(c.getDirection());
 
         setGraphic(root);
     }
