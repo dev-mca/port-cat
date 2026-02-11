@@ -19,18 +19,14 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 import javafx.stage.Stage;
 import com.melihcan.portcat.model.Connection;
 
-import java.io.IOException;
 import java.util.List;
 
 public class Gui extends Application {
