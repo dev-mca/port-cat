@@ -19,10 +19,9 @@ public class ConnectionParser {
             System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("win");
 
     /* -------- Kommandos -------- */
-    private static final String POWERSHELL_CMD =
-            "powershell.exe -NoProfile -Command \"Get-NetTCPConnection | " +
-                    "Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State | " +
-                    "ConvertTo-Json -Compress -AsArray\"";
+    private static final String[] POWERSHELL_CMD = {"powershell.exe", "-NoProfile", "-Command", "Get-NetTCPConnection | " +
+            "Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State | " +
+            "ConvertTo-Json -Compress -AsArray"};
 
     // zuerst versuchen wir die JSON-Option (-J). Scheitert das, nehmen wir Text.
     private static final String SS_JSON = "ss -tnH -J";   // -u für UDP später | JSON (requires iproute2 ≥ 5.9)
@@ -41,7 +40,7 @@ public class ConnectionParser {
     private List<Connection> parseWindows() {
         List<Connection> list = new ArrayList<>();
         try {
-            Process proc = new ProcessBuilder("cmd.exe", "/c", POWERSHELL_CMD)
+            Process proc = new ProcessBuilder(POWERSHELL_CMD)
                     .redirectErrorStream(true)
                     .start();
 
