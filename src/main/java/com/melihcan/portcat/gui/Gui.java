@@ -28,6 +28,8 @@ import javafx.stage.Stage;
 import com.melihcan.portcat.model.Connection;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Gui extends Application {
 
@@ -39,10 +41,8 @@ public class Gui extends Application {
     private Scheduler scheduler;
     private Label output;
     private final Label placeholder = new Label();
-    private volatile boolean running = false;  // VOLATILE für Thread-Sicherheit!
     private int lastActiveCount = -1;
-    private Timeline flashTimeline;
-    private Timeline greenPulse;
+    private final AtomicBoolean running = new AtomicBoolean(false);
 
 
     /* ---------------------------------------------------
@@ -50,7 +50,7 @@ public class Gui extends Application {
      --------------------------------------------------- */
     @Override
     public void start(Stage stage) {
-        stage.setTitle("PortCat V4");
+        stage.setTitle("PortCat V5");
 
         /* ---------------------------------------------------
            Logo
@@ -76,6 +76,10 @@ public class Gui extends Application {
         Label title = new Label("PortCat - TCP-Connections");
         title.setStyle("-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #FFFBFC;");
 
+        Label credits = new Label("by Melih Can Abay");
+        credits.setStyle("-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #a9a9a9;");
+
+
         Button btnClear = new Button("Clear");
         btnClear.setMinSize(110, 40);
         btnClear.setPrefSize(110, 40);
@@ -99,7 +103,7 @@ public class Gui extends Application {
         btnSave.getStyleClass().add("btnSave");
 
         btnSave.setOnAction(e -> SaveAsCSV.saveAsCsv(
-                btnSave.getScene().getWindow(),   // Owner‑Fenster für den Dialog
+                btnSave.getScene().getWindow(),
                 listView.getItems()));
 
 
@@ -111,7 +115,7 @@ public class Gui extends Application {
         HBox topBar = new HBox();
         topBar.setMinHeight(85);
         topBar.setPrefHeight(85);
-        topBar.setAlignment(Pos.CENTER);
+        topBar.setAlignment(Pos.BOTTOM_CENTER);
 
         // links: Logo + Titel
         HBox leftPart = new HBox(10, logoView, title);
@@ -128,12 +132,30 @@ public class Gui extends Application {
         topBar.getChildren().addAll(leftPart, spacer, rightPart);
 
         /* ---------------------------------------------------
+           BottomBar
+        --------------------------------------------------- */
+        HBox bottomBar = new HBox();
+        bottomBar.setMinHeight(60);
+        bottomBar.setPrefHeight(60);
+        bottomBar.setPadding(new Insets(20, 20, 20, 20));
+
+        Region leftSpacer = new Region();
+        Region rightSpacer = new Region();
+        HBox.setHgrow(leftSpacer, Priority.ALWAYS);
+        HBox.setHgrow(rightSpacer, Priority.ALWAYS);
+
+        bottomBar.getChildren().addAll(leftSpacer, credits, rightSpacer);
+
+
+
+        /* ---------------------------------------------------
            Root-Layout
         --------------------------------------------------- */
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #30332E");
-        root.setPadding(new Insets(20, 50, 50, 50)); // top, right, bottom, left
+        root.setPadding(new Insets(20, 50, 20, 50));  // ← bottom REDUZIERT!
         root.setTop(topBar);
+        root.setBottom(bottomBar);
         root.setCenter(listView);
 
 
@@ -148,12 +170,15 @@ public class Gui extends Application {
            Scene
         --------------------------------------------------- */
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/app.css")).toExternalForm());
         stage.setScene(scene);
 
+
         stage.centerOnScreen();
+
+
         stage.show();
-        startSmoothGreenPulse(output);
+        initRedPulse(output);  // ← ROT-Start!
 
         //scheduler instanziieren
         scheduler = new Scheduler(this);
@@ -179,38 +204,85 @@ public class Gui extends Application {
         }
     }
 
-    //Mithilfe von KI generiert
-    private void startSmoothGreenPulse(Label lbl) {
+    private Timeline redPulse;
+    private Timeline greenPulse;
+    private boolean isGreenActive = false; // Toggle-Flag
+
+
+    //Methode für Puls-Effekte mithilfe von KI geschrieben
+    private void startBtnAnimation(Label lbl) {
+        DropShadow glow = new DropShadow();
+        glow.setColor(Color.rgb(57, 255, 20, 1.0)); // Startfarbe egal
+        glow.setOffsetX(0);
+        glow.setOffsetY(0);
+        glow.setRadius(2);
+        glow.setSpread(0.0);
+        lbl.setEffect(glow);
+
+        // Alte Animation stoppen
+        if (redPulse != null) redPulse.stop();
         if (greenPulse != null) greenPulse.stop();
 
-        DropShadow green = new DropShadow();
-        green.setColor(Color.rgb(57, 255, 20, 1.0));
-        green.setOffsetX(0);
-        green.setOffsetY(0);
-        green.setRadius(2);
-        green.setSpread(0.0);
-
-        // Effekt setzen (wichtig: bleibt gesetzt; wird nur "stärker/schwächer")
-        lbl.setEffect(green);
-
-        greenPulse = new Timeline(
-                new KeyFrame(Duration.ZERO,
-                        new KeyValue(green.radiusProperty(), 6, Interpolator.EASE_BOTH),
-                        new KeyValue(green.spreadProperty(), 0.05, Interpolator.EASE_BOTH),
-                        new KeyValue(green.colorProperty(), Color.rgb(57, 255, 20, 0.25), Interpolator.EASE_BOTH)
-                ),
-                new KeyFrame(Duration.seconds(0.75),
-                        new KeyValue(green.radiusProperty(), 22, Interpolator.EASE_BOTH),
-                        new KeyValue(green.spreadProperty(), 0.35, Interpolator.EASE_BOTH),
-                        new KeyValue(green.colorProperty(), Color.rgb(57, 255, 20, 0.85), Interpolator.EASE_BOTH)
-                )
-        );
-        greenPulse.setAutoReverse(true);
-        greenPulse.setCycleCount(Animation.INDEFINITE);
-        greenPulse.play();
+        // Toggle-Logik
+        if (isGreenActive) {
+            // Wechsel zu ROT
+            redPulse = createRedPulse(glow);
+            redPulse.play();
+            isGreenActive = false;
+        } else {
+            // Wechsel zu GRÜN
+            greenPulse = createGreenPulse(glow);
+            greenPulse.play();
+            isGreenActive = true;
+        }
     }
 
+    private Timeline createGreenPulse(DropShadow glow) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(glow.radiusProperty(), 6, Interpolator.EASE_BOTH),
+                        new KeyValue(glow.spreadProperty(), 0.05, Interpolator.EASE_BOTH),
+                        new KeyValue(glow.colorProperty(), Color.rgb(57, 255, 20, 0.25), Interpolator.EASE_BOTH)
+                ),
+                new KeyFrame(Duration.seconds(0.75),
+                        new KeyValue(glow.radiusProperty(), 22, Interpolator.EASE_BOTH),
+                        new KeyValue(glow.spreadProperty(), 0.35, Interpolator.EASE_BOTH),
+                        new KeyValue(glow.colorProperty(), Color.rgb(57, 255, 20, 0.85), Interpolator.EASE_BOTH)
+                )
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.setAutoReverse(true);
+
+        return timeline;
+    }
+
+
+    private Timeline createRedPulse(DropShadow glow) {
+        Timeline timeline = new Timeline(  // ← Variable hinzufügen!
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(glow.radiusProperty(), 6, Interpolator.EASE_BOTH),
+                        new KeyValue(glow.spreadProperty(), 0.05, Interpolator.EASE_BOTH),
+                        new KeyValue(glow.colorProperty(), Color.rgb(180, 40, 40, 0.25), Interpolator.EASE_BOTH)
+                ),
+                new KeyFrame(Duration.seconds(0.75),
+                        new KeyValue(glow.radiusProperty(), 22, Interpolator.EASE_BOTH),
+                        new KeyValue(glow.spreadProperty(), 0.35, Interpolator.EASE_BOTH),
+                        new KeyValue(glow.colorProperty(), Color.rgb(255, 57, 57, 0.85), Interpolator.EASE_BOTH)
+                )
+        );
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.setAutoReverse(true);
+
+        return timeline;
+    }
+
+
+
     //Mithilfe von KI generiert
+
+    private Timeline flashTimeline;
     private void flashBlue(Label lbl) {
         if (flashTimeline != null) flashTimeline.stop();
 
@@ -247,9 +319,9 @@ public class Gui extends Application {
     }
 
     public void startStopScheduler(Button startStopBtn) {
-        running = !running;
+        boolean vorher = running.getAndSet(!running.get());
 
-        if (running) {
+        if (!vorher) {
             System.out.println("Starte Scheduler...");
             scheduler.start();
             startStopBtn.setText("Stop");
@@ -257,16 +329,30 @@ public class Gui extends Application {
             if (!startStopBtn.getStyleClass().contains("stopState")) {
                 startStopBtn.getStyleClass().add("stopState");
             }
+            startBtnAnimation(output);
         } else {
             System.out.println("Stoppe Scheduler...");
             scheduler.stop();
             startStopBtn.setText("Start");
+            output.setText("Output: Stopped");
             startStopBtn.getStyleClass().remove("stopState");
             if (!startStopBtn.getStyleClass().contains("startState")) {
                 startStopBtn.getStyleClass().add("startState");
             }
+            startBtnAnimation(output);
         }
     }
 
+
+
+    private void initRedPulse(Label lbl) {
+        DropShadow glow = new DropShadow();
+        glow.setColor(Color.rgb(180, 40, 40, 1.0));
+        glow.setOffsetX(0); glow.setOffsetY(0); glow.setRadius(2); glow.setSpread(0.0);
+        lbl.setEffect(glow);
+
+        redPulse = createRedPulse(glow);
+        redPulse.play();  //Startet IMMER mit ROT
+    }
 
 }
