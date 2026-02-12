@@ -195,14 +195,197 @@ Ich habe dafür die Klasse `SaveAsCSV` mithilfe von KI geschrieben.
 
 Die Utility-Klasse `SaveAsCSV` kapselt den gesamten Exportvorgang, damit die GUI nur die Methode `saveAsCsv` aufrufen muss. Diese Methode prüft zuerst, ob überhaupt Daten vorhanden sind, öffnet danach einen FileChoser und legt den vom Benutzer gewählten Pfad als Ziel fest. Anschliessend wird mit `Files.newBufferedWriter` ein UTF-8-Writer, um die Datei speichersicher zu schreiben. Die Kernlogik steckt in `writeCsv`: Hier wird zuerst die Kopfziele mit allen Spaltennamen inkl. der neuen Spalte `Direction` ausgegeben, danach werden sämtliche Connection-Objekte zeilenweise in CSV-Format übertragen. Damit Felder mit Kommas, Anführungszeichen oder Zeilenumbrüchen korrekt sind, sorgt die Hilfsmethode `csvEscape`. Sollte der Benutzer den Dialog abbrechen oder ein IO-Fehler auftreten, wird dies durch Rückgabe von `null` bzw. eine Exception-Ausgabe abgefangen.
 
+
+## Thread-Sicherheit und Race Conditions im Scheduler
+Während des Testens auf einem langsamen Windows-Laptop ist ein kritisches Thread-Sicherheitsproblem aufgetreten: Das GUI öffnete sich mehrfach und der Scheduler liess sich nicht sauber beenden. Die Ursache war eine Race Condition in der `Scheduler.java`.
+
+### Das Problem
+Die ursprüngliche `start()`-Methode prüfte zuerst, ob bereits ein Task läuft, und startete dann einen neuen:
+
+```java
+public void start() {
+    if (future != null && !future.isCancelled() && !future.isDone()) return;
+    future = scheduler.scheduleWithFixedDelay(...);
+}
+```
+Auf langsamen Systemen konnte zwischen der Prüfung (if) und dem Setzen (future = ...) genug Zeit vergehen, dass ein zweiter Aufruf durchkam. Dadurch starteten mehrere Tasks parallel, was zu mehreren GUI-Instanzen und nicht-terminierbaren Threads führte.
+### Die Lösung
+### 1. Synchronisation mit Lock-Objekt:
+```java
+private final Object lock = new Object();
+
+public void start() {
+    synchronized (lock) {
+        if (future != null && !future.isCancelled() && !future.isDone()) {
+            return;
+        }
+    future = scheduler.scheduleWithFixedDelay(...);
+    }
+}
+
+```
+Der `synchronized`-Block stellt sicher, dass immer nur ein Thread gleichzeitig diese Methode ausführen kann. Damit ist die "Prüfen-und-Setzen"-Operation atomar.
+### 2. Daemon-Threads:
+   javaprivate final ScheduledExecutorService scheduler =
+   Executors.newSingleThreadScheduledExecutor(r -> {
+   Thread t = new Thread(r, "PortCat-Scheduler");
+   t.setDaemon(true);  // Verhindert hängende JVM
+   return t;
+   });
+   Daemon-Threads verhindern, dass die JVM weiterläuft, nachdem das Hauptprogramm beendet wurde.
+### 3. Volatile-Keyword für Thread-Sichtbarkeit:
+   In Gui.java wurde die running-Variable als volatile markiert:
+   javaprivate volatile boolean running = false;
+   Das volatile-Keyword garantiert, dass Änderungen an dieser Variable sofort für alle Threads sichtbar sind (verhindert CPU-Cache-Probleme).
+### 4. OnCloseRequest Handler:
+   javastage.setOnCloseRequest(e -> {
+   if (scheduler != null) {
+   scheduler.terminate();
+   }
+   });
+   Damit wird der Scheduler garantiert beendet, wenn das Fenster geschlossen wird.
+   PowerShell State als Nummer statt Text
+   Ein weiteres Problem auf Windows war, dass alle TCP-Verbindungen als "UNKNOWN" (↔️) angezeigt wurden, obwohl sie eine klare Richtung haben sollten.
+   Das Problem
+   PowerShell's Get-NetTCPConnection gibt den Connection-State nicht als Text zurück, sondern als Nummer gemäss der .NET TcpState-Enumeration:
+   json{
+   "LocalAddress": "192.168.0.168",
+   "LocalPort": 65423,
+   "RemoteAddress": "52.112.122.45",
+   "RemotePort": 443,
+   "State": 5  // ← Nummer statt "Established"!
+   }
+   Der Code hatte zwar bereits eine mapState()-Funktion, die diese Nummern konvertiert, aber sie wurde nie aufgerufen. Stattdessen wurde die Nummer direkt als String an Connection übergeben.
+   Die Lösung
+   State-Mapping implementiert:
+   In ConnectionParser.java wird nun die Nummer korrekt konvertiert:
+   javaprivate Connection parseWinObject(String raw) {
+   // ...
+   String stateRaw = value(raw, "State");
+   String state = mapState(stateRaw);  // ← NEU: Konvertierung!
+   return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
+   }
+
+private static String mapState(String numeric) {
+return switch (numeric) {
+case "1" -> "Closed";
+case "2" -> "Listen";       // INCOMING
+case "3" -> "SYN-Sent";
+case "4" -> "SYN-Recv";
+case "5" -> "Established";  // meist OUTGOING
+case "6" -> "Fin-Wait-1";
+case "7" -> "Fin-Wait-2";
+case "8" -> "Close-Wait";
+case "9" -> "Closing";
+case "10" -> "Last-Ack";
+case "11" -> "Time-Wait";
+case "12" -> "Delete-TCB";
+default -> numeric;
+};
+}
+Die Mapping-Tabelle basiert auf der offiziellen .NET TcpState Enumeration.
+Verbindungsrichtung: INCOMING vs OUTGOING
+Die Bestimmung, ob eine Verbindung eingehend (INCOMING ⬅️) oder ausgehend (OUTGOING ➡️) ist, erfordert Analyse der Port-Nummern und States.
+Die Logik
+1. LISTEN-State:
+   javaif (stateUpper.contains("LISTEN")) {
+   return "INCOMING";  // Wir bieten einen Dienst an
+   }
+   Wenn ein Port im LISTEN-State ist, wartet der Computer auf eingehende Verbindungen.
+2. ESTABLISHED mit bekanntem Server-Port:
+   javaif (SERVER_PORTS.contains(remotePortNum)) {
+   return "OUTGOING";  // Wir verbinden uns zu einem Server
+   }
+
+if (SERVER_PORTS.contains(localPort)) {
+return "INCOMING";  // Jemand verbindet sich zu unserem Server
+}
+Bekannte Server-Ports (22, 80, 443, 3306, etc.) helfen bei der Richtungserkennung:
+
+Remote-Port 443: Wir surfen auf einer HTTPS-Website → OUTGOING
+Local-Port 22: Jemand verbindet sich zu unserem SSH-Server → INCOMING
+
+3. Heuristik für hohe Ports:
+   javaif (localPort > 49152 && remotePortNum < 49152) {
+   return "OUTGOING";
+   }
+   Ports über 49152 sind ephemere Ports (temporäre Client-Ports). Wenn unser Port hoch und der Remote-Port niedrig ist, sind wir wahrscheinlich der Client.
+   Beispiele
+   SzenarioLocal PortRemote PortRichtungBrowser → Google54321443 (HTTPS)OUTGOING ➡️SSH-Server2254322INCOMING ⬅️MySQL-Client543233306OUTGOING ➡️Web-Server8054324INCOMING ⬅️
+   PowerShell-Kompatibilität mit älteren Versionen
+   Beim ersten Fix schlug das PowerShell-Kommando mit folgender Fehlermeldung fehl:
+   ConvertTo-Json : Es wurde kein Parameter gefunden, der dem Parameternamen "AsArray" entspricht
+   Das Problem
+   Der Parameter -AsArray wurde erst in PowerShell 7.0 eingeführt. Viele Windows-Systeme haben aber noch PowerShell 5.1 (Windows PowerShell) installiert.
+   Die Lösung
+   Statt -AsArray verwenden wir die Array-Subexpression @(...), die in allen PowerShell-Versionen ab 2.0 funktioniert:
+
+```shell
+# Vorher (nur PowerShell 7+):
+Get-NetTCPConnection | Select-Object ... | ConvertTo-Json -Compress -AsArray
+
+#Nachher (ab PowerShell 2.0):
+@(Get-NetTCPConnection) | Select-Object ... | ConvertTo-Json -Compress
+
+```
+Das `@()` erzwingt, dass das Ergebnis als Array behandelt wird, selbst wenn nur ein Element vorhanden ist.
+### Performance-Timeout für langsame Systeme
+Auf schnellen Linux-Systemen läuft PortCat "blitzschnell". Auf einem langsamen Windows-Laptop zeigte es aber keine Verbindungen an.
+### Das Problem
+Der ursprüngliche Timeout für den PowerShell-Aufruf war auf 2 Sekunden gesetzt:
+
+```java
+boolean finished = proc.waitFor(2, TimeUnit.SECONDS);
+```
+Auf langsamen Laptops braucht PowerShell aber oft 5-10 Sekunden zum Starten und Ausführen des Befehls. Das Programm brach ab, bevor Daten kamen.
+### Die Lösung
+Timeout auf 10 Sekunden erhöht:
+
+```java
+javaboolean finished = proc.waitFor(10, TimeUnit.SECONDS);
+
+if (!finished) {
+System.err.println("TIMEOUT: PowerShell brauchte länger als 10 Sekunden!");
+proc.destroyForcibly();
+return list;
+}
+```
+
+### Debug-Ausgaben hinzugefügt:
+
+```java
+long startTime = System.currentTimeMillis();
+// ... PowerShell-Aufruf ...
+long duration = System.currentTimeMillis() - startTime;
+System.out.println("PowerShell-Aufruf dauerte: " + duration + "ms");
+```
+
+Dies hilft bei der Fehlersuche und zeigt, ob das System einfach langsam ist oder ein anderes Problem vorliegt.
+
+### Performance-Unterschied
+
+| System             | Beschreibung       |
+|--------------------|--------------------|
+| Linux (ss)         | ~50-100ms          |
+| Windows (schnell)  | ~700-1500ms        |
+| Windows (langsam)  | ~2000-5000ms       |
+
+PowerShell ist deutlich langsamer als das Linux `ss`-Kommando, da es eine vollständige PowerShell-Sitzung starten muss.
+
+
 ## Quellenverzeichnis
-| Thema | Beschreibung | Link |
-|---|---|---|
-| JavaFX | Einstieg in GUI-Entwicklung mit JavaFX | [Getting Started with JavaFX](https://openjfx.io/openjfx-docs/) |
-| Java allgemein | Offizielle Java-Dokumentation und Getting Started | [Java Documentation – Get Started](https://docs.oracle.com/en/java/) |
-| UI-Mockups (Figma) | Tool zum Erstellen von UI-Designs und Prototypen | [Figma](https://www.figma.com/) |
-| `netstat`-Befehl (Windows) | Dokumentation des `netstat`-Befehls unter Windows | [netstat – Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat) |
-| `Get-NetTCPConnection`-Befehl (Windows PowerShell) | Dokumentation des `Get-NetTCPConnection`-Cmdlets (Modul **NetTCPIP**) | [Get-NetTCPConnection – Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection?view=windowsserver2025-ps) |
-| RegEx & Java-Grundlagen | Tutorial zu Java inkl. RegEx und weiteren Themen | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp) |
-| KI-Unterstuetzung (ChatGPT, Perplexity) | KI-Tools fuer Fragen, Recherche und Code-Snippets | [ChatGPT](https://chat.openai.com/) · [Perplexity](https://www.perplexity.ai/) |
-| DNS-Auflösung (Java) | JavaDoc: `InetAddress` (z.B. Namensauflösung, Hostname/IP) | [InetAddress (Java SE 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html) |
+| Thema                                              | Beschreibung                                                           | Link                                                                                                                                                           |
+|----------------------------------------------------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| JavaFX                                             | Einstieg in GUI-Entwicklung mit JavaFX                                 | [Getting Started with JavaFX](https://openjfx.io/openjfx-docs/)                                                                                                |
+| Java allgemein                                     | Offizielle Java-Dokumentation und Getting Started                      | [Java Documentation – Get Started](https://docs.oracle.com/en/java/)                                                                                           |
+| UI-Mockups (Figma)                                 | Tool zum Erstellen von UI-Designs und Prototypen                       | [Figma](https://www.figma.com/)                                                                                                                                |
+| `netstat`-Befehl (Windows)                         | Dokumentation des `netstat`-Befehls unter Windows                      | [netstat – Microsoft Learn](https://learn.microsoft.com/de-de/windows-server/administration/windows-commands/netstat)                                          |
+| `Get-NetTCPConnection`-Befehl (Windows PowerShell) | Dokumentation des `Get-NetTCPConnection`-Cmdlets (Modul **NetTCPIP**)  | [Get-NetTCPConnection – Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/nettcpip/get-nettcpconnection?view=windowsserver2025-ps)          |
+| RegEx & Java-Grundlagen                            | Tutorial zu Java inkl. RegEx und weiteren Themen                       | [Java Tutorial (W3Schools)](https://www.w3schools.com/java/default.asp)                                                                                        |
+| KI-Unterstuetzung (ChatGPT, Perplexity)            | KI-Tools fuer Fragen, Recherche und Code-Snippets                      | [ChatGPT](https://chat.openai.com/) · [Perplexity](https://www.perplexity.ai/)                                                                                 |
+| DNS-Auflösung (Java)                               | JavaDoc: `InetAddress` (z.B. Namensauflösung, Hostname/IP)             | [InetAddress (Java SE 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/net/InetAddress.html)                                             |
+| Thread‑Sicherheit in Java                          | Offizielle Dokumentation zu `synchronized`, `volatile` und Concurrency | [Java Concurrency Tutorial](https://docs.oracle.com/javase/tutorial/essential/concurrency/)                                                                    |
+| .NET `TcpState`‑Enumeration                        | Offizielle Dokumentation der TCP‑State‑Nummern                         | [TcpState Enum – Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/api/system.net.networkinformation.tcpstate)                                         |
+| PowerShell‑Versionsunterschiede                    | Unterschiede zwischen Windows PowerShell 5.1 und PowerShell 7+         | [Migrating from Windows PowerShell 5.1](https://learn.microsoft.com/en-us/powershell/scripting/whats-new/migrating-from-windows-powershell-51-to-powershell-7) |
+| IANA Port‑Numbers                                  | Offizielle Liste der bekannten Port‑Nummern                            | [Service Name and Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/)                                                          |
+| KI‑Unterstützung (Claude)                          | Claude AI für Code‑Review und Debugging                                | [Claude.ai](https://claude.ai/)                                                                                                                                |
