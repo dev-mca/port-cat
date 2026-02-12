@@ -39,43 +39,78 @@ public class ConnectionParser {
     ===================================================================== */
     private List<Connection> parseWindows() {
         List<Connection> list = new ArrayList<>();
+        Process proc = null;
         try {
-            Process proc = new ProcessBuilder(POWERSHELL_CMD)
+            long startTime = System.currentTimeMillis();
+
+            proc = new ProcessBuilder(POWERSHELL_CMD)
                     .redirectErrorStream(true)
                     .start();
 
             String json = readAll(proc);
 
-            // wartet max. 2s, danach gehts weiter (optional: bei Timeout proc.destroyForcibly())
-            boolean finished = proc.waitFor(2, TimeUnit.SECONDS);
+            // ERHÖHTES TIMEOUT: 10 Sekunden für langsame Systeme
+            boolean finished = proc.waitFor(10, TimeUnit.SECONDS);
+
+            long duration = System.currentTimeMillis() - startTime;
+            System.out.println("PowerShell-Aufruf dauerte: " + duration + "ms");
+
             if (!finished) {
+                System.err.println("TIMEOUT: PowerShell brauchte länger als 10 Sekunden!");
                 proc.destroyForcibly();
-                return list; // oder trotzdem versuchen weiter zu parsen
+                return list;
             }
 
-            if (json.length() < 2) return list;
+            int exitCode = proc.exitValue();
+            if (exitCode != 0) {
+                System.err.println("PowerShell Exit-Code: " + exitCode);
+                System.err.println("Output: " + json);
+                return list;
+            }
+
+            if (json.length() < 2) {
+                System.err.println("PowerShell lieferte keine Daten: '" + json + "'");
+                return list;
+            }
 
             json = json.trim();
+
+            // Debug-Ausgabe für erste Zeichen
+            System.out.println("JSON erste 50 Zeichen: " + json.substring(0, Math.min(50, json.length())));
+
             if (json.startsWith("[")) {
                 json = json.substring(1, json.length() - 1);
             } else if (json.startsWith("{")) {
-                // ok
+                // ok, einzelnes Objekt
             } else {
+                System.err.println("Unerwartetes JSON-Format: " + json.substring(0, Math.min(100, json.length())));
                 return list;
             }
 
             String[] objects = json.split("\\},\\{");
+            System.out.println("Anzahl Verbindungen gefunden: " + objects.length);
+
             for (String obj : objects) {
                 obj = obj.replace("{", "").replace("}", "");
                 Connection c = parseWinObject(obj);
                 if (c != null) list.add(c);
             }
-        } catch (IOException | InterruptedException e) {
+
+        } catch (IOException e) {
+            System.err.println("IOException beim PowerShell-Aufruf: " + e.getMessage());
             e.printStackTrace();
-            Thread.currentThread().interrupt(); // nur bei InterruptedException sinnvoll, schadet hier aber nicht
+        } catch (InterruptedException e) {
+            System.err.println("InterruptedException beim PowerShell-Aufruf");
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
+        } finally {
+            if (proc != null && proc.isAlive()) {
+                proc.destroyForcibly();
+            }
         }
         return list;
     }
+
     private Connection parseWinObject(String raw) {
         try {
             String localAddr  = value(raw, "LocalAddress");
@@ -89,6 +124,7 @@ public class ConnectionParser {
 
             return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
         } catch (Exception ex) {
+            System.err.println("Fehler beim Parsen von: " + raw);
             return null;
         }
     }

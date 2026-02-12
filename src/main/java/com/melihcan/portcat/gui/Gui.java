@@ -39,7 +39,7 @@ public class Gui extends Application {
     private Scheduler scheduler;
     private Label output;
     private final Label placeholder = new Label();
-    private boolean running = false;
+    private volatile boolean running = false;  // VOLATILE für Thread-Sicherheit!
     private int lastActiveCount = -1;
     private Timeline flashTimeline;
     private Timeline greenPulse;
@@ -157,6 +157,14 @@ public class Gui extends Application {
 
         //scheduler instanziieren
         scheduler = new Scheduler(this);
+
+        // Schließen-Handler hinzufügen
+        stage.setOnCloseRequest(e -> {
+            System.out.println("Fenster wird geschlossen - beende Scheduler");
+            if (scheduler != null) {
+                scheduler.terminate();
+            }
+        });
     }
 
     /* ---------------------------------------------------
@@ -165,6 +173,7 @@ public class Gui extends Application {
 
     @Override
     public void stop() {
+        System.out.println("Application.stop() aufgerufen");
         if (scheduler != null) {
             scheduler.terminate();
         }
@@ -241,6 +250,7 @@ public class Gui extends Application {
         running = !running;
 
         if (running) {
+            System.out.println("Starte Scheduler...");
             scheduler.start();
             startStopBtn.setText("Stop");
             startStopBtn.getStyleClass().remove("startState");
@@ -248,6 +258,7 @@ public class Gui extends Application {
                 startStopBtn.getStyleClass().add("stopState");
             }
         } else {
+            System.out.println("Stoppe Scheduler...");
             scheduler.stop();
             startStopBtn.setText("Start");
             startStopBtn.getStyleClass().remove("stopState");

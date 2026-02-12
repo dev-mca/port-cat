@@ -10,33 +10,60 @@ import java.util.concurrent.*;
 public class Scheduler {
 
     private final ScheduledExecutorService scheduler =
-            Executors.newSingleThreadScheduledExecutor();
+            Executors.newSingleThreadScheduledExecutor(r -> {
+                Thread t = new Thread(r, "PortCat-Scheduler");
+                t.setDaemon(true);  // Daemon-Thread verhindert, dass App hängt
+                return t;
+            });
 
-    private ScheduledFuture<?> future;   // <- merken!
+    private ScheduledFuture<?> future;
     private final Gui gui;
+    private final Object lock = new Object();  // Für Thread-Sicherheit
 
     public Scheduler(Gui gui) {
         this.gui = gui;
     }
 
     public void start() {
-        // nicht mehrfach starten
-        if (future != null && !future.isCancelled() && !future.isDone()) return;
+        synchronized (lock) {
+            // Prüfen ob bereits läuft
+            if (future != null && !future.isCancelled() && !future.isDone()) {
+                System.out.println("Scheduler läuft bereits!");
+                return;
+            }
 
-        future = scheduler.scheduleWithFixedDelay(() -> {
-            List<Connection> daten = gui.ladeDaten();
-            Platform.runLater(() -> gui.updateUi(daten));
-        }, 0, 1, TimeUnit.SECONDS);
+            future = scheduler.scheduleWithFixedDelay(() -> {
+                try {
+                    List<Connection> daten = gui.ladeDaten();
+                    Platform.runLater(() -> gui.updateUi(daten));
+                } catch (Exception e) {
+                    System.err.println("Fehler beim Laden der Verbindungen: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }, 0, 1, TimeUnit.SECONDS);
+
+            System.out.println("Scheduler gestartet");
+        }
     }
 
     public void stop() {
-        if (future != null) {
-            future.cancel(false);   // Task stoppen, Executor bleibt am Leben
-            future = null;
+        synchronized (lock) {
+            if (future != null) {
+                future.cancel(false);
+                future = null;
+                System.out.println("Scheduler gestoppt");
+            }
         }
     }
 
     public void terminate() {
-        scheduler.shutdownNow();    // nur beim App-Ende
+        synchronized (lock) {
+            if (future != null) {
+                future.cancel(true);
+                future = null;
+            }
+        }
+        scheduler.shutdownNow();
+        System.out.println("Scheduler terminiert");
     }
 }
