@@ -238,87 +238,117 @@ Der `synchronized`-Block stellt sicher, dass immer nur ein Thread gleichzeitig d
    javaprivate volatile boolean running = false;
    Das volatile-Keyword garantiert, dass Änderungen an dieser Variable sofort für alle Threads sichtbar sind (verhindert CPU-Cache-Probleme).
 ### 4. OnCloseRequest Handler:
-   javastage.setOnCloseRequest(e -> {
+```java
+stage.setOnCloseRequest(e -> {
    if (scheduler != null) {
    scheduler.terminate();
    }
    });
-   Damit wird der Scheduler garantiert beendet, wenn das Fenster geschlossen wird.
-   PowerShell State als Nummer statt Text
+```   
+Damit wird der Scheduler garantiert beendet, wenn das Fenster geschlossen wird.
+
+### PowerShell State als Nummer statt Text
    Ein weiteres Problem auf Windows war, dass alle TCP-Verbindungen als "UNKNOWN" (↔️) angezeigt wurden, obwohl sie eine klare Richtung haben sollten.
-   Das Problem
+   
+### Das Problem
    PowerShell's Get-NetTCPConnection gibt den Connection-State nicht als Text zurück, sondern als Nummer gemäss der .NET TcpState-Enumeration:
-   json{
+
+```json{
    "LocalAddress": "192.168.0.168",
    "LocalPort": 65423,
    "RemoteAddress": "52.112.122.45",
    "RemotePort": 443,
    "State": 5  // ← Nummer statt "Established"!
    }
+```
    Der Code hatte zwar bereits eine mapState()-Funktion, die diese Nummern konvertiert, aber sie wurde nie aufgerufen. Stattdessen wurde die Nummer direkt als String an Connection übergeben.
    Die Lösung
    State-Mapping implementiert:
    In ConnectionParser.java wird nun die Nummer korrekt konvertiert:
-   javaprivate Connection parseWinObject(String raw) {
+
+```java
+private Connection parseWinObject(String raw) {
    // ...
    String stateRaw = value(raw, "State");
    String state = mapState(stateRaw);  // ← NEU: Konvertierung!
    return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
    }
+   
 
 private static String mapState(String numeric) {
-return switch (numeric) {
-case "1" -> "Closed";
-case "2" -> "Listen";       // INCOMING
-case "3" -> "SYN-Sent";
-case "4" -> "SYN-Recv";
-case "5" -> "Established";  // meist OUTGOING
-case "6" -> "Fin-Wait-1";
-case "7" -> "Fin-Wait-2";
-case "8" -> "Close-Wait";
-case "9" -> "Closing";
-case "10" -> "Last-Ack";
-case "11" -> "Time-Wait";
-case "12" -> "Delete-TCB";
-default -> numeric;
-};
+    return switch (numeric) {
+        case "1" -> "Closed";
+        case "2" -> "Listen";       // INCOMING
+        case "3" -> "SYN-Sent";
+        case "4" -> "SYN-Recv";
+        case "5" -> "Established";  // meist OUTGOING
+        case "6" -> "Fin-Wait-1";
+        case "7" -> "Fin-Wait-2";
+        case "8" -> "Close-Wait";
+        case "9" -> "Closing";
+        case "10" -> "Last-Ack";
+        case "11" -> "Time-Wait";
+        case "12" -> "Delete-TCB";
+        default -> numeric;
+    };
 }
+
+```
 Die Mapping-Tabelle basiert auf der offiziellen .NET TcpState Enumeration.
 Verbindungsrichtung: INCOMING vs OUTGOING
 Die Bestimmung, ob eine Verbindung eingehend (INCOMING ⬅️) oder ausgehend (OUTGOING ➡️) ist, erfordert Analyse der Port-Nummern und States.
 Die Logik
 1. LISTEN-State:
-   javaif (stateUpper.contains("LISTEN")) {
-   return "INCOMING";  // Wir bieten einen Dienst an
+   ```java
+    if (stateUpper.contains("LISTEN")) {
+        return "INCOMING";  // Wir bieten einen Dienst an
    }
+   ```
    Wenn ein Port im LISTEN-State ist, wartet der Computer auf eingehende Verbindungen.
+
+
 2. ESTABLISHED mit bekanntem Server-Port:
-   javaif (SERVER_PORTS.contains(remotePortNum)) {
-   return "OUTGOING";  // Wir verbinden uns zu einem Server
+   ```java
+   if (SERVER_PORTS.contains(remotePortNum)) {
+        return "OUTGOING";  // Wir verbinden uns zu einem Server
    }
 
-if (SERVER_PORTS.contains(localPort)) {
-return "INCOMING";  // Jemand verbindet sich zu unserem Server
-}
+    if (SERVER_PORTS.contains(localPort)) {
+        return "INCOMING";  // Jemand verbindet sich zu unserem Server
+    }
 Bekannte Server-Ports (22, 80, 443, 3306, etc.) helfen bei der Richtungserkennung:
 
 Remote-Port 443: Wir surfen auf einer HTTPS-Website → OUTGOING
 Local-Port 22: Jemand verbindet sich zu unserem SSH-Server → INCOMING
 
 3. Heuristik für hohe Ports:
-   javaif (localPort > 49152 && remotePortNum < 49152) {
-   return "OUTGOING";
+   ```java
+   if (localPort > 49152 && remotePortNum < 49152) {
+    return "OUTGOING";
    }
+   ```
    Ports über 49152 sind ephemere Ports (temporäre Client-Ports). Wenn unser Port hoch und der Remote-Port niedrig ist, sind wir wahrscheinlich der Client.
-   Beispiele
-   SzenarioLocal PortRemote PortRichtungBrowser → Google54321443 (HTTPS)OUTGOING ➡️SSH-Server2254322INCOMING ⬅️MySQL-Client543233306OUTGOING ➡️Web-Server8054324INCOMING ⬅️
-   PowerShell-Kompatibilität mit älteren Versionen
+   Beispiele:
+
+| Szenario         | Local Port | Remote Port | Hinweis/Protokoll | Richtung    |
+|------------------|-----------:|------------:|-------------------|-------------|
+| Browser → Google |       5432 |        1443 | HTTPS             | OUTGOING ➡️ |
+| SSH‑Server       |       2254 |         322 | –                 | INCOMING ⬅️ |
+| MySQL‑Client     |       5432 |        3330 | –                 | OUTGOING ➡️ |
+| Web‑Server       |       8054 |         324 | –                 | INCOMING ⬅️ |
+
+### PowerShell-Kompatibilität mit älteren Versionen
    Beim ersten Fix schlug das PowerShell-Kommando mit folgender Fehlermeldung fehl:
-   ConvertTo-Json : Es wurde kein Parameter gefunden, der dem Parameternamen "AsArray" entspricht
-   Das Problem
-   Der Parameter -AsArray wurde erst in PowerShell 7.0 eingeführt. Viele Windows-Systeme haben aber noch PowerShell 5.1 (Windows PowerShell) installiert.
+
+```   
+ConvertTo-Json : Es wurde kein Parameter gefunden, der dem Parameternamen "AsArray" entspricht
+```
+
+### Das Problem
+   Der Parameter `-AsArray` wurde erst in PowerShell 7.0 eingeführt. Viele Windows-Systeme haben aber noch PowerShell 5.1 (Windows PowerShell) installiert.
    Die Lösung
-   Statt -AsArray verwenden wir die Array-Subexpression @(...), die in allen PowerShell-Versionen ab 2.0 funktioniert:
+   Statt `-AsArray` verwenden wir die Array-Subexpression `@(...)`, die in allen PowerShell-Versionen ab 2.0 funktioniert:
+
 
 ```shell
 # Vorher (nur PowerShell 7+):
