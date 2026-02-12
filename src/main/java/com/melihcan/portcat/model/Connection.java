@@ -37,32 +37,28 @@ public class Connection {
             27017      // MongoDB
     );
 
-    // Der Konstruktor
     public Connection(String localAddress, int localPort, String remoteAddress, String remotePort, String state) {
         this.localAddress = localAddress;
         this.localPort = localPort;
         this.remoteAddress = remoteAddress + " " + resolveDns(remoteAddress);
-        this.remotePort = PortResolver.resolvePort(remotePort); // Port auflösen!
+        this.remotePort = PortResolver.resolvePort(remotePort);
         this.state = state;
     }
 
-    // DNS-Auflösung
     private static String resolveDns(String ipAddress) {
         try {
             InetAddress address = InetAddress.getByName(ipAddress);
             String hostname = address.getHostName();
 
-            // Falls gleich wie IP, dann nicht auflösbar
             if (hostname.equals(ipAddress)) {
                 return "";
             }
             return "(" + hostname + ")";
         } catch (UnknownHostException e) {
-            return ""; // Falls Fehler, leerer String
+            return "";
         }
     }
 
-    // Getter-Methoden
     public String getLocalAddress() { return localAddress; }
     public int getLocalPort() { return localPort; }
     public String getRemoteAddress() { return remoteAddress; }
@@ -70,70 +66,66 @@ public class Connection {
     public String getState() { return state; }
 
     /**
-     * Bestimmt die Richtung der Verbindung mit DEBUG-Ausgaben
+     * Bestimmt die Richtung der Verbindung:
+     *
+     * INCOMING: LISTEN oder ESTABLISHED mit lokalem Server-Port
+     * OUTGOING: ESTABLISHED mit remote Server-Port
+     * UNKNOWN: Nicht eindeutig zuordenbar
      */
     public String getDirection() {
-        if (state == null) {
-            System.out.println("DEBUG: State ist null → UNKNOWN");
+        if (state == null || state.trim().isEmpty()) {
             return "UNKNOWN";
         }
 
-        String stateUpper = state.toUpperCase();
-        System.out.println("DEBUG Direction Check: State=" + state + ", LocalPort=" + localPort + ", RemotePort=" + remotePort);
+        String stateUpper = state.toUpperCase().trim();
 
-        // 1. LISTEN = immer INCOMING (wir bieten einen Dienst an)
+        // 1. LISTEN = immer INCOMING
         if (stateUpper.contains("LISTEN")) {
-            System.out.println("  → INCOMING (LISTEN)");
             return "INCOMING";
         }
 
         // 2. ESTABLISHED = schaue welche Seite der Server ist
         if (stateUpper.contains("ESTABLISHED")) {
             try {
-                // Remote-Port extrahieren (z.B. "443 (HTTPS)" → 443)
-                String remotePortStr = remotePort.split(" ")[0].trim();
-                System.out.println("  → Extrahierter Remote-Port String: '" + remotePortStr + "'");
+                // Remote-Port extrahieren (z.B. "443 (HTTPS)" → "443")
+                String remotePortStr = remotePort;
+                if (remotePortStr == null) return "UNKNOWN";
+
+                if (remotePortStr.contains(" ")) {
+                    remotePortStr = remotePortStr.split(" ")[0];
+                }
+                if (remotePortStr.contains("(")) {
+                    remotePortStr = remotePortStr.split("\\(")[0].trim();
+                }
 
                 int remotePortNum = Integer.parseInt(remotePortStr);
-                System.out.println("  → Remote-Port Nummer: " + remotePortNum);
 
                 // Wenn REMOTE-Port ein bekannter Server-Port ist
                 // → WIR haben uns zu einem Server verbunden → OUTGOING
                 if (SERVER_PORTS.contains(remotePortNum)) {
-                    System.out.println("  → OUTGOING (Remote-Port " + remotePortNum + " ist Server-Port)");
                     return "OUTGOING";
                 }
 
                 // Wenn LOCAL-Port ein bekannter Server-Port ist
                 // → Jemand hat sich zu UNSEREM Server verbunden → INCOMING
                 if (SERVER_PORTS.contains(localPort)) {
-                    System.out.println("  → INCOMING (Local-Port " + localPort + " ist Server-Port)");
                     return "INCOMING";
                 }
 
                 // Heuristik: High Ports (>49152) sind meist Client-Ports
-                // Wenn unser Port hoch ist und der Remote niedrig → OUTGOING
                 if (localPort > 49152 && remotePortNum < 49152) {
-                    System.out.println("  → OUTGOING (Heuristik: Local high, Remote low)");
                     return "OUTGOING";
                 }
 
-                // Wenn unser Port niedrig ist und der Remote hoch → INCOMING
                 if (localPort < 49152 && remotePortNum > 49152) {
-                    System.out.println("  → INCOMING (Heuristik: Local low, Remote high)");
                     return "INCOMING";
                 }
 
-                System.out.println("  → UNKNOWN (keine Regel traf zu)");
-
-            } catch (Exception e) {
-                System.err.println("  → FEHLER beim Parsen: " + e.getMessage());
-                e.printStackTrace();
+            } catch (NumberFormatException e) {
+                System.err.println("Fehler beim Parsen von Remote-Port: " + remotePort);
             }
         }
 
-        // Andere States (CLOSE-WAIT, TIME-WAIT, etc.) oder unklare Situation
-        System.out.println("  → UNKNOWN (State war nicht LISTEN oder ESTABLISHED)");
         return "UNKNOWN";
     }
 

@@ -19,14 +19,11 @@ public class ConnectionParser {
             System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("win");
 
     /* -------- Kommandos -------- */
-    // GEÄNDERT: -AsArray entfernt für Kompatibilität mit älteren PowerShell-Versionen
-    // @(...) erzwingt Array-Output auch in älteren PowerShell-Versionen
     private static final String[] POWERSHELL_CMD = {"powershell.exe", "-NoProfile", "-Command",
             "@(Get-NetTCPConnection) | Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State | ConvertTo-Json -Compress"};
 
-    // zuerst versuchen wir die JSON-Option (-J). Scheitert das, nehmen wir Text.
-    private static final String SS_JSON = "ss -tnH -J";   // -u für UDP später | JSON (requires iproute2 ≥ 5.9)
-    private static final String SS_TEXT = "ss -tanH";      // Text-Fallback
+    private static final String SS_JSON = "ss -tnH -J";
+    private static final String SS_TEXT = "ss -tanH";
 
     /* =====================================================================
        Öffentliche API
@@ -50,7 +47,6 @@ public class ConnectionParser {
 
             String json = readAll(proc);
 
-            // ERHÖHTES TIMEOUT: 10 Sekunden für langsame Systeme
             boolean finished = proc.waitFor(10, TimeUnit.SECONDS);
 
             long duration = System.currentTimeMillis() - startTime;
@@ -76,15 +72,11 @@ public class ConnectionParser {
 
             json = json.trim();
 
-            // Debug-Ausgabe für erste Zeichen
             System.out.println("JSON erste 100 Zeichen: " + json.substring(0, Math.min(100, json.length())));
 
-            // GEÄNDERT: Besseres Handling für einzelnes Objekt vs. Array
             if (json.startsWith("[")) {
-                // Array von Objekten
                 json = json.substring(1, json.length() - 1);
             } else if (json.startsWith("{") && !json.contains("},{")) {
-                // Einzelnes Objekt - direkt parsen
                 Connection c = parseWinObject(json.replace("{", "").replace("}", ""));
                 if (c != null) list.add(c);
                 System.out.println("Anzahl Verbindungen gefunden: 1");
@@ -127,7 +119,10 @@ public class ConnectionParser {
             int localPort  = Integer.parseInt(value(raw, "LocalPort"));
             String remoteAddr = value(raw, "RemoteAddress");
             String remotePort = value(raw, "RemotePort");
-            String state = value(raw, "State");
+            String stateRaw = value(raw, "State");
+
+            // WICHTIG: State von Nummer zu Text konvertieren!
+            String state = mapState(stateRaw);
 
             return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
         } catch (Exception ex) {
@@ -143,15 +138,12 @@ public class ConnectionParser {
     private List<Connection> parseLinux() {
         List<Connection> list;
 
-        // 1) JSON-Versuch
         list = trySsJson();
         if (!list.isEmpty()) return list;
 
-        // 2) Text-Fallback
         return trySsText();
     }
 
-    /* ---------- 1) ss … -J ------------------------------------------------ */
     private List<Connection> trySsJson() {
         List<Connection> list = new ArrayList<>();
         try {
@@ -159,24 +151,8 @@ public class ConnectionParser {
                     .redirectErrorStream(true).start();
 
             String json = readAll(proc).trim();
-            if (json.isEmpty() || json.charAt(0) != '{') return list; // kein JSON → alte Version
+            if (json.isEmpty() || json.charAt(0) != '{') return list;
 
-            /*
-              JSON-Schema von ss -J ist:
-              {
-                 "tcp": [
-                   {"state":"ESTAB",
-                    "local_addr":"192.168.0.2",
-                    "local_port":"22",
-                    "remote_addr":"192.168.0.10",
-                    "remote_port":"56544",
-                    …},
-                    …
-                 ]
-              }
-             */
-
-            // ganz leichter Parser, kein externes JSON-Lib benötigt:
             String inner = json.substring(json.indexOf('[') + 1, json.lastIndexOf(']'));
             String[] objects = inner.split("\\},\\{");
             for (String obj : objects) {
@@ -189,7 +165,7 @@ public class ConnectionParser {
                 int    localPort  = Integer.parseInt(value(obj, "local_port"));
                 String remoteAddr = value(obj, "remote_addr");
                 String remotePort = value(obj, "remote_port");
-                state = stateFromName(state); // "ESTAB", "LISTEN" …
+                state = stateFromName(state);
 
                 list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
             }
@@ -197,7 +173,6 @@ public class ConnectionParser {
         return list;
     }
 
-    /* ---------- 2) ss … -tanH  (Text) ------------------------------------ */
     private List<Connection> trySsText() {
         List<Connection> list = new ArrayList<>();
         try {
@@ -206,13 +181,6 @@ public class ConnectionParser {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 
-            /*
-              Beispielausgabe (ss -tanH):
-              LISTEN 0      128         0.0.0.0:22        0.0.0.0:*
-              ESTAB  0      0       192.168.0.2:22    192.168.0.10:56544
-              …
-             */
-
             Pattern p = Pattern.compile(
                     "(\\w+)\\s+\\d+\\s+\\d+\\s+([^:]+):(\\d+)\\s+([^:]+):(\\S+)");
             String line;
@@ -220,7 +188,7 @@ public class ConnectionParser {
                 Matcher m = p.matcher(line.trim());
                 if (!m.matches()) continue;
 
-                String state      = stateFromName(m.group(1));       // LISTEN, ESTAB …
+                String state      = stateFromName(m.group(1));
                 String localAddr  = m.group(2);
                 if (skip(localAddr)) continue;
                 if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
@@ -245,7 +213,6 @@ public class ConnectionParser {
         return sb.toString();
     }
 
-    // extrahiert "Key":"Value" oder "Key":number (sehr einfacher Parser)
     private static String value(String jsonObject, String key) {
         String k = "\"" + key + "\":";
         int idx = jsonObject.indexOf(k);
@@ -260,24 +227,32 @@ public class ConnectionParser {
         return "::".equals(addr) || "::1".equals(addr) || "0.0.0.0".equals(addr);
     }
 
+    /**
+     * WICHTIG: PowerShell gibt State als Nummer zurück!
+     * Quelle: https://docs.microsoft.com/en-us/dotnet/api/system.net.networkinformation.tcpstate
+     */
     private static String mapState(String numeric) {
         return switch (numeric) {
-            case "5" -> "Established";
-            case "2" -> "Listening";
             case "1" -> "Closed";
+            case "2" -> "Listen";           // ← INCOMING!
             case "3" -> "SYN-Sent";
             case "4" -> "SYN-Recv";
-            case "8" -> "Fin-Wait-1";
-            case "9" -> "Fin-Wait-2";
+            case "5" -> "Established";      // ← OUTGOING (meistens)
+            case "6" -> "Fin-Wait-1";
+            case "7" -> "Fin-Wait-2";
+            case "8" -> "Close-Wait";
+            case "9" -> "Closing";
+            case "10" -> "Last-Ack";
             case "11" -> "Time-Wait";
-            default -> numeric;
+            case "12" -> "Delete-TCB";
+            default -> numeric;  // Falls es doch schon Text ist
         };
     }
 
     private static String stateFromName(String name) {
         return switch (name) {
             case "ESTAB" -> "Established";
-            case "LISTEN" -> "Listening";
+            case "LISTEN" -> "Listen";
             case "CLOSE-WAIT" -> "Close-Wait";
             case "TIME-WAIT" -> "Time-Wait";
             default -> name;
