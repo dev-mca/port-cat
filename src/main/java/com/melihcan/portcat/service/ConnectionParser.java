@@ -19,9 +19,10 @@ public class ConnectionParser {
             System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("win");
 
     /* -------- Kommandos -------- */
-    private static final String[] POWERSHELL_CMD = {"powershell.exe", "-NoProfile", "-Command", "Get-NetTCPConnection | " +
-            "Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State | " +
-            "ConvertTo-Json -Compress -AsArray"};
+    // GEÄNDERT: -AsArray entfernt für Kompatibilität mit älteren PowerShell-Versionen
+    // @(...) erzwingt Array-Output auch in älteren PowerShell-Versionen
+    private static final String[] POWERSHELL_CMD = {"powershell.exe", "-NoProfile", "-Command",
+            "@(Get-NetTCPConnection) | Select-Object LocalAddress,LocalPort,RemoteAddress,RemotePort,State | ConvertTo-Json -Compress"};
 
     // zuerst versuchen wir die JSON-Option (-J). Scheitert das, nehmen wir Text.
     private static final String SS_JSON = "ss -tnH -J";   // -u für UDP später | JSON (requires iproute2 ≥ 5.9)
@@ -76,13 +77,19 @@ public class ConnectionParser {
             json = json.trim();
 
             // Debug-Ausgabe für erste Zeichen
-            System.out.println("JSON erste 50 Zeichen: " + json.substring(0, Math.min(50, json.length())));
+            System.out.println("JSON erste 100 Zeichen: " + json.substring(0, Math.min(100, json.length())));
 
+            // GEÄNDERT: Besseres Handling für einzelnes Objekt vs. Array
             if (json.startsWith("[")) {
+                // Array von Objekten
                 json = json.substring(1, json.length() - 1);
-            } else if (json.startsWith("{")) {
-                // ok, einzelnes Objekt
-            } else {
+            } else if (json.startsWith("{") && !json.contains("},{")) {
+                // Einzelnes Objekt - direkt parsen
+                Connection c = parseWinObject(json.replace("{", "").replace("}", ""));
+                if (c != null) list.add(c);
+                System.out.println("Anzahl Verbindungen gefunden: 1");
+                return list;
+            } else if (!json.startsWith("{")) {
                 System.err.println("Unerwartetes JSON-Format: " + json.substring(0, Math.min(100, json.length())));
                 return list;
             }
@@ -125,6 +132,7 @@ public class ConnectionParser {
             return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
         } catch (Exception ex) {
             System.err.println("Fehler beim Parsen von: " + raw);
+            ex.printStackTrace();
             return null;
         }
     }
