@@ -15,7 +15,7 @@
 PortCat liest regelmässig die Ausgabe eines nativen Befehls auf entweder Windows oder Linux aus und zeigt zu jeder aktiven Verbindung wichtige Informationen an:
 
 - 💻 **Lokale & entfernte IP-Adresse**
-- 🔌 **Ports ink. Name**
+- 🔌 **Ports inkl. Name**
 - 🌐 **TCP-Protokoll**
 - 🧭 **Richtung** (eingehend/ausgehend)
 - 📡 **DNS-Name** (falls auflösbar)
