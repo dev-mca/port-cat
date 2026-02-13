@@ -12,11 +12,10 @@
 
 ## 🚀 Beschreibung
 
-PortCat liest regelmässig die Ausgabe des **`netstat`-Befehls** aus und zeigt zu jeder aktiven Verbindung wichtige Informationen an:
+PortCat liest regelmässig die Ausgabe eines nativen Befehls auf entweder Windows oder Linux aus und zeigt zu jeder aktiven Verbindung wichtige Informationen an:
 
-- 🕒 **Zeitstempel** – Wann wurde die Verbindung erkannt
 - 💻 **Lokale & entfernte IP-Adresse**
-- 🔌 **Ports**
+- 🔌 **Ports ink. Name**
 - 🌐 **TCP-Protokoll**
 - 🧭 **Richtung** (eingehend/ausgehend)
 - 📡 **DNS-Name** (falls auflösbar)
@@ -38,8 +37,8 @@ Wenn man sich erstmals mit Netzwerken beschäftigt, sind komplexe Tools wie **Wi
 PortCat bietet eine **einfache und anschauliche Einstiegslösung**, um zu lernen:
 
 - Was IP-Adressen und Ports bedeuten
-- Welche Programme mit welchen Servern sprechen
 - Wie Netzwerkaktivität in Echtzeit aussieht
+- Wie sich **sein eigener Rechner** mit dem Internet verbindet
 
 Für mich persönlich ist PortCat ausserdem ein Lernprojekt, um meine **Kenntnisse in Java, JavaFX und Netzwerktechnik** zu vertiefen.
 
@@ -47,8 +46,8 @@ Für mich persönlich ist PortCat ausserdem ein Lernprojekt, um meine **Kenntnis
 
 ## ⚙️ Funktionsweise
 
-1. PortCat führt regelmässig einen Netzwerk-Befehl aus (z. B. alle paar Sekunden).
-2. Die Ergebnisse werden mit dem vorherigen Stand verglichen.
+1. PortCat führt regelmässig einen Netzwerk-Befehl aus.
+2. Die Ergebnisse werden korrekt verarbeitet (parsing).
 3. Neue, beendete oder geänderte Verbindungen werden erkannt und **live visualisiert**.
 
 So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte Berechtigungen oder komplizierte Filter.
@@ -65,10 +64,8 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 
 ## 🔮 Geplante Features
 
-- 📊 Historienansicht (Verlauf der Verbindungen)
 - 🔍 Filter nach Prozessname oder IP
 - 🎨 Anpassbare Themes
-- 📁 Exportfunktion (CSV oder JSON)
 
 ---
 
