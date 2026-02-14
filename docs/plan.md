@@ -37,13 +37,13 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 **Tagesplanung**
 
-| Tag | Zeitfenster | Aufgabe(n) | Status |
-|-----|-------------|-----------|--------|
-| Mo  | 09:00–14:00 | Kickoff| Erledigt  |
-| Di  | 07:30-17:00 | Repo sauber einrichten    |Erledigt        |
-| Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen          |  Erledigt    |
-| Do  | 07:30-17:00 |Output korrekt parsen |    Erledigt    |
-| Fr  | 07:30-17:00            |      GUI Erstellen     |    Erledigt    |
+| Tag | Zeitfenster | Aufgabe(n)                                                    | Status   |
+|-----|-------------|---------------------------------------------------------------|----------|
+| Mo  | 09:00–14:00 | Kickoff                                                       | Erledigt |
+| Di  | 07:30-17:00 | Repo sauber einrichten                                        | Erledigt |
+| Mi  | 07:30-17:00 | Windows commands in Java ausführen und Output anzeigen lassen | Erledigt |
+| Do  | 07:30-17:00 | Output korrekt parsen                                         | Erledigt |
+| Fr  | 07:30-17:00 | GUI Erstellen                                                 | Erledigt |
 
 ---
 
@@ -59,65 +59,65 @@ Ich halte mich an das "Skateboard bis Cabriolet" Modell und werde somit versuche
 
 **Tagesplanung**
 
-| Tag | Zeitfenster | Aufgabe(n) | Status |
-|-----|-------------|-----------|--------|
-| Mo  | 09:00–14:00 | Feedback von Coach einholen| Erledigt        |
-| Di  | 07:30-17:00 |  Cross-Plattform einrichten für Linux   |  Erledigt      |
-| Mi  | 07:30-17:00 |  GUI neu konstruieren mit Border-Pane          |  Erledigt    |
-| Do  | 07:30-17:00 |Timer für Multithreadingprozess implementieren |    Erledigt    |
-| Fr  | 07:30-17:00            |     DNS-Auflösung  + Unit-Tests erstellen    |   Erledigt     |
+| Tag | Zeitfenster | Aufgabe(n)                                     | Status   |
+|-----|-------------|------------------------------------------------|----------|
+| Mo  | 09:00–14:00 | Feedback von Coach einholen                    | Erledigt |
+| Di  | 07:30-17:00 | Cross-Plattform einrichten für Linux           | Erledigt |
+| Mi  | 07:30-17:00 | GUI neu konstruieren mit Border-Pane           | Erledigt |
+| Do  | 07:30-17:00 | Timer für Multithreadingprozess implementieren | Erledigt |
+| Fr  | 07:30-17:00 | DNS-Auflösung  + Unit-Tests erstellen          | Erledigt |
 ---
 
 ### Woche 3 (26.01 – 30.01)
-**Fahrrad** = Der Visualizer hat ist nun Performance optimiert
+**Fahrrad** = Der Visualizer ist nun Performance optimiert, Thread-Sicher und läuft automatisch.
 
 
 **Wichtige Termine:**
 
-- Wöchentliches Meeting mit Betreuer: _Montag, 01.02.2026 um 13:15 Uhr_
+- Wöchentliches Meeting mit Betreuer: _Montag, 02.02.2026 um 13:15 Uhr_
 
 
 **Tagesplanung**
 
-| Tag | Zeitfenster | Aufgabe(n)| Status |
-|-----|-------------|-----------|---------|
-| Mo  | 09:00–14:00 |  GUI Struktur erneut revidieren und fehler beheben         | Erledigt        |
-| Di  | 07:30-17:00 | Auto-update (Scheduler)           |    Erledigt    | 
-| Mi  | 07:30-17:00 |  Scheduler finalisieren        |  Erledigt      |
-| Do  | 07:30-17:00 |  Beheben von Fehler beim Linux Befehl        |  Erledigt      |
+| Tag | Zeitfenster | Aufgabe(n)                                        | Status   |
+|-----|-------------|---------------------------------------------------|----------|
+| Mo  | 09:00–14:00 | GUI Struktur erneut revidieren und fehler beheben | Erledigt |
+| Di  | 07:30-17:00 | Auto-update (Scheduler)                           | Erledigt | 
+| Mi  | 07:30-17:00 | Scheduler finalisieren                            | Erledigt |
+| Do  | 07:30-17:00 | Beheben von Fehler beim Linux Befehl              | Erledigt |
 
 ---
 
 ### Woche 4-5 (02.02 – 13.02)
 **Motorrad** = Um die Benutzerfreundlichkeit deutlich zu verbessern, wird die TableView durch eine ListView ersetzt. Somit werden Einträge und keine öden Zeilen angezeigt. Ausserdem kann man den Prozess mit einem Knopf stoppen und starten.
 
-**Cabriolet** = Für den letzten Feinschliff wird eine Historie-Funktion implementiert.  Ausserdem wird es nun auch möglich sein UDP-Verbindungen anzeigen zu lassen.
+**Cabriolet** = Für den letzten Feinschliff wird eine Speicher-Funktion implementiert und die User Interaction mit einem Tutorial und einer visuell verbesserten GUI verbessert.
 
 
 **Wichtige Termine:**
 
-- Wöchentliches Meeting mit Betreuer: _Sonntag, 08.02.2026. Zeit noch ausstehend..._
+- Wöchentliches Meeting mit Betreuer: _Sonntag, 08.02.2026. Zeit noch ausstehend …_
 - Abgabe **Freitag, 13.02.2026!**
 
 
 **Tagesplanung Woche 4**
 
-| Tag | Zeitfenster | Aufgabe(n)| Status     |
-|-----|-------------|-----------|------------|
-| Mo  | 09:00–14:00 |  Doku ergänzen         | Erledigt   |
-| Di  | 07:30-17:00 | TableView durch ListView ersetzen (1/2)    | In Arbeit  | 
-| Mi  | 07:30-17:00 |  TableView durch ListView ersetzen (2/2)        | In Arbeit  |
-| Do  | 07:30-17:00 |  Unit Tests für ungültige Werte usw.        |  In Arbeit |
-| Fr | 07:30-17:00 | UDP sauber implementieren | In Arbeit  |
+| Tag | Zeitfenster | Aufgabe(n)                                     | Status   |
+|-----|-------------|------------------------------------------------|----------|
+| Mo  | 09:00–14:00 | Doku ergänzen                                  | Erledigt |
+| Di  | 07:30-17:00 | TableView durch ListView ersetzen (1/2)        | Erledigt | 
+| Mi  | 07:30-17:00 | TableView durch ListView ersetzen (2/2)        | Erledigt |
+| Do  | 07:30-17:00 | Unit Tests für ungültige Werte usw.            | Erledigt |
+| Fr  | 07:30-17:00 | Video-Tutorial für User-Interaction hinzufügen | Erledigt | 
 
 **Tagesplanung Woche 5**
 
-| Tag | Zeitfenster | Aufgabe(n)                                                                                | Status |
-|-----|-------------|-------------------------------------------------------------------------------------------|---------|
-| Mo  | 09:00–14:00 | Start&Stop Logik                                                                          | In Arbeit|
-| Di  | 07:30-17:00 | Historie-Funktion (Export als CSV) (1/2)                                                  | In Arbeit
-| Mi  | 07:30-17:00 | Historie-Funktion (Export als CSV) (2/2)  + Filter Optionen (Hardcoded Filter entfernen!) |  In Arbeit|
-| Do  | 07:30-17:00 | Unit-Tests aktualisieren, um Programm auf letzte Fehler zu prüfen                         |  In Arbeit|
+| Tag | Zeitfenster | Aufgabe(n)                                                                    | Status   |
+|-----|-------------|-------------------------------------------------------------------------------|----------|
+| Mo  | 09:00–14:00 | Start&Stop Logik                                                              | Erledigt |
+| Di  | 07:30-17:00 | Speicher-Funktion (Export als CSV) (1/2)                                      | Erledigt | 
+| Mi  | 07:30-17:00 | Speicher-Funktion (Export als CSV) (2/2) + Windows performance issues beheben | Erledigt |
+| Do  | 07:30-17:00 | Unit-Tests aktualisieren, um Programm auf letzte Fehler zu prüfen             | Erledigt |
 
 ## Plan-Revisionen
 

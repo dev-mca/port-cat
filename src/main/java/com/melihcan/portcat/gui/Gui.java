@@ -30,15 +30,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import com.melihcan.portcat.model.Connection;
 
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-
-import javafx.scene.media.Media;
-
 import java.awt.*;
 import java.util.List;
 
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -70,6 +64,7 @@ public class Gui extends Application {
            Logo
         --------------------------------------------------- */
         ImageView logoView = new ImageView();
+        //logo.png wird in stream geladen
         var stream = getClass().getResourceAsStream("/logo.png");
         if (stream != null) {
             Image logo = new Image(stream);
@@ -120,26 +115,7 @@ public class Gui extends Application {
                 btnSave.getScene().getWindow(),
                 listView.getItems()));
 
-        CheckBox dnsCheckBox = new CheckBox("DNS-Auflösung");
-        dnsCheckBox.setStyle(
-                "-fx-text-fill: #FFFBFC; " +
-                        "-fx-font-size: 13px; " +
-                        "-fx-font-weight: bold;"
-        );
-        dnsCheckBox.setSelected(false);  // Standardmäßig AUS
-
-        dnsCheckBox.setOnAction(e -> {
-            boolean enabled = dnsCheckBox.isSelected();
-
-            // Einmaliger Warning-Dialog beim ersten Aktivieren
-            if (enabled && !dnsWarningShown) {
-                showDnsWarning(stage);
-                dnsWarningShown = true;
-            }
-
-            parser.setDnsEnabled(enabled);
-            System.out.println("DNS-Auflösung " + (enabled ? "AN" : "AUS"));
-        });
+        CheckBox dnsCheckBox = getCheckBox(stage);
 
         Button btnTutorial = new Button("Tutorial");
         btnTutorial.setMinSize(150, 40);
@@ -203,9 +179,7 @@ public class Gui extends Application {
         /* ---------------------------------------------------
            Tabellen-Spalten
         --------------------------------------------------- */
-        placeholder.setText("Keine Verbindungen gefunden!");
         listView.setCellFactory(lv -> new ConnectionCell());
-
 
         /* ---------------------------------------------------
            Scene
@@ -227,7 +201,7 @@ public class Gui extends Application {
 
 
         stage.show();
-        initRedPulse(output);  // ROT-Start!
+        initRedPulse(output);  // Start & Stop Button wird am Anfang rot pulsieren
 
         //scheduler instanziieren
         scheduler = new Scheduler(this);
@@ -239,6 +213,30 @@ public class Gui extends Application {
                 scheduler.terminate();
             }
         });
+    }
+
+    private CheckBox getCheckBox(Stage stage) {
+        CheckBox dnsCheckBox = new CheckBox("DNS-Auflösung");
+        dnsCheckBox.setStyle(
+                "-fx-text-fill: #FFFBFC; " +
+                        "-fx-font-size: 13px; " +
+                        "-fx-font-weight: bold;"
+        );
+        dnsCheckBox.setSelected(false);  // Standardmäßig AUS
+
+        dnsCheckBox.setOnAction(e -> {
+            boolean enabled = dnsCheckBox.isSelected();
+
+            // Einmaliger Warning-Dialog beim ersten Aktivieren
+            if (enabled && !dnsWarningShown) {
+                showDnsWarning(stage);
+                dnsWarningShown = true;
+            }
+
+            parser.setDnsEnabled(enabled);
+            System.out.println("DNS-Auflösung " + (enabled ? "AN" : "AUS"));
+        });
+        return dnsCheckBox;
     }
 
     /* ---------------------------------------------------
