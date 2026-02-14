@@ -27,8 +27,14 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import com.melihcan.portcat.model.Connection;
 
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
+import javafx.scene.media.Media;
+
 import java.util.List;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -131,7 +137,13 @@ public class Gui extends Application {
             System.out.println("DNS-Auflösung " + (enabled ? "AN" : "AUS"));
         });
 
+        Button btnTutorial = new Button("Tutorial");
+        btnTutorial.setMinSize(150, 40);
+        btnTutorial.setPrefSize(150, 40);
+        btnTutorial.setMaxSize(150, 40);
+        btnTutorial.getStyleClass().add("btnTutorial");
 
+        btnTutorial.setOnAction(e -> showTutorialVideo());
 
 
         /* ---------------------------------------------------
@@ -147,7 +159,7 @@ public class Gui extends Application {
         leftPart.setAlignment(Pos.CENTER);
 
         // rechts: DNS-Toggle + Output + Buttons
-        HBox rightPart = new HBox(10, dnsCheckBox, output, startStopBtn, btnSave, btnClear);
+        HBox rightPart = new HBox(10, dnsCheckBox, output, startStopBtn, btnSave, btnClear, btnTutorial);
         rightPart.setAlignment(Pos.CENTER);
 
         // Spacer in der Mitte
@@ -456,6 +468,32 @@ public class Gui extends Application {
 
         redPulse = createRedPulse(glow);
         redPulse.play();  //Startet IMMER mit ROT
+    }
+
+    private static void showTutorialVideo() {
+        Stage videoStage = new Stage();
+        videoStage.setTitle("Tutorial Video");
+
+        // Pfad zur MP4‑Datei im Ressourcen‑Ordner
+        String videoPath = Objects.requireNonNull(
+                Gui.class.getResource("/portcat_tutorial.mp4"),
+                "tutorial.mp4 nicht gefunden"
+        ).toExternalForm();
+
+        Media media = new Media(videoPath);               // ← jetzt das Java‑FX‑Media
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        MediaView mediaView = new MediaView(mediaPlayer);
+
+        StackPane root = new StackPane(mediaView);
+        Scene scene = new Scene(root, 800, 600);
+        videoStage.setScene(scene);
+        videoStage.setMaximized(true);
+        videoStage.show();
+
+        mediaPlayer.play();
+
+        // Stoppe die Wiedergabe, wenn das Fenster geschlossen wird
+        videoStage.setOnCloseRequest(e -> mediaPlayer.stop());
     }
 
 }

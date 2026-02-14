@@ -4,9 +4,14 @@ import com.melihcan.portcat.model.Connection;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
+
+
+import javax.print.attribute.standard.Media;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

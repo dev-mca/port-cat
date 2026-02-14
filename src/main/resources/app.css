@@ -70,6 +70,16 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 10, 0.3, 0, 3);
 }
 
+.btnTutorial {
+    -fx-font-size: 17.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #322525;
+    -fx-background-radius: 10;
+    -fx-padding: 8 18 8 18;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 10, 0.3, 0, 3);
+}
+
 .output.flash-blue {
     -fx-effect: dropshadow(gaussian, rgba(58,160,255,0.95), 30, 0.80, 0, 0);
 }
@@ -99,6 +109,10 @@
 
 .btnSave:hover {-fx-background-color: rgb(211, 211, 211); }
 .btnSave:pressed {-fx-translate-y: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0.0, 0, 1);}
+
+.btnTutorial:hover {-fx-background-color: rgb(211, 211, 211); }
+.btnTutorial:pressed {-fx-translate-y: 2px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0.0, 0, 1);}
 
 .list-cell.state-established .conn-card { -fx-background-color: #eefaf1; }

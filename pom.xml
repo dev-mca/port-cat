@@ -54,6 +54,12 @@
             <artifactId>mockito-inline</artifactId>
             <version>5.2.0</version>   <!-- aktuelle Version im Central-Repo -->
         </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
