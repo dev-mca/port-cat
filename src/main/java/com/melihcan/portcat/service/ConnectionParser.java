@@ -53,6 +53,7 @@ public class ConnectionParser {
     /* =====================================================================
        Windows - MIT GSON
     ===================================================================== */
+    //Mithilfe von KI geschrieben
     private List<Connection> parseWindows() {
         List<Connection> list = new ArrayList<>();
         Process proc = null;

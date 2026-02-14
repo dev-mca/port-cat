@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import java.util.List;
 import java.util.concurrent.*;
 
+//Mithilfe von KI geschrieben
 public class Scheduler {
 
     private final ScheduledExecutorService scheduler =
