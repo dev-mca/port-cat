@@ -9,9 +9,12 @@ import javafx.collections.*;
 
 import javafx.geometry.*;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 import javafx.animation.KeyFrame;
@@ -32,6 +35,7 @@ import javafx.scene.media.MediaView;
 
 import javafx.scene.media.Media;
 
+import java.awt.*;
 import java.util.List;
 
 import java.util.Objects;
@@ -471,29 +475,28 @@ public class Gui extends Application {
     }
 
     private static void showTutorialVideo() {
-        Stage videoStage = new Stage();
-        videoStage.setTitle("Tutorial Video");
+        try {
+            String videoPath = Gui.class.getResource("/portcat_tutorial.mp4").getPath();
 
-        // Pfad zur MP4‑Datei im Ressourcen‑Ordner
-        String videoPath = Objects.requireNonNull(
-                Gui.class.getResource("/portcat_tutorial.mp4"),
-                "tutorial.mp4 nicht gefunden"
-        ).toExternalForm();
+            String os = System.getProperty("os.name").toLowerCase();
 
-        Media media = new Media(videoPath);               // ← jetzt das Java‑FX‑Media
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        MediaView mediaView = new MediaView(mediaPlayer);
+            if (os.contains("win")) {
+                // Windows: Nutze Desktop API
+                Desktop.getDesktop().open(new java.io.File(videoPath));
+            } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+                // Linux/Unix/Mac: Nutze xdg-open bzw. open
+                String command = os.contains("mac") ? "open" : "xdg-open";
+                new ProcessBuilder(command, videoPath).start();
+            } else {
+                throw new Exception("Betriebssystem nicht unterstützt");
+            }
 
-        StackPane root = new StackPane(mediaView);
-        Scene scene = new Scene(root, 800, 600);
-        videoStage.setScene(scene);
-        videoStage.setMaximized(true);
-        videoStage.show();
-
-        mediaPlayer.play();
-
-        // Stoppe die Wiedergabe, wenn das Fenster geschlossen wird
-        videoStage.setOnCloseRequest(e -> mediaPlayer.stop());
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fehler");
+            alert.setContentText("Video konnte nicht geöffnet werden: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
 }
