@@ -31,6 +31,10 @@ import javafx.stage.Stage;
 import com.melihcan.portcat.model.Connection;
 
 import java.awt.*;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -474,25 +478,35 @@ public class Gui extends Application {
 
     private static void showTutorialVideo() {
         try {
-            String videoPath = Gui.class.getResource("/portcat_tutorial.mp4").getPath();
+            // Video aus JAR in temporäres Verzeichnis extrahieren
+            InputStream videoStream = Gui.class.getResourceAsStream("/portcat_tutorial.mp4");
 
+            if (videoStream == null) {
+                throw new Exception("Video nicht in JAR gefunden!");
+            }
+
+            // Temp-Datei erstellen
+            File tempVideo = File.createTempFile("portcat_tutorial", ".mp4");
+            tempVideo.deleteOnExit(); // Automatisch löschen beim Beenden
+
+            // Video aus JAR in Temp-Datei kopieren
+            Files.copy(videoStream, tempVideo.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            videoStream.close();
+
+            // Video im Standard-Player öffnen
             String os = System.getProperty("os.name").toLowerCase();
 
             if (os.contains("win")) {
-                // Windows: Nutze Desktop API
-                Desktop.getDesktop().open(new java.io.File(videoPath));
+                Desktop.getDesktop().open(tempVideo);
             } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-                // Linux/Unix/Mac: Nutze xdg-open bzw. open
                 String command = os.contains("mac") ? "open" : "xdg-open";
-                new ProcessBuilder(command, videoPath).start();
-            } else {
-                throw new Exception("Betriebssystem nicht unterstützt");
+                new ProcessBuilder(command, tempVideo.getAbsolutePath()).start();
             }
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
-            alert.setContentText("Video konnte nicht geöffnet werden: " + e.getMessage());
+            alert.setContentText("Video konnte nicht geladen werden: " + e.getMessage());
             alert.showAndWait();
         }
     }

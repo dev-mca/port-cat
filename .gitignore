@@ -33,3 +33,4 @@ nbdist/
 
 ### macOS ###
 .DS_Store
+/dependency-reduced-pom.xml
