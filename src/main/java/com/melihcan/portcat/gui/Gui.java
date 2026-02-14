@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 import com.melihcan.portcat.model.Connection;
 
 import java.util.List;
-import java.util.Objects;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -54,7 +54,7 @@ public class Gui extends Application {
      --------------------------------------------------- */
     @Override
     public void start(Stage stage) {
-        stage.setTitle("PortCat V5");
+        stage.setTitle("PortCat v1.0");
 
         /* ---------------------------------------------------
            Logo
@@ -110,9 +110,6 @@ public class Gui extends Application {
                 btnSave.getScene().getWindow(),
                 listView.getItems()));
 
-        /* ---------------------------------------------------
-           NEU: DNS-Toggle CheckBox
-        --------------------------------------------------- */
         CheckBox dnsCheckBox = new CheckBox("DNS-Auflösung");
         dnsCheckBox.setStyle(
                 "-fx-text-fill: #FFFBFC; " +
@@ -246,13 +243,13 @@ public class Gui extends Application {
     private void showDnsWarning(Stage owner) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initOwner(owner);
-        alert.setTitle("DNS-Auflösung aktiviert");
+        alert.setTitle("DNS-Auflösung");
         alert.setHeaderText("Achtung: Performance-Warnung");
         alert.setContentText(
                 "DNS-Auflösung kann die Ladezeit deutlich verlängern!\n\n" +
-                        "Bei vielen Verbindungen (100+) kann es mehrere Sekunden dauern,\n" +
+                        "Bei vielen Verbindungen (100+) kann es mehrere Minuten dauern bis Verbindungen angezeigt werden,\n" +
                         "da jede IP-Adresse über das Netzwerk aufgelöst werden muss.\n\n" +
-                        "Für normale Nutzung empfehlen wir DNS DEAKTIVIERT zu lassen."
+                        "Für die Anzahl aktiven Verbindungen über 50 oder generell den normalen Nutzen empfehlen wir DNS DEAKTIVIERT zu lassen."
         );
         alert.showAndWait();
     }
