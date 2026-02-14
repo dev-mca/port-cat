@@ -30,6 +30,7 @@ import com.melihcan.portcat.model.Connection;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Gui extends Application {
 
@@ -43,6 +44,8 @@ public class Gui extends Application {
     private final Label placeholder = new Label();
     private int lastActiveCount = -1;
     private final AtomicBoolean running = new AtomicBoolean(false);
+    private Timeline loadingAnimation;
+    private final AtomicBoolean isLoading = new AtomicBoolean(false);
 
 
     /* ---------------------------------------------------
@@ -115,15 +118,15 @@ public class Gui extends Application {
         HBox topBar = new HBox();
         topBar.setMinHeight(85);
         topBar.setPrefHeight(85);
-        topBar.setAlignment(Pos.BOTTOM_CENTER);
+        topBar.setAlignment(Pos.CENTER);
 
         // links: Logo + Titel
         HBox leftPart = new HBox(10, logoView, title);
-        leftPart.setAlignment(Pos.CENTER_LEFT);
+        leftPart.setAlignment(Pos.CENTER);
 
         // rechts: Output + Buttons
         HBox rightPart = new HBox(10, output, startStopBtn, btnSave, btnClear);
-        rightPart.setAlignment(Pos.CENTER_RIGHT);
+        rightPart.setAlignment(Pos.CENTER);
 
         // Spacer in der Mitte
         Region spacer = new Region();
@@ -306,6 +309,9 @@ public class Gui extends Application {
     }
 
     public void updateUi(List<Connection> daten) {
+        // Stoppe Lade-Animation wenn Daten ankommen
+        stopLoadingAnimation();
+
         ObservableList<Connection> observable = FXCollections.observableArrayList(daten);
         listView.setItems(observable);
 
@@ -323,6 +329,10 @@ public class Gui extends Application {
 
         if (!vorher) {
             System.out.println("Starte Scheduler...");
+
+            // Starte Lade-Animation
+            startLoadingAnimation();
+
             scheduler.start();
             startStopBtn.setText("Stop");
             startStopBtn.getStyleClass().remove("startState");
@@ -332,6 +342,10 @@ public class Gui extends Application {
             startBtnAnimation(output);
         } else {
             System.out.println("Stoppe Scheduler...");
+
+            // Stoppe Lade-Animation
+            stopLoadingAnimation();
+
             scheduler.stop();
             startStopBtn.setText("Start");
             output.setText("Output: Stopped");
@@ -340,6 +354,42 @@ public class Gui extends Application {
                 startStopBtn.getStyleClass().add("startState");
             }
             startBtnAnimation(output);
+        }
+    }
+
+    private void startLoadingAnimation() {
+        if (loadingAnimation != null) {
+            loadingAnimation.stop();
+        }
+
+        isLoading.set(true);
+        AtomicInteger dotCount = new AtomicInteger(0);
+
+        loadingAnimation = new Timeline(
+                new KeyFrame(Duration.millis(400), e -> {
+                    if (!isLoading.get()) return;
+
+                    int dots = dotCount.getAndIncrement() % 4;
+                    StringBuilder text = new StringBuilder("Output: Lade Daten");
+
+                    for (int i = 0; i < dots; i++) {
+                        text.append(" .");
+                    }
+
+                    output.setText(text.toString());
+                })
+        );
+
+        loadingAnimation.setCycleCount(Animation.INDEFINITE);
+        loadingAnimation.play();
+    }
+
+    private void stopLoadingAnimation() {
+        isLoading.set(false);
+
+        if (loadingAnimation != null) {
+            loadingAnimation.stop();
+            loadingAnimation = null;
         }
     }
 
