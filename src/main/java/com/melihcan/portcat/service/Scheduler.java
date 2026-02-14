@@ -63,7 +63,27 @@ public class Scheduler {
                 future = null;
             }
         }
+
         scheduler.shutdownNow();
-        System.out.println("Scheduler terminiert");
+
+        // VERBESSERUNG: Warte bis zu 5 Sekunden auf sauberes Beenden
+        try {
+            if (!scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
+                System.err.println("WARNUNG: Scheduler konnte nicht innerhalb von 5 Sekunden beendet werden");
+                // Force shutdown
+                scheduler.shutdownNow();
+
+                // Nochmal warten
+                if (!scheduler.awaitTermination(2, TimeUnit.SECONDS)) {
+                    System.err.println("FEHLER: Scheduler antwortet nicht - möglicherweise hängende Threads");
+                }
+            } else {
+                System.out.println("Scheduler sauber terminiert");
+            }
+        } catch (InterruptedException e) {
+            System.err.println("Interrupt während Scheduler-Shutdown");
+            scheduler.shutdownNow();
+            Thread.currentThread().interrupt();
+        }
     }
 }

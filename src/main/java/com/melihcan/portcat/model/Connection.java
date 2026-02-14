@@ -24,6 +24,9 @@ public class Connection {
             110,       // POP3
             143,       // IMAP
             443,       // HTTPS
+            445,       // SMB (NEU)
+            465,       // SMTPS (NEU)
+            587,       // SMTP Submission (NEU)
             993,       // IMAPS
             995,       // POP3S
             1433,      // MSSQL
@@ -34,18 +37,48 @@ public class Connection {
             6379,      // Redis
             8080,      // HTTP Alt
             8443,      // HTTPS Alt
+            8888,      // HTTP Alt (NEU)
             27017      // MongoDB
     );
 
-    public Connection(String localAddress, int localPort, String remoteAddress, String remotePort, String state) {
+    /**
+     * Constructor MIT optionalem DNS-Lookup
+     *
+     * @param localAddress Lokale IP-Adresse
+     * @param localPort Lokaler Port
+     * @param remoteAddress Remote IP-Adresse
+     * @param remotePort Remote Port
+     * @param state Verbindungsstatus
+     * @param resolveDns TRUE = DNS-Lookup durchführen (LANGSAM!), FALSE = nur IP zeigen
+     */
+    public Connection(String localAddress, int localPort, String remoteAddress, String remotePort, String state, boolean resolveDns) {
         this.localAddress = localAddress;
         this.localPort = localPort;
-        this.remoteAddress = remoteAddress + " " + resolveDns(remoteAddress);
+
+        // DNS-Lookup nur wenn explizit gewünscht
+        if (resolveDns) {
+            this.remoteAddress = remoteAddress + " " + resolveDnsLookup(remoteAddress);
+        } else {
+            this.remoteAddress = remoteAddress;
+        }
+
         this.remotePort = PortResolver.resolvePort(remotePort);
         this.state = state;
     }
 
-    private static String resolveDns(String ipAddress) {
+    /**
+     * Legacy Constructor (ohne DNS - schnell!)
+     * Wird verwendet wenn DNS-Toggle AUS ist
+     */
+    public Connection(String localAddress, int localPort, String remoteAddress, String remotePort, String state) {
+        this(localAddress, localPort, remoteAddress, remotePort, state, false);
+    }
+
+    /**
+     * Führt DNS-Lookup durch
+     * ACHTUNG: Kann 0.5-3 Sekunden dauern!
+     */
+    private static String resolveDnsLookup(String ipAddress) {
         try {
             InetAddress address = InetAddress.getByName(ipAddress);
             String hostname = address.getHostName();

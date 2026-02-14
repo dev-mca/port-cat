@@ -28,6 +28,13 @@
             <version>${javafx.version}</version>
         </dependency>
 
+        <!-- GSON für JSON-Parsing - NEU! -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+
         <!-- JUnit 5 (Jupiter) -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

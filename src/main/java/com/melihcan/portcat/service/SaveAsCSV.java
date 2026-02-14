@@ -2,6 +2,8 @@ package com.melihcan.portcat.service;
 
 import com.melihcan.portcat.model.Connection;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
@@ -20,7 +22,7 @@ public final class SaveAsCSV {
      *  ------------------------------------------------------ */
     public static void saveAsCsv(Window owner, ObservableList<Connection> data) {
         if (data == null || data.isEmpty()) {
-            System.out.println("Keine Daten zum Exportieren.");
+            showWarningDialog(owner, "Keine Daten zum Exportieren vorhanden.");
             return;
         }
 
@@ -34,8 +36,15 @@ public final class SaveAsCSV {
             writeCsv(writer, data);
             System.out.println("CSV erfolgreich geschrieben nach: "
                     + file.getAbsolutePath());
+
+            // VERBESSERUNG: Erfolgs-Dialog
+            showSuccessDialog(owner, "CSV erfolgreich gespeichert:\n" + file.getName());
+
         } catch (IOException ex) {
             ex.printStackTrace();
+
+            // VERBESSERUNG: Fehler-Dialog statt nur printStackTrace
+            showErrorDialog(owner, "Fehler beim Speichern der CSV-Datei", ex.getMessage());
         }
     }
 
@@ -101,5 +110,34 @@ public final class SaveAsCSV {
         }
         sb.append('"');
         return sb.toString();
+    }
+
+    // NEUE METHODEN: Dialog-Anzeige
+
+    private static void showSuccessDialog(Window owner, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.initOwner(owner);
+        alert.setTitle("Erfolgreich gespeichert");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private static void showErrorDialog(Window owner, String header, String content) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.initOwner(owner);
+        alert.setTitle("Fehler beim Speichern");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private static void showWarningDialog(Window owner, String message) {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.initOwner(owner);
+        alert.setTitle("Warnung");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

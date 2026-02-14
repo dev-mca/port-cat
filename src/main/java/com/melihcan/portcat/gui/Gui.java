@@ -46,6 +46,7 @@ public class Gui extends Application {
     private final AtomicBoolean running = new AtomicBoolean(false);
     private Timeline loadingAnimation;
     private final AtomicBoolean isLoading = new AtomicBoolean(false);
+    private boolean dnsWarningShown = false;  // Für einmaligen Warning-Dialog
 
 
     /* ---------------------------------------------------
@@ -67,7 +68,7 @@ public class Gui extends Application {
             logoView.setSmooth(true);
             logoView.setFitHeight(150); // kompakt
         } else {
-            System.err.println("Logo not found in path!: /resources/logo.png");
+            System.err.println("WARNUNG: Logo nicht gefunden in /resources/logo.png");
         }
 
         /* ---------------------------------------------------
@@ -109,6 +110,30 @@ public class Gui extends Application {
                 btnSave.getScene().getWindow(),
                 listView.getItems()));
 
+        /* ---------------------------------------------------
+           NEU: DNS-Toggle CheckBox
+        --------------------------------------------------- */
+        CheckBox dnsCheckBox = new CheckBox("DNS-Auflösung");
+        dnsCheckBox.setStyle(
+                "-fx-text-fill: #FFFBFC; " +
+                        "-fx-font-size: 13px; " +
+                        "-fx-font-weight: bold;"
+        );
+        dnsCheckBox.setSelected(false);  // Standardmäßig AUS
+
+        dnsCheckBox.setOnAction(e -> {
+            boolean enabled = dnsCheckBox.isSelected();
+
+            // Einmaliger Warning-Dialog beim ersten Aktivieren
+            if (enabled && !dnsWarningShown) {
+                showDnsWarning(stage);
+                dnsWarningShown = true;
+            }
+
+            parser.setDnsEnabled(enabled);
+            System.out.println("DNS-Auflösung " + (enabled ? "AN" : "AUS"));
+        });
+
 
 
 
@@ -124,8 +149,8 @@ public class Gui extends Application {
         HBox leftPart = new HBox(10, logoView, title);
         leftPart.setAlignment(Pos.CENTER);
 
-        // rechts: Output + Buttons
-        HBox rightPart = new HBox(10, output, startStopBtn, btnSave, btnClear);
+        // rechts: DNS-Toggle + Output + Buttons
+        HBox rightPart = new HBox(10, dnsCheckBox, output, startStopBtn, btnSave, btnClear);
         rightPart.setAlignment(Pos.CENTER);
 
         // Spacer in der Mitte
@@ -156,7 +181,7 @@ public class Gui extends Application {
         --------------------------------------------------- */
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #30332E");
-        root.setPadding(new Insets(20, 50, 20, 50));  // ← bottom REDUZIERT!
+        root.setPadding(new Insets(20, 50, 20, 50));
         root.setTop(topBar);
         root.setBottom(bottomBar);
         root.setCenter(listView);
@@ -173,7 +198,15 @@ public class Gui extends Application {
            Scene
         --------------------------------------------------- */
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/app.css")).toExternalForm());
+
+        // Null-Check für CSS-Datei
+        var cssResource = getClass().getResource("/app.css");
+        if (cssResource != null) {
+            scene.getStylesheets().add(cssResource.toExternalForm());
+        } else {
+            System.err.println("WARNUNG: app.css nicht gefunden - Styles werden nicht geladen");
+        }
+
         stage.setScene(scene);
 
 
@@ -181,12 +214,12 @@ public class Gui extends Application {
 
 
         stage.show();
-        initRedPulse(output);  // ← ROT-Start!
+        initRedPulse(output);  // ROT-Start!
 
         //scheduler instanziieren
         scheduler = new Scheduler(this);
 
-        // Schließen-Handler hinzufügen
+        // Schließen-Handler
         stage.setOnCloseRequest(e -> {
             System.out.println("Fenster wird geschlossen - beende Scheduler");
             if (scheduler != null) {
@@ -207,15 +240,32 @@ public class Gui extends Application {
         }
     }
 
+    /**
+     * NEU: Zeigt Warning-Dialog bei DNS-Aktivierung
+     */
+    private void showDnsWarning(Stage owner) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initOwner(owner);
+        alert.setTitle("DNS-Auflösung aktiviert");
+        alert.setHeaderText("Achtung: Performance-Warnung");
+        alert.setContentText(
+                "DNS-Auflösung kann die Ladezeit deutlich verlängern!\n\n" +
+                        "Bei vielen Verbindungen (100+) kann es mehrere Sekunden dauern,\n" +
+                        "da jede IP-Adresse über das Netzwerk aufgelöst werden muss.\n\n" +
+                        "Für normale Nutzung empfehlen wir DNS DEAKTIVIERT zu lassen."
+        );
+        alert.showAndWait();
+    }
+
     private Timeline redPulse;
     private Timeline greenPulse;
-    private boolean isGreenActive = false; // Toggle-Flag
+    private boolean isGreenActive = false;
 
 
     //Methode für Puls-Effekte mithilfe von KI geschrieben
     private void startBtnAnimation(Label lbl) {
         DropShadow glow = new DropShadow();
-        glow.setColor(Color.rgb(57, 255, 20, 1.0)); // Startfarbe egal
+        glow.setColor(Color.rgb(57, 255, 20, 1.0));
         glow.setOffsetX(0);
         glow.setOffsetY(0);
         glow.setRadius(2);
@@ -262,7 +312,7 @@ public class Gui extends Application {
 
 
     private Timeline createRedPulse(DropShadow glow) {
-        Timeline timeline = new Timeline(  // ← Variable hinzufügen!
+        Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO,
                         new KeyValue(glow.radiusProperty(), 6, Interpolator.EASE_BOTH),
                         new KeyValue(glow.spreadProperty(), 0.05, Interpolator.EASE_BOTH),
@@ -357,6 +407,9 @@ public class Gui extends Application {
         }
     }
 
+    /**
+     * Startet die Lade-Animation mit Punkten
+     */
     private void startLoadingAnimation() {
         if (loadingAnimation != null) {
             loadingAnimation.stop();
@@ -384,6 +437,9 @@ public class Gui extends Application {
         loadingAnimation.play();
     }
 
+    /**
+     * Stoppt die Lade-Animation
+     */
     private void stopLoadingAnimation() {
         isLoading.set(false);
 

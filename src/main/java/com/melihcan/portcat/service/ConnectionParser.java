@@ -1,5 +1,8 @@
 package com.melihcan.portcat.service;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.melihcan.portcat.model.Connection;
 
 import java.io.BufferedReader;
@@ -25,6 +28,21 @@ public class ConnectionParser {
     private static final String SS_JSON = "ss -tnH -J";
     private static final String SS_TEXT = "ss -tanH";
 
+    /* -------- Gson für JSON-Parsing -------- */
+    private static final Gson gson = new Gson();
+
+    /* -------- DNS-Auflösung aktiviert? -------- */
+    private boolean dnsEnabled = false;
+
+    public void setDnsEnabled(boolean enabled) {
+        this.dnsEnabled = enabled;
+        System.out.println("DNS-Auflösung " + (enabled ? "AKTIVIERT" : "DEAKTIVIERT"));
+    }
+
+    public boolean isDnsEnabled() {
+        return dnsEnabled;
+    }
+
     /* =====================================================================
        Öffentliche API
     ===================================================================== */
@@ -33,7 +51,7 @@ public class ConnectionParser {
     }
 
     /* =====================================================================
-       Windows
+       Windows - MIT GSON
     ===================================================================== */
     private List<Connection> parseWindows() {
         List<Connection> list = new ArrayList<>();
@@ -47,13 +65,13 @@ public class ConnectionParser {
 
             String json = readAll(proc);
 
-            boolean finished = proc.waitFor(10, TimeUnit.SECONDS);
+            boolean finished = proc.waitFor(5, TimeUnit.SECONDS);  // Reduziert von 10 auf 5s
 
             long duration = System.currentTimeMillis() - startTime;
             System.out.println("PowerShell-Aufruf dauerte: " + duration + "ms");
 
             if (!finished) {
-                System.err.println("TIMEOUT: PowerShell brauchte länger als 10 Sekunden!");
+                System.err.println("TIMEOUT: PowerShell brauchte länger als 5 Sekunden!");
                 proc.destroyForcibly();
                 return list;
             }
@@ -72,27 +90,29 @@ public class ConnectionParser {
 
             json = json.trim();
 
-            System.out.println("JSON erste 100 Zeichen: " + json.substring(0, Math.min(100, json.length())));
+            // GSON-Parsing
+            try {
+                if (json.startsWith("[")) {
+                    // Array von Objekten
+                    JsonArray jsonArray = gson.fromJson(json, JsonArray.class);
+                    System.out.println("Anzahl Verbindungen gefunden: " + jsonArray.size());
 
-            if (json.startsWith("[")) {
-                json = json.substring(1, json.length() - 1);
-            } else if (json.startsWith("{") && !json.contains("},{")) {
-                Connection c = parseWinObject(json.replace("{", "").replace("}", ""));
-                if (c != null) list.add(c);
-                System.out.println("Anzahl Verbindungen gefunden: 1");
-                return list;
-            } else if (!json.startsWith("{")) {
-                System.err.println("Unerwartetes JSON-Format: " + json.substring(0, Math.min(100, json.length())));
-                return list;
-            }
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        JsonObject obj = jsonArray.get(i).getAsJsonObject();
+                        Connection c = parseWinObjectGson(obj);
+                        if (c != null) list.add(c);
+                    }
 
-            String[] objects = json.split("\\},\\{");
-            System.out.println("Anzahl Verbindungen gefunden: " + objects.length);
-
-            for (String obj : objects) {
-                obj = obj.replace("{", "").replace("}", "");
-                Connection c = parseWinObject(obj);
-                if (c != null) list.add(c);
+                } else if (json.startsWith("{")) {
+                    // Einzelnes Objekt
+                    JsonObject obj = gson.fromJson(json, JsonObject.class);
+                    Connection c = parseWinObjectGson(obj);
+                    if (c != null) list.add(c);
+                    System.out.println("Anzahl Verbindungen gefunden: 1");
+                }
+            } catch (Exception e) {
+                System.err.println("GSON-Parsing Fehler: " + e.getMessage());
+                e.printStackTrace();
             }
 
         } catch (IOException e) {
@@ -110,30 +130,35 @@ public class ConnectionParser {
         return list;
     }
 
-    private Connection parseWinObject(String raw) {
+    /**
+     * Parst ein Windows Connection-Object mit GSON
+     */
+    private Connection parseWinObjectGson(JsonObject obj) {
         try {
-            String localAddr  = value(raw, "LocalAddress");
+            String localAddr = obj.get("LocalAddress").getAsString();
             if (skip(localAddr)) return null;
             if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
 
-            int localPort  = Integer.parseInt(value(raw, "LocalPort"));
-            String remoteAddr = value(raw, "RemoteAddress");
-            String remotePort = value(raw, "RemotePort");
-            String stateRaw = value(raw, "State");
+            int localPort = obj.get("LocalPort").getAsInt();
+            String remoteAddr = obj.get("RemoteAddress").getAsString();
+            String remotePort = obj.get("RemotePort").getAsString();
+            String stateRaw = obj.get("State").getAsString();
 
-            // WICHTIG: State von Nummer zu Text konvertieren!
+            // State von Nummer zu Text konvertieren
             String state = mapState(stateRaw);
 
-            return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
+            // Connection mit DNS-Toggle erstellen
+            return new Connection(localAddr, localPort, remoteAddr, remotePort, state, dnsEnabled);
+
         } catch (Exception ex) {
-            System.err.println("Fehler beim Parsen von: " + raw);
+            System.err.println("Fehler beim Parsen von JSON-Object: " + obj);
             ex.printStackTrace();
             return null;
         }
     }
 
     /* =====================================================================
-       Linux
+       Linux - MIT GSON
     ===================================================================== */
     private List<Connection> parseLinux() {
         List<Connection> list;
@@ -144,6 +169,9 @@ public class ConnectionParser {
         return trySsText();
     }
 
+    /**
+     * Linux ss JSON-Modus mit GSON
+     */
     private List<Connection> trySsJson() {
         List<Connection> list = new ArrayList<>();
         try {
@@ -153,26 +181,49 @@ public class ConnectionParser {
             String json = readAll(proc).trim();
             if (json.isEmpty() || json.charAt(0) != '{') return list;
 
-            String inner = json.substring(json.indexOf('[') + 1, json.lastIndexOf(']'));
-            String[] objects = inner.split("\\},\\{");
-            for (String obj : objects) {
-                obj = obj.replace("{", "").replace("}", "");
-                String state      = value(obj, "state");
-                String localAddr  = value(obj, "local_addr");
-                if (skip(localAddr)) continue;
-                if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
+            try {
+                // Parse mit GSON
+                JsonObject root = gson.fromJson(json, JsonObject.class);
 
-                int    localPort  = Integer.parseInt(value(obj, "local_port"));
-                String remoteAddr = value(obj, "remote_addr");
-                String remotePort = value(obj, "remote_port");
-                state = stateFromName(state);
+                // Finde das Array (meist unter key wie "sockets" oder direkt)
+                JsonArray socketsArray = null;
+                for (String key : root.keySet()) {
+                    if (root.get(key).isJsonArray()) {
+                        socketsArray = root.get(key).getAsJsonArray();
+                        break;
+                    }
+                }
 
-                list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
+                if (socketsArray == null) return list;
+
+                for (int i = 0; i < socketsArray.size(); i++) {
+                    JsonObject socket = socketsArray.get(i).getAsJsonObject();
+
+                    String state = socket.has("state") ? socket.get("state").getAsString() : "";
+                    String localAddr = socket.has("local_addr") ? socket.get("local_addr").getAsString() : "";
+
+                    if (skip(localAddr)) continue;
+                    if ("127.0.0.1".equals(localAddr)) localAddr += " (Loopback)";
+
+                    int localPort = socket.has("local_port") ? socket.get("local_port").getAsInt() : 0;
+                    String remoteAddr = socket.has("remote_addr") ? socket.get("remote_addr").getAsString() : "";
+                    String remotePort = socket.has("remote_port") ? socket.get("remote_port").getAsString() : "";
+
+                    state = stateFromName(state);
+
+                    list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state, dnsEnabled));
+                }
+            } catch (Exception e) {
+                System.err.println("GSON Linux JSON Parsing Fehler: " + e.getMessage());
             }
+
         } catch (IOException ignored) { }
         return list;
     }
 
+    /**
+     * Linux ss Text-Modus (Fallback)
+     */
     private List<Connection> trySsText() {
         List<Connection> list = new ArrayList<>();
         try {
@@ -196,7 +247,7 @@ public class ConnectionParser {
                 String remoteAddr = m.group(4);
                 String remotePort = m.group(5);
 
-                list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
+                list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state, dnsEnabled));
             }
         } catch (IOException ignored) { }
         return list;
@@ -213,31 +264,21 @@ public class ConnectionParser {
         return sb.toString();
     }
 
-    private static String value(String jsonObject, String key) {
-        String k = "\"" + key + "\":";
-        int idx = jsonObject.indexOf(k);
-        if (idx == -1) return "";
-        idx += k.length();
-        int end = jsonObject.indexOf(",", idx);
-        if (end == -1) end = jsonObject.length();
-        return jsonObject.substring(idx, end).replace("\"", "").trim();
-    }
-
     private static boolean skip(String addr) {
         return "::".equals(addr) || "::1".equals(addr) || "0.0.0.0".equals(addr);
     }
 
     /**
-     * WICHTIG: PowerShell gibt State als Nummer zurück!
+     * PowerShell gibt State als Nummer zurück!
      * Quelle: https://docs.microsoft.com/en-us/dotnet/api/system.net.networkinformation.tcpstate
      */
     private static String mapState(String numeric) {
         return switch (numeric) {
             case "1" -> "Closed";
-            case "2" -> "Listen";           // ← INCOMING!
+            case "2" -> "Listen";
             case "3" -> "SYN-Sent";
             case "4" -> "SYN-Recv";
-            case "5" -> "Established";      // ← OUTGOING (meistens)
+            case "5" -> "Established";
             case "6" -> "Fin-Wait-1";
             case "7" -> "Fin-Wait-2";
             case "8" -> "Close-Wait";
@@ -245,7 +286,7 @@ public class ConnectionParser {
             case "10" -> "Last-Ack";
             case "11" -> "Time-Wait";
             case "12" -> "Delete-TCB";
-            default -> numeric;  // Falls es doch schon Text ist
+            default -> numeric;
         };
     }
 

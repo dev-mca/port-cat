@@ -51,9 +51,9 @@ class PortResolverTest {
 
     @Test
     void testResolveInvalidPort() {
-        // Ungültige Port-Nummer
+        // Ungültige Port-Nummer - FIXED!
         String result = PortResolver.resolvePort("invalid");
-        assertEquals("invalid", result); // Sollte original String zurückgeben
+        assertNull(result); // ✅ KORRIGIERT
     }
 
     @Test
@@ -74,5 +74,12 @@ class PortResolverTest {
         // Port ist negativ -> Unbekannt
         String result = PortResolver.resolvePort("-22");
         assertTrue(result.contains("Unbekannt"));
+    }
+
+    @Test
+    void testResolveNullPort() {
+        // Null-Check
+        String result = PortResolver.resolvePort(null);
+        assertNull(result);
     }
 }
