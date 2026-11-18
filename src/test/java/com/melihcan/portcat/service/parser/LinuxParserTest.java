@@ -45,6 +45,20 @@ class LinuxParserTest {
     }
 
     @Test
+    void parseTextKeepsStatesWithHyphen() {
+        String output = """
+                TIME-WAIT 0      0              192.168.1.20:51240           140.82.121.4:443
+                CLOSE-WAIT 1     0              192.168.1.20:51241           140.82.121.5:443
+                """;
+
+        List<Connection> result = LinuxParser.parseText(output);
+
+        assertEquals(2, result.size());
+        assertEquals("Time-Wait", result.get(0).getState());
+        assertEquals("Close-Wait", result.get(1).getState());
+    }
+
+    @Test
     void parseJsonReadsSocketsArray() {
         String json = """
                 {"sockets":[

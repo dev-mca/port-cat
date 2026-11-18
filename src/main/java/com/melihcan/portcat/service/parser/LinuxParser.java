@@ -19,7 +19,7 @@ public class LinuxParser implements ConnectionParser {
     private static final String SS_TEXT = "ss -tanH";
 
     private static final Pattern SS_TEXT_LINE = Pattern.compile(
-            "(\\w+)\\s+\\d+\\s+\\d+\\s+([^:]+):(\\d+)\\s+([^:]+):(\\S+)");
+            "(\\S+)\\s+\\d+\\s+\\d+\\s+([^:]+):(\\d+)\\s+([^:]+):(\\S+)");
 
     private static final Gson GSON = new Gson();
 
