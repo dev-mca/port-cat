@@ -1,7 +1,6 @@
 package com.melihcan.portcat.gui;
 
 import com.melihcan.portcat.service.ConnectionService;
-import com.melihcan.portcat.service.SaveAsCSV;
 import com.melihcan.portcat.service.Scheduler;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -116,7 +115,7 @@ public class Gui extends Application {
         btnSave.setMaxSize(200, 40);
         btnSave.getStyleClass().add("btnSave");
 
-        btnSave.setOnAction(e -> SaveAsCSV.saveAsCsv(
+        btnSave.setOnAction(e -> ExportDialog.show(
                 btnSave.getScene().getWindow(),
                 listView.getItems()));
 
