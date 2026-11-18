@@ -1,6 +1,7 @@
 package com.melihcan.portcat.service;
 
 import com.melihcan.portcat.model.Connection;
+import com.melihcan.portcat.service.parser.ConnectionParser;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ConnectionService {
     private volatile boolean dnsEnabled = false;
 
     public ConnectionService() {
-        this(new ConnectionParser());
+        this(ConnectionParser.forCurrentOs());
     }
 
     public ConnectionService(ConnectionParser parser) {

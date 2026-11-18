@@ -1,6 +1,7 @@
 package com.melihcan.portcat.service;
 
 import com.melihcan.portcat.model.Connection;
+import com.melihcan.portcat.service.parser.ConnectionParser;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -24,14 +25,9 @@ class ConnectionServiceTest {
 
     @Test
     void getConnectionsEnrichesEveryParsedConnection() {
-        ConnectionParser fakeParser = new ConnectionParser() {
-            @Override
-            public List<Connection> getConnections() {
-                return List.of(
-                        new Connection("10.0.0.2", 51000, "10.0.0.1", "22", "Established"),
-                        new Connection("10.0.0.2", 51001, "10.0.0.1", "80", "Established"));
-            }
-        };
+        ConnectionParser fakeParser = () -> List.of(
+                new Connection("10.0.0.2", 51000, "10.0.0.1", "22", "Established"),
+                new Connection("10.0.0.2", 51001, "10.0.0.1", "80", "Established"));
 
         List<Connection> result = new ConnectionService(fakeParser).getConnections();
 
