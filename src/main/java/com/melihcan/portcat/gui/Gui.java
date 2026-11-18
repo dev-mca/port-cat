@@ -31,7 +31,7 @@ public class Gui extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("PortCat v1.0");
+        stage.setTitle("PortCat " + appVersion());
 
         TutorialVideo tutorial = new TutorialVideo(getHostServices(), TutorialVideo.TUTORIAL_URL);
 
@@ -76,6 +76,12 @@ public class Gui extends Application {
         if (scheduler != null) {
             scheduler.terminate();
         }
+    }
+
+    /** Version aus dem Jar-Manifest (gesetzt beim Build), sonst "dev" beim Start aus der IDE. */
+    private static String appVersion() {
+        String version = Gui.class.getPackage().getImplementationVersion();
+        return version == null ? "dev" : "v" + version;
     }
 
     private static HBox createBottomBar() {
