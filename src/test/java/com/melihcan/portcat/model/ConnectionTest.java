@@ -13,8 +13,8 @@ class ConnectionTest {
         // Act & Assert
         assertEquals("192.168.1.1", conn.getLocalAddress());
         assertEquals(8080, conn.getLocalPort());
-        assertTrue(conn.getRemoteAddress().contains("10.0.0.1"));
-        assertEquals("443 (HTTPS)", conn.getRemotePort());
+        assertEquals("10.0.0.1", conn.getRemoteAddress());
+        assertEquals("443", conn.getRemotePort());
         assertEquals("ESTABLISHED", conn.getState());
     }
 
@@ -72,5 +72,12 @@ class ConnectionTest {
         // State sollte case-insensitive sein
         Connection conn = new Connection("192.168.1.1", 8080, "10.0.0.1", "443", "listen");
         assertEquals("INCOMING", conn.getDirection());
+    }
+
+    @Test
+    void testDirectionWithEnrichedRemotePort() {
+        // Remote-Port im Anzeigeformat "443 (HTTPS)"
+        Connection conn = new Connection("192.168.1.1", 8080, "10.0.0.1", "443 (HTTPS)", "ESTABLISHED");
+        assertEquals("OUTGOING", conn.getDirection());
     }
 }

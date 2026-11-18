@@ -1,6 +1,6 @@
 package com.melihcan.portcat.gui;
 
-import com.melihcan.portcat.service.ConnectionParser;
+import com.melihcan.portcat.service.ConnectionService;
 import com.melihcan.portcat.service.SaveAsCSV;
 import com.melihcan.portcat.service.Scheduler;
 import javafx.application.Application;
@@ -47,7 +47,7 @@ public class Gui extends Application {
         Felder
      --------------------------------------------------- */
     private final ListView<Connection> listView = new ListView<>();
-    private final ConnectionParser parser = new ConnectionParser();
+    private final ConnectionService connectionService = new ConnectionService();
     private Scheduler scheduler;
     private Label output;
     private final Label placeholder = new Label();
@@ -210,7 +210,7 @@ public class Gui extends Application {
 
         //scheduler instanziieren
         scheduler = new Scheduler(
-                parser::getConnections,
+                connectionService::getConnections,
                 connections -> Platform.runLater(() -> updateUi(connections)));
 
         // Schließen-Handler
@@ -240,7 +240,7 @@ public class Gui extends Application {
                 dnsWarningShown = true;
             }
 
-            parser.setDnsEnabled(enabled);
+            connectionService.setDnsEnabled(enabled);
             System.out.println("DNS-Auflösung " + (enabled ? "AN" : "AUS"));
         });
         return dnsCheckBox;

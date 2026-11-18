@@ -31,18 +31,6 @@ public class ConnectionParser {
     /* -------- Gson für JSON-Parsing -------- */
     private static final Gson gson = new Gson();
 
-    /* -------- DNS-Auflösung aktiviert? -------- */
-    private boolean dnsEnabled = false;
-
-    public void setDnsEnabled(boolean enabled) {
-        this.dnsEnabled = enabled;
-        System.out.println("DNS-Auflösung " + (enabled ? "AKTIVIERT" : "DEAKTIVIERT"));
-    }
-
-    public boolean isDnsEnabled() {
-        return dnsEnabled;
-    }
-
     /* =====================================================================
        Öffentliche API
     ===================================================================== */
@@ -148,8 +136,7 @@ public class ConnectionParser {
             // State von Nummer zu Text konvertieren
             String state = mapState(stateRaw);
 
-            // Connection mit DNS-Toggle erstellen
-            return new Connection(localAddr, localPort, remoteAddr, remotePort, state, dnsEnabled);
+            return new Connection(localAddr, localPort, remoteAddr, remotePort, state);
 
         } catch (Exception ex) {
             System.err.println("Fehler beim Parsen von JSON-Object: " + obj);
@@ -212,7 +199,7 @@ public class ConnectionParser {
 
                     state = stateFromName(state);
 
-                    list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state, dnsEnabled));
+                    list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
                 }
             } catch (Exception e) {
                 System.err.println("GSON Linux JSON Parsing Fehler: " + e.getMessage());
@@ -248,7 +235,7 @@ public class ConnectionParser {
                 String remoteAddr = m.group(4);
                 String remotePort = m.group(5);
 
-                list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state, dnsEnabled));
+                list.add(new Connection(localAddr, localPort, remoteAddr, remotePort, state));
             }
         } catch (IOException ignored) { }
         return list;

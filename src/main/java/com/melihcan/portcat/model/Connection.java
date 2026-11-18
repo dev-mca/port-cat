@@ -1,17 +1,13 @@
 package com.melihcan.portcat.model;
 
-import com.melihcan.portcat.service.PortResolver;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.Set;
 
 public class Connection {
-    private String localAddress;
-    private int localPort;
-    private String remoteAddress;
-    private String remotePort;
-    private String state;
+    private final String localAddress;
+    private final int localPort;
+    private final String remoteAddress;
+    private final String remotePort;
+    private final String state;
 
     // Bekannte Server-Ports (Dienste die typischerweise Server sind)
     private static final Set<Integer> SERVER_PORTS = Set.of(
@@ -42,61 +38,39 @@ public class Connection {
     );
 
     /**
-     * Constructor MIT optionalem DNS-Lookup
-     *
-     * @param localAddress Lokale IP-Adresse
-     * @param localPort Lokaler Port
-     * @param remoteAddress Remote IP-Adresse
-     * @param remotePort Remote Port
-     * @param state Verbindungsstatus
-     * @param resolveDns TRUE = DNS-Lookup durchführen (LANGSAM!), FALSE = nur IP zeigen
+     * @param localAddress  Lokale IP-Adresse
+     * @param localPort     Lokaler Port
+     * @param remoteAddress Remote-Adresse (ggf. bereits mit Hostname angereichert)
+     * @param remotePort    Remote-Port (ggf. bereits mit Dienstname, z.B. "443 (HTTPS)")
+     * @param state         Verbindungsstatus
      */
-    public Connection(String localAddress, int localPort, String remoteAddress, String remotePort, String state, boolean resolveDns) {
+    public Connection(String localAddress, int localPort, String remoteAddress, String remotePort, String state) {
         this.localAddress = localAddress;
         this.localPort = localPort;
-
-        // DNS-Lookup nur wenn explizit gewünscht
-        if (resolveDns) {
-            this.remoteAddress = remoteAddress + " " + resolveDnsLookup(remoteAddress);
-        } else {
-            this.remoteAddress = remoteAddress;
-        }
-
-        this.remotePort = PortResolver.resolvePort(remotePort);
+        this.remoteAddress = remoteAddress;
+        this.remotePort = remotePort;
         this.state = state;
     }
 
-    /**
-     * Legacy Constructor (ohne DNS - schnell!)
-     * Wird verwendet wenn DNS-Toggle AUS ist
-     */
-    public Connection(String localAddress, int localPort, String remoteAddress, String remotePort, String state) {
-        this(localAddress, localPort, remoteAddress, remotePort, state, false);
+    public String getLocalAddress() {
+        return localAddress;
     }
 
-    /**
-     * Führt DNS-Lookup durch
-     * ACHTUNG: Kann 0.5-3 Sekunden dauern!
-     */
-    private static String resolveDnsLookup(String ipAddress) {
-        try {
-            InetAddress address = InetAddress.getByName(ipAddress);
-            String hostname = address.getHostName();
-
-            if (hostname.equals(ipAddress)) {
-                return "";
-            }
-            return "(" + hostname + ")";
-        } catch (UnknownHostException e) {
-            return "";
-        }
+    public int getLocalPort() {
+        return localPort;
     }
 
-    public String getLocalAddress() { return localAddress; }
-    public int getLocalPort() { return localPort; }
-    public String getRemoteAddress() { return remoteAddress; }
-    public String getRemotePort() { return remotePort; }
-    public String getState() { return state; }
+    public String getRemoteAddress() {
+        return remoteAddress;
+    }
+
+    public String getRemotePort() {
+        return remotePort;
+    }
+
+    public String getState() {
+        return state;
+    }
 
     /**
      * Bestimmt die Richtung der Verbindung:
@@ -122,7 +96,9 @@ public class Connection {
             try {
                 // Remote-Port extrahieren (z.B. "443 (HTTPS)" → "443")
                 String remotePortStr = remotePort;
-                if (remotePortStr == null) return "UNKNOWN";
+                if (remotePortStr == null) {
+                    return "UNKNOWN";
+                }
 
                 if (remotePortStr.contains(" ")) {
                     remotePortStr = remotePortStr.split(" ")[0];
@@ -164,7 +140,7 @@ public class Connection {
 
     @Override
     public String toString() {
-        return "Connection [Local=" + localAddress + ":" + localPort +
-                ", Remote=" + remoteAddress + ":" + remotePort + ", State=" + state + "]";
+        return "Connection [Local=" + localAddress + ":" + localPort
+                + ", Remote=" + remoteAddress + ":" + remotePort + ", State=" + state + "]";
     }
 }
