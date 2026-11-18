@@ -57,8 +57,26 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 ## 🧰 Voraussetzungen
 
 - Java 25 oder neuer
-- JavaFX SDK
 - Windows oder Linux
+
+JavaFX ist im Release-Jar bereits enthalten.
+
+---
+
+## ▶️ Starten
+
+Lade `PortCat-<version>.jar` aus den GitHub-Releases herunter und starte es mit:
+
+```bash
+java -jar PortCat-2.0.0.jar
+```
+
+Selbst bauen:
+
+```bash
+mvn clean package
+java -jar target/PortCat-2.0.0.jar
+```
 
 ---
 
