@@ -33,10 +33,13 @@ public class Gui extends Application {
     public void start(Stage stage) {
         stage.setTitle("PortCat v1.0");
 
+        TutorialVideo tutorial = new TutorialVideo(getHostServices(), TutorialVideo.TUTORIAL_URL);
+
         toolbar = new Toolbar(
                 this::toggleScheduler,
                 () -> ExportDialog.show(stage, listView.getItems()),
                 this::clear,
+                () -> tutorial.show(stage),
                 connectionService::setDnsEnabled);
         animations = new Animations(toolbar.getOutput());
 

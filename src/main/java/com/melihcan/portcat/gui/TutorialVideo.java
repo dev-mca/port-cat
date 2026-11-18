@@ -1,43 +1,58 @@
 package com.melihcan.portcat.gui;
 
+import javafx.application.HostServices;
 import javafx.scene.control.Alert;
+import javafx.stage.Window;
 
-import java.awt.*;
-import java.io.File;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.net.URI;
+import java.net.URISyntaxException;
 
-public class TutorialVideo {
+/**
+ * Öffnet das Tutorial-Video über einen Link im Standard-Browser.
+ */
+public final class TutorialVideo {
 
-    public static void showTutorialVideo() {
-        try {
-            InputStream videoStream = Gui.class.getResourceAsStream("/portcat_tutorial.mp4");
+    /** Link zum Tutorial-Video (z.B. YouTube). Leer = noch kein Video hinterlegt. */
+    public static final String TUTORIAL_URL = "";
 
-            if (videoStream == null) {
-                throw new Exception("Video nicht in JAR gefunden!");
-            }
+    private final HostServices hostServices;
+    private final String url;
 
-            File tempVideo = File.createTempFile("portcat_tutorial", ".mp4");
-            tempVideo.deleteOnExit();
+    public TutorialVideo(HostServices hostServices, String url) {
+        this.hostServices = hostServices;
+        this.url = url == null ? "" : url.trim();
+    }
 
-            Files.copy(videoStream, tempVideo.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            videoStream.close();
-
-            String os = System.getProperty("os.name").toLowerCase();
-
-            if (os.contains("win")) {
-                Desktop.getDesktop().open(tempVideo);
-            } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-                String command = os.contains("mac") ? "open" : "xdg-open";
-                new ProcessBuilder(command, tempVideo.getAbsolutePath()).start();
-            }
-
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setContentText("Video konnte nicht geladen werden: " + e.getMessage());
-            alert.showAndWait();
+    public void show(Window owner) {
+        if (url.isEmpty()) {
+            showAlert(owner, Alert.AlertType.INFORMATION,
+                    "Für dieses Programm ist noch kein Tutorial-Video hinterlegt.");
+            return;
         }
+        if (!isWebLink(url)) {
+            showAlert(owner, Alert.AlertType.ERROR, "Ungültiger Tutorial-Link: " + url);
+            return;
+        }
+        hostServices.showDocument(url);
+    }
+
+    static boolean isWebLink(String url) {
+        try {
+            URI uri = new URI(url);
+            String scheme = uri.getScheme();
+            return uri.getHost() != null
+                    && ("http".equalsIgnoreCase(scheme) || "https".equalsIgnoreCase(scheme));
+        } catch (URISyntaxException e) {
+            return false;
+        }
+    }
+
+    private static void showAlert(Window owner, Alert.AlertType type, String message) {
+        Alert alert = new Alert(type);
+        alert.initOwner(owner);
+        alert.setTitle("Tutorial");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

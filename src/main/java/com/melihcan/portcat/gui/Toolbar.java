@@ -22,7 +22,8 @@ public class Toolbar extends HBox {
     private final Button startStopBtn = new Button("Start");
     private boolean dnsWarningShown = false;
 
-    public Toolbar(Runnable onStartStop, Runnable onSave, Runnable onClear, Consumer<Boolean> onDnsToggle) {
+    public Toolbar(Runnable onStartStop, Runnable onSave, Runnable onClear, Runnable onTutorial,
+                   Consumer<Boolean> onDnsToggle) {
         setMinHeight(85);
         setPrefHeight(85);
         setAlignment(Pos.CENTER);
@@ -38,7 +39,7 @@ public class Toolbar extends HBox {
 
         Button btnSave = createButton("Save state as CSV", 200, "btnSave", onSave);
         Button btnClear = createButton("Clear", 110, "btnClear", onClear);
-        Button btnTutorial = createButton("Tutorial", 150, "btnTutorial", TutorialVideo::showTutorialVideo);
+        Button btnTutorial = createButton("Tutorial", 150, "btnTutorial", onTutorial);
 
         CheckBox dnsCheckBox = createDnsCheckBox(onDnsToggle);
 
