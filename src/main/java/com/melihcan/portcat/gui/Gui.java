@@ -4,6 +4,7 @@ import com.melihcan.portcat.service.ConnectionParser;
 import com.melihcan.portcat.service.SaveAsCSV;
 import com.melihcan.portcat.service.Scheduler;
 import javafx.application.Application;
+import javafx.application.Platform;
 
 import javafx.collections.*;
 
@@ -208,7 +209,9 @@ public class Gui extends Application {
         initRedPulse(output);  // Start & Stop Button wird am Anfang rot pulsieren
 
         //scheduler instanziieren
-        scheduler = new Scheduler(this);
+        scheduler = new Scheduler(
+                parser::getConnections,
+                connections -> Platform.runLater(() -> updateUi(connections)));
 
         // Schließen-Handler
         stage.setOnCloseRequest(e -> {
@@ -369,18 +372,14 @@ public class Gui extends Application {
         listView.setPlaceholder(placeholder);
     }
 
-    public List<Connection> ladeDaten() {
-        return parser.getConnections();
-    }
-
-    public void updateUi(List<Connection> daten) {
+    private void updateUi(List<Connection> connections) {
         // Stoppe Lade-Animation wenn Daten ankommen
         stopLoadingAnimation();
 
-        ObservableList<Connection> observable = FXCollections.observableArrayList(daten);
+        ObservableList<Connection> observable = FXCollections.observableArrayList(connections);
         listView.setItems(observable);
 
-        int count = daten.size();
+        int count = connections.size();
         output.setText("Output: Aktive Verbindungen: " + count);
 
         if (lastActiveCount != -1 && count != lastActiveCount) {
@@ -389,10 +388,10 @@ public class Gui extends Application {
         lastActiveCount = count;
     }
 
-    public void startStopScheduler(Button startStopBtn) {
-        boolean vorher = running.getAndSet(!running.get());
+    private void startStopScheduler(Button startStopBtn) {
+        boolean wasRunning = running.getAndSet(!running.get());
 
-        if (!vorher) {
+        if (!wasRunning) {
             System.out.println("Starte Scheduler...");
 
             // Starte Lade-Animation

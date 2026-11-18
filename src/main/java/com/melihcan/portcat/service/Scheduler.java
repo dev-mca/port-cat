@@ -1,11 +1,14 @@
 package com.melihcan.portcat.service;
 
 import com.melihcan.portcat.model.Connection;
-import com.melihcan.portcat.gui.Gui;
-import javafx.application.Platform;
 
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 //Mithilfe von KI geschrieben
 public class Scheduler {
@@ -18,11 +21,17 @@ public class Scheduler {
             });
 
     private ScheduledFuture<?> future;
-    private final Gui gui;
+    private final Supplier<List<Connection>> loader;
+    private final Consumer<List<Connection>> onUpdate;
     private final Object lock = new Object();  // Für Thread-Sicherheit
 
-    public Scheduler(Gui gui) {
-        this.gui = gui;
+    /**
+     * @param loader   liefert die aktuellen Verbindungen (läuft im Scheduler-Thread)
+     * @param onUpdate bekommt das Ergebnis jedes Durchlaufs (ebenfalls im Scheduler-Thread)
+     */
+    public Scheduler(Supplier<List<Connection>> loader, Consumer<List<Connection>> onUpdate) {
+        this.loader = loader;
+        this.onUpdate = onUpdate;
     }
 
     public void start() {
@@ -35,8 +44,8 @@ public class Scheduler {
 
             future = scheduler.scheduleWithFixedDelay(() -> {
                 try {
-                    List<Connection> daten = gui.ladeDaten();
-                    Platform.runLater(() -> gui.updateUi(daten));
+                    List<Connection> connections = loader.get();
+                    onUpdate.accept(connections);
                 } catch (Exception e) {
                     System.err.println("Fehler beim Laden der Verbindungen: " + e.getMessage());
                     e.printStackTrace();
