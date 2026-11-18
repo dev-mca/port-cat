@@ -127,7 +127,7 @@ public class Gui extends Application {
         btnTutorial.setMaxSize(150, 40);
         btnTutorial.getStyleClass().add("btnTutorial");
 
-        btnTutorial.setOnAction(e -> showTutorialVideo());
+        btnTutorial.setOnAction(e -> TutorialVideo.showTutorialVideo());
 
 
         /* ---------------------------------------------------
@@ -476,39 +476,5 @@ public class Gui extends Application {
         redPulse.play();  //Startet IMMER mit ROT
     }
 
-    private static void showTutorialVideo() {
-        try {
-            // Video aus JAR in temporäres Verzeichnis extrahieren
-            InputStream videoStream = Gui.class.getResourceAsStream("/portcat_tutorial.mp4");
-
-            if (videoStream == null) {
-                throw new Exception("Video nicht in JAR gefunden!");
-            }
-
-            // Temp-Datei erstellen
-            File tempVideo = File.createTempFile("portcat_tutorial", ".mp4");
-            tempVideo.deleteOnExit(); // Automatisch löschen beim Beenden
-
-            // Video aus JAR in Temp-Datei kopieren
-            Files.copy(videoStream, tempVideo.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            videoStream.close();
-
-            // Video im Standard-Player öffnen
-            String os = System.getProperty("os.name").toLowerCase();
-
-            if (os.contains("win")) {
-                Desktop.getDesktop().open(tempVideo);
-            } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
-                String command = os.contains("mac") ? "open" : "xdg-open";
-                new ProcessBuilder(command, tempVideo.getAbsolutePath()).start();
-            }
-
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setContentText("Video konnte nicht geladen werden: " + e.getMessage());
-            alert.showAndWait();
-        }
-    }
 
 }
