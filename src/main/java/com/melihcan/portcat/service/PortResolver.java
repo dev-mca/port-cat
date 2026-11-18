@@ -54,9 +54,13 @@ public class PortResolver {
         }
 
         String range;
-        if (port <= 1023) range = "Well-known";
-        else if (port <= 49151) range = "Registered";
-        else range = "Dynamic/Private";
+        if (port <= 1023) {
+            range = "Well-known";
+        } else if (port <= 49151) {
+            range = "Registered";
+        } else {
+            range = "Dynamic/Private";
+        }
 
         return port + " (" + range + ")";
     }

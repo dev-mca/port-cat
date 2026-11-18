@@ -1,9 +1,14 @@
 package com.melihcan.portcat.gui;
 
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.geometry.*;
 import com.melihcan.portcat.model.Connection;
+import javafx.geometry.Pos;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 public final class ConnectionCell extends ListCell<Connection> {
 
@@ -63,9 +68,13 @@ public final class ConnectionCell extends ListCell<Connection> {
         // State für Hintergrundfarbe
         getStyleClass().removeAll("state-established", "state-listen", "state-other");
         String s = c.getState() == null ? "" : c.getState().toUpperCase();
-        if (s.contains("ESTABLISHED")) getStyleClass().add("state-established");
-        else if (s.contains("LISTEN")) getStyleClass().add("state-listen");
-        else getStyleClass().add("state-other");
+        if (s.contains("ESTABLISHED")) {
+            getStyleClass().add("state-established");
+        } else if (s.contains("LISTEN")) {
+            getStyleClass().add("state-listen");
+        } else {
+            getStyleClass().add("state-other");
+        }
 
         // NEU: Pfeil mit Richtung zeichnen
         arrowCanvas.setDirection(c.getDirection());
