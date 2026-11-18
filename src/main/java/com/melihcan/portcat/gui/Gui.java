@@ -65,11 +65,6 @@ public class Gui extends Application {
         scheduler = new Scheduler(
                 connectionService::getConnections,
                 connections -> Platform.runLater(() -> updateUi(connections)));
-
-        stage.setOnCloseRequest(e -> {
-            System.out.println("Fenster wird geschlossen - beende Scheduler");
-            scheduler.terminate();
-        });
     }
 
     @Override
