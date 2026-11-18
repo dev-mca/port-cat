@@ -56,7 +56,7 @@ So entsteht ein „lebendes“ Bild deines Netzwerkverkehrs – ohne erweiterte 
 
 ## 🧰 Voraussetzungen
 
-- Java 17 oder neuer
+- Java 25 oder neuer
 - JavaFX SDK
 - Windows oder Linux
 
